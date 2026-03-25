@@ -105,8 +105,8 @@ body {
     100% { transform: translateY(0px) scale(1); }
 }
 
+/* Removed drifting animation to prevent vertical shifting */
 .card-item {
-    animation: drift 12s ease-in-out infinite alternate;
     will-change: transform;
 }
 
@@ -129,17 +129,7 @@ body {
     z-index: 1;
 }
 
-.bonus-cards::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(circle at top, rgba(99, 102, 241, 0.16), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.13), transparent 40%);
-    opacity: 0.85;
-    transform: scale(1.02);
-    filter: blur(5px);
-}
+
 
 .bonus-cards h4 {
     color: #CBD5E1;
@@ -166,13 +156,13 @@ body {
 }
 
 .bonus-cards .card-item {
-    animation: drift 12s ease-in-out infinite alternate, card-glow 9s ease-in-out infinite;
+    animation: card-glow 9s ease-in-out infinite;
     box-shadow: 0 8px 30px rgba(5, 19, 43, 0.45);
     transition: transform 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
 }
 
 .bonus-cards .card-item:hover {
-    transform: translateY(-1px) scale(1.008);
+    transform: scale(1.008);
     box-shadow: 0 13px 30px rgba(37, 86, 162, 0.6);
 }
 
