@@ -105,23 +105,42 @@ document.addEventListener('DOMContentLoaded', () => {
         `./banner home vda astronauta 1/Astronaut_standing_in_ocean_delpmaspu__${index.toString().padStart(3, '0')}.webp`
     );
 
+    // Helper to draw image preserving aspect ratio (object-cover)
+    const drawImageCover = (ctx, img, cw, ch) => {
+        const imgW = img.width || img.naturalWidth || 1920;
+        const imgH = img.height || img.naturalHeight || 1080;
+        const scale = Math.max(cw / imgW, ch / imgH);
+        const w = imgW * scale;
+        const h = imgH * scale;
+        const x = (cw - w) / 2;
+        const y = (ch - h) / 2;
+        ctx.drawImage(img, x, y, w, h);
+    };
+
     const preloadImages = () => {
         const firstImg = new Image();
         firstImg.src = getFramePath(0);
         firstImg.onload = () => {
-            context.drawImage(firstImg, 0, 0, canvas.width, canvas.height);
-            images[0] = firstImg;
+            if (isMobileDevice && window.OffscreenCanvas) {
+                const oc = new OffscreenCanvas(canvas.width, canvas.height);
+                const ocCtx = oc.getContext('2d', { alpha: false });
+                drawImageCover(ocCtx, firstImg, canvas.width, canvas.height);
+                images[0] = oc;
+                context.drawImage(oc, 0, 0, canvas.width, canvas.height);
+            } else {
+                images[0] = firstImg;
+                drawImageCover(context, firstImg, canvas.width, canvas.height);
+            }
 
             setTimeout(() => {
                 for (let i = 1; i < frameCount; i++) {
                     const img = new Image();
                     img.src = getFramePath(i);
                     img.onload = () => {
-                        // Pre-scale for mobile to save paint time during scroll
                         if (isMobileDevice && window.OffscreenCanvas) {
                             const oc = new OffscreenCanvas(canvas.width, canvas.height);
                             const ctx = oc.getContext('2d', { alpha: false });
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            drawImageCover(ctx, img, canvas.width, canvas.height);
                             images[i] = oc;
                         } else {
                             images[i] = img;
@@ -134,11 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let activeFrameIndex = 0;
     const drawFrame = (index) => {
-        if (!images[index] || activeFrameIndex === index) return;
+        const imgOrCanvas = images[index];
+        if (!imgOrCanvas || activeFrameIndex === index) return;
         
-        // For OffscreenCanvas or Image that is loaded
-        if (images[index].width > 0 || images[index].naturalHeight !== 0) {
-            context.drawImage(images[index], 0, 0, canvas.width, canvas.height);
+        if (imgOrCanvas.width > 0 || imgOrCanvas.naturalHeight !== 0) {
+            if (imgOrCanvas instanceof HTMLImageElement) {
+                drawImageCover(context, imgOrCanvas, canvas.width, canvas.height);
+            } else {
+                context.drawImage(imgOrCanvas, 0, 0, canvas.width, canvas.height);
+            }
             activeFrameIndex = index;
         }
     };
