@@ -1,0 +1,124 @@
+import Image from 'next/image';
+
+export default function MethodologySection() {
+    return (
+        <section id="metodologia" className="w-full pt-8 pb-16 relative border-y border-white/5 overflow-hidden" style={{ backgroundColor: 'rgba(30, 41, 59, 0.2)' }}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-3xl mx-auto text-center mb-16 reveal flex flex-col items-center relative">
+                    <div className="relative mb-12 flex justify-center items-center">
+                        <div className="relative h-16 sm:h-20 md:h-24 logo-float-container animate-[pulse_6s_ease-in-out_infinite]">
+                            <Image src="/logotipo/logo2.webp" alt="VDA Logo" width={200} height={100} className="h-full w-auto object-contain relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                        </div>
+                    </div>
+                    <h2 className="font-serif mb-3 mt-2 leading-tight">
+                        <span className="text-3xl md:text-5xl font-bold">Pare de insistir tentando vender <span className="text-orange-500">como afiliado</span>.</span><br className="hidden md:block" />
+                        <span className="text-xl md:text-2xl font-bold">Se isso realmente funcionasse, <span className="text-slate-400 font-light">você não estaria lendo este texto agora.</span></span>
+                    </h2>
+                    <p className="text-sm md:text-sm text-[#94A3B8] leading-relaxed max-w-md mx-auto">
+                        Mais esforço em marketing ou vendas pode não resolver. O que muda o jogo diariamente é uma nova direção.
+                    </p>
+                </div>
+
+                <div className="mt-20 max-w-4xl mx-auto flex flex-col items-center justify-center reveal" style={{ transitionDelay: '150ms' }}>
+                    <div className="inline-flex items-center gap-4 mb-8">
+                        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-orange-500/60"></div>
+                        <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-orange-500 drop-shadow-md text-center max-w-[200px] md:max-w-none leading-relaxed">Venda Direta Automatica</span>
+                        <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-orange-500/60"></div>
+                    </div>
+
+                    <div className="w-full max-w-[300px] sm:max-w-[360px] mx-auto relative group z-20 mb-16 sm:mb-20">
+                        <div className="absolute -inset-1 sm:-inset-2 bg-gradient-to-b from-orange-500/60 via-[#D4AF37]/20 to-orange-500/60 rounded-[32px] sm:rounded-[40px] blur-xl opacity-50 group-hover:opacity-80 transition duration-700 ease-in-out"></div>
+                        <div className="relative bg-[#050810] rounded-[32px] sm:rounded-[40px] p-2 sm:p-2.5 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-10 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2">
+                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-[#000] rounded-full z-30 flex justify-center items-center shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)]">
+                                <div className="w-1 h-1 rounded-full bg-white/20 mr-1.5"></div>
+                                <div className="w-8 h-1 rounded-full bg-white/10"></div>
+                            </div>
+                            <div className="relative w-full aspect-[9/16] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-black shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                                <div className="absolute inset-0 bg-[#0B0F19] flex items-center justify-center animate-pulse z-0">
+                                    <div className="w-8 h-8 rounded-full border-t-2 border-orange-500 animate-spin"></div>
+                                </div>
+                                <iframe 
+                                    src="https://player.vimeo.com/video/1176448457?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: 'inherit' }}
+                                    title="VDA ABERTURA"
+                                    className="z-10 relative border-0">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative w-full flex justify-center mb-6 md:mb-8">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[350px] h-[80px] md:h-[120px] bg-orange-500/10 rounded-full blur-[40px] animate-[pulse_4s_ease-in-out_infinite] pointer-events-none z-0"></div>
+                        <h3 className="font-serif text-3xl md:text-5xl font-normal text-white text-center leading-[1.2] tracking-wide relative z-10">
+                            O que vamos fazer <br />
+                            <strong className="font-bold underline decoration-orange-500/40 underline-offset-8">exatamente</strong> na VDA
+                        </h3>
+                    </div>
+
+                    <p className="text-slate-300 text-xs md:text-sm text-center leading-relaxed max-w-xl mt-2 font-light">
+                        Na VDA, você não precisa criar nada do zero. Nós entregamos os <strong className="text-white font-medium">produtos que mais vendem hoje</strong>, junto com os <strong className="text-white font-medium">áudios, textos e vídeos exatos</strong> que usamos para fechar vendas no WhatsApp.<br className="hidden md:block" /><br className="hidden md:block" />
+                        Basta seguir o método, usar nosso material de apoio e contar com uma comunidade ativa de centenas de alunos.
+                    </p>
+
+                    <div className="absolute left-1 sm:left-4 lg:left-8 top-1/4 bottom-0 flex flex-col items-center gap-4 opacity-50 pointer-events-none">
+                        <div className="w-1 h-1 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
+                        <div className="w-[1px] h-32 bg-gradient-to-b from-orange-500/60 via-orange-500/10 to-transparent"></div>
+                        <div className="w-[1px] h-12 bg-white/20 animate-[bounce_3s_infinite]"></div>
+                        <div className="w-1 h-1 rounded-full bg-white/20 mt-4"></div>
+                        <div className="w-0.5 h-0.5 rounded-full bg-white/10 mt-2"></div>
+                    </div>
+
+                    <div className="flex md:hidden justify-center items-center gap-3 w-full mb-3 mt-4 text-slate-500/60 text-[10px] tracking-widest uppercase font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                        Deslize para ver
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    </div>
+                    
+                    <section className="w-full max-w-5xl mx-auto mb-4 text-center">
+                        <h3 className="text-lg sm:text-2xl font-serif font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
+                        <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza.</p>
+                        
+                        <div className="bonus-cards mt-6 md:mt-8 flex overflow-x-auto touch-pan-x sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 -mx-4 px-4 sm:mx-0 sm:px-0 w-[calc(100%+2rem)] sm:w-full reveal pb-4 sm:pb-8 snap-x snap-mandatory scrollbar-hide py-4">
+                            {[
+                                { img: '/capas bonus/1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
+                                { img: '/capas bonus/2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
+                                { img: '/capas bonus/3.webp', title1: 'Material de', title2: 'Apoio', desc: 'Kit completo para o aluno' },
+                                { img: '/capas bonus/4.webp', title1: 'Estratégias de', title2: 'Venda', desc: 'Métodos testados para conversão' },
+                                { img: '/capas bonus/5.webp', title1: 'Fluxo de', title2: 'Clientes', desc: 'Receba novos contatos todos os dias' },
+                                { img: '/capas bonus/6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' }
+                            ].map((card, idx) => (
+                                <div key={idx} className="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-orange-500/0 to-transparent group-hover:via-orange-500/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                    <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-orange-500/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-orange-500/30 transition-colors duration-700 z-0"></div>
+                                    
+                                    <h4 className="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
+                                        {card.title1}<br />
+                                        <strong className="text-white group-hover:text-orange-500 font-bold text-[11px] sm:text-[18px] drop-shadow-[0_2px_4px_rgba(249,115,22,0)] group-hover:drop-shadow-[0_2px_10px_rgba(249,115,22,0.6)] block mt-0.5 transition-all duration-500">{card.title2}</strong>
+                                    </h4>
+
+                                    <div className="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
+                                        <div className="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                        <Image src={card.img} alt={card.title2} width={200} height={200} className="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async" />
+                                    </div>
+
+                                    <p className="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
+                                        {card.desc}
+                                    </p>
+
+                                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out origin-center opacity-0 group-hover:opacity-100"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <div className="w-full relative flex justify-center items-center h-px bg-white/5 mt-16">
+                <div className="absolute w-1/2 max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent"></div>
+                <div className="absolute w-1/4 max-w-sm h-[3px] bg-orange-500/20 blur-[4px]"></div>
+                <div className="absolute w-2 h-2 rotate-45 border border-orange-500/40 bg-[#0A0E17] shadow-[0_0_10px_rgba(249,115,22,0.4)]"></div>
+            </div>
+        </section>
+    );
+}
