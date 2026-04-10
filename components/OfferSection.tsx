@@ -161,16 +161,16 @@ export default function OfferSection() {
                                 <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-orange-500/20 rounded-full blur-[80px] pointer-events-none z-0"></div>
 
                                 <div className="relative z-10 p-7 sm:p-9 flex flex-col items-center">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <span className="text-xs text-slate-500 font-medium uppercase tracking-widest">De</span>
-                                        <span className="text-sm text-slate-500 font-bold line-through decoration-red-500/80 decoration-[1.5px]">R$&nbsp;297,00</span>
-                                    </div>
-                                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#21c55e] mb-3">Hoje · Pagamento único</p>
-
-                                    <div className="flex items-start justify-center leading-none mb-2">
-                                        <span className="text-2xl font-black text-white mt-2 mr-1">R$</span>
-                                        <span className="pricing-price-glow text-[88px] sm:text-[100px] font-black text-white tracking-tighter leading-none" style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.25), 0 0 50px rgba(249, 115, 22, 0.18), 0 0 100px rgba(249, 115, 22, 0.1)' }}>97</span>
-                                        <span className="text-2xl font-black text-white self-end mb-3 ml-0.5">,00</span>
+                                    <div className="w-full flex flex-col items-center justify-center text-center py-2 mb-2">
+                                        <div className="inline-block px-5 py-2 rounded-full border border-slate-600/60 bg-slate-800/40 mb-5 relative overflow-hidden">
+                                            <span className="text-slate-300 text-xs sm:text-sm font-black uppercase tracking-[0.3em] drop-shadow-md">Turma Fechada</span>
+                                        </div>
+                                        <h3 className="text-white text-base sm:text-lg font-bold leading-relaxed mb-3">
+                                            Abriremos a nova turma e novamente os 100 primeiros podem entrar <span className="text-orange-500">pagando menos de R$ 100,00.</span>
+                                        </h3>
+                                        <p className="text-slate-400 text-xs sm:text-[13px] font-medium max-w-[280px] mx-auto leading-relaxed">
+                                            Disponibilizaremos o preço da nova turma VDA na pré-abertura.
+                                        </p>
                                     </div>
 
                                     <div className="w-full flex items-center gap-3 my-6">
@@ -251,16 +251,24 @@ export default function OfferSection() {
                                             <span className="block text-[9.5px] sm:text-[10px] text-slate-300 font-semibold uppercase tracking-wider leading-[1.6]">
                                                 O sistema que nossa equipe usa para vender pelo WhatsApp de forma consistente.
                                             </span>
-                                            <span className="block text-[8px] text-white/25 mt-1 normal-case tracking-normal font-normal">*Resultados variam conforme esforço, dedicação e contexto individual.</span>
-                                        </h4>
-                                        <p className="text-center text-[10px] sm:text-[11px] font-sans text-white/50 font-medium tracking-wide mt-3.5 sm:mt-4">
-                                            Parcelado em até <strong className="text-white/80 font-bold">12x de R$ 9,70</strong> para esse preço promocional.
-                                        </p>
-                                    </div>
+                                        <span className="block text-[8px] text-white/25 mt-1 normal-case tracking-normal font-normal">*Resultados variam conforme esforço, dedicação e contexto individual.</span>
+                                    </h4>
+                                </div>
 
-                                    <JoinGroupButton href="https://pay.kiwify.com.br/WJb9F4T" className="block w-full text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-white uppercase bg-[#21c55e] shadow-[0_0_30px_rgba(33,197,94,0.35),0_0_60px_rgba(33,197,94,0.15)] hover:shadow-[0_0_40px_rgba(33,197,94,0.55),0_0_80px_rgba(33,197,94,0.25)] hover:scale-[1.04] hover:bg-[#1daf52] transition-all duration-300 ease-out active:scale-[0.98]">
-                                        SIM, QUERO FAZER MINHA INSCRIÇÃO AGORA!
-                                    </JoinGroupButton>
+                                    <div className="w-full flex justify-center">
+                                        <div className="block w-full text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-slate-400 uppercase bg-slate-800 border border-slate-700 cursor-not-allowed opacity-80 select-none">
+                                            Inscrições Encerradas
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="mt-5 w-full flex justify-center">
+                                        <a href="https://chat.whatsapp.com/HasGl6O2FvcCOJp3RxG8Pm?mode=gi_t" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-orange-500/30 bg-orange-500/10 hover:bg-orange-500/20 transition-all duration-300">
+                                            <span className="text-[12px] uppercase tracking-widest font-bold text-orange-500 group-hover:text-orange-400 transition-colors">
+                                                Acessar Grupo VDA
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-orange-500 group-hover:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+                                        </a>
+                                    </div>
 
                                     <div className="flex items-center justify-center gap-2 mt-5">
                                         <svg className="w-3.5 h-3.5 text-[#21c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
