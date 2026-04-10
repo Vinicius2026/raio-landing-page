@@ -1,5 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/meta-pixel';
 
 export default function GroupsSection() {
     return (
@@ -45,7 +47,10 @@ export default function GroupsSection() {
                     </div>
 
                     <div className="mt-12 sm:mt-14 w-full flex justify-center reveal">
-                        <Link href="#oferta" className="block w-full max-w-[280px] sm:max-w-[340px] text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-white uppercase bg-[#21c55e] shadow-[0_0_30px_rgba(33,197,94,0.35),0_0_60px_rgba(33,197,94,0.15)] hover:shadow-[0_0_40px_rgba(33,197,94,0.55),0_0_80px_rgba(33,197,94,0.25)] hover:scale-[1.04] hover:bg-[#1daf52] transition-all duration-300 ease-out active:scale-[0.98]">
+                        <Link
+                            href="#oferta"
+                            onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
+                            className="block w-full max-w-[280px] sm:max-w-[340px] text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-white uppercase bg-[#21c55e] shadow-[0_0_30px_rgba(33,197,94,0.35),0_0_60px_rgba(33,197,94,0.15)] hover:shadow-[0_0_40px_rgba(33,197,94,0.55),0_0_80px_rgba(33,197,94,0.25)] hover:scale-[1.04] hover:bg-[#1daf52] transition-all duration-300 ease-out active:scale-[0.98]">
                             COMPRAR VDA POR R$ 97,00
                         </Link>
                     </div>

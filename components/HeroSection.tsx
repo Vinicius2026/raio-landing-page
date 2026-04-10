@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/meta-pixel';
 
 export default function HeroSection() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,7 +30,7 @@ export default function HeroSection() {
             `/banner home vda astronauta 1/Astronaut_standing_in_ocean_delpmaspu__${index.toString().padStart(3, '0')}.webp`
         );
 
-        const drawImageCover = (ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, img: any, cw: number, ch: number) => {
+        const drawImageCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, cw: number, ch: number) => {
             const imgW = img.width || img.naturalWidth || 1920;
             const imgH = img.height || img.naturalHeight || 1080;
             const scale = Math.max(cw / imgW, ch / imgH);
@@ -44,34 +45,15 @@ export default function HeroSection() {
             const firstImg = new window.Image();
             firstImg.src = getFramePath(0);
             firstImg.onload = () => {
-                if (isMobileDevice && window.OffscreenCanvas) {
-                    const oc = new OffscreenCanvas(canvas.width, canvas.height);
-                    const ocCtx = oc.getContext('2d', { alpha: false });
-                    if (ocCtx) {
-                        drawImageCover(ocCtx, firstImg, canvas.width, canvas.height);
-                        images[0] = oc;
-                        context.drawImage(oc, 0, 0, canvas.width, canvas.height);
-                    }
-                } else {
-                    images[0] = firstImg;
-                    drawImageCover(context, firstImg, canvas.width, canvas.height);
-                }
+                images[0] = firstImg;
+                drawImageCover(context, firstImg, canvas.width, canvas.height);
 
                 setTimeout(() => {
                     for (let i = 1; i < frameCount; i++) {
                         const img = new window.Image();
                         img.src = getFramePath(i);
                         img.onload = () => {
-                            if (isMobileDevice && window.OffscreenCanvas) {
-                                const oc = new OffscreenCanvas(canvas.width, canvas.height);
-                                const ctx = oc.getContext('2d', { alpha: false });
-                                if (ctx) {
-                                    drawImageCover(ctx, img, canvas.width, canvas.height);
-                                    images[i] = oc;
-                                }
-                            } else {
-                                images[i] = img;
-                            }
+                            images[i] = img;
                         };
                     }
                 }, 300);
@@ -82,15 +64,11 @@ export default function HeroSection() {
 
         let activeFrameIndex = 0;
         const drawFrame = (index: number) => {
-            const imgOrCanvas = images[index];
-            if (!imgOrCanvas || activeFrameIndex === index) return;
+            const img = images[index];
+            if (!img || activeFrameIndex === index) return;
             
-            if (imgOrCanvas.width > 0 || imgOrCanvas.naturalHeight !== 0) {
-                if (imgOrCanvas instanceof HTMLImageElement) {
-                    drawImageCover(context, imgOrCanvas, canvas.width, canvas.height);
-                } else {
-                    context.drawImage(imgOrCanvas, 0, 0, canvas.width, canvas.height);
-                }
+            if (img.complete && img.naturalHeight !== 0) {
+                drawImageCover(context, img, canvas.width, canvas.height);
                 activeFrameIndex = index;
             }
         };
@@ -168,7 +146,10 @@ export default function HeroSection() {
                     </p>
 
                     <div className="flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
-                        <Link href="#oferta" className="w-full sm:w-auto px-6 py-3 text-sm bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group cursor-pointer border border-orange-500/50 backdrop-blur-sm">
+                        <Link
+                            href="#oferta"
+                            onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
+                            className="w-full sm:w-auto px-6 py-3 text-sm bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group cursor-pointer border border-orange-500/50 backdrop-blur-sm">
                             <span>Quero ter a VDA Completa</span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />

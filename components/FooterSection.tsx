@@ -23,7 +23,7 @@ export default function FooterSection() {
                     </div>
                 </div>
                 <div className="mt-8 md:mt-10 text-center text-[9px] md:text-[10px] text-[#94A3B8]/40 max-w-3xl mx-auto leading-relaxed border-t border-white/5 pt-6">
-                    Este site não faz parte do website do Facebook ou do Facebook Inc. Além disso, este site não é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.
+                    Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de responsabilidade exclusiva dos representantes do metodovda.com.
                 </div>
             </div>
         </footer>

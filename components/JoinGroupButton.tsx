@@ -1,5 +1,6 @@
 'use client';
 import { MouseEvent } from 'react';
+import { trackEvent } from '@/lib/meta-pixel';
 
 type JoinGroupButtonProps = {
     href: string;
@@ -9,44 +10,14 @@ type JoinGroupButtonProps = {
 
 export default function JoinGroupButton({ href, children, className }: JoinGroupButtonProps) {
     const handleCheckoutClick = async (e: MouseEvent<HTMLAnchorElement>) => {
-        // Gera um event_id único para deduplicação entre Pixel e CAPI
-        const eventId = typeof crypto !== 'undefined' && crypto.randomUUID 
-            ? crypto.randomUUID() 
-            : `evt_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-        
-        const timestamp = Math.floor(Date.now() / 1000);
+        // Fire InitiateCheckout via centralized helper (Browser Pixel + CAPI in parallel)
+        trackEvent('InitiateCheckout', {
+            value: 97.00,
+            currency: 'BRL',
+            content_name: 'VDA Premium',
+        });
 
-        try {
-            // Dispara evento no Pixel (se instalado globalmente no head, o fbq estará disponivel)
-            if (typeof window !== 'undefined' && (window as any).fbq) {
-                (window as any).fbq('track', 'InitiateCheckout', {
-                    content_name: 'VDA Premium',
-                    currency: 'BRL',
-                    value: 97.00
-                }, { eventID: eventId });
-            }
-
-            // Dispara evento via Conversion API (CAPI) pro lado do servidor
-            await fetch('/api/meta-capi', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    eventName: 'InitiateCheckout',
-                    eventID: eventId,
-                    customData: {
-                        currency: 'BRL',
-                        value: 97.00,
-                        content_name: 'VDA Premium'
-                    },
-                    timestamp: timestamp
-                })
-            }).catch(err => console.error('CAPI Client Error:', err));
-
-        } catch (error) {
-            console.error('Meta Event Tracking Error:', error);
-        }
-        
-        // A navegação ocorre naturalmente através do href da tag <a/>
+        // Navigation happens naturally through the <a> href
     };
 
     return (
