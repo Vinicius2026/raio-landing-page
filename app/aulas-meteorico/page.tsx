@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Aulas Meteórico — VDA Gratuito",
     description: "Entre gratuitamente nas aulas do método Meteórico da VDA.",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "VDA Gratuito" }],
+    images: [{ url: "https://metodovda.com/og-image.png", width: 1200, height: 630, alt: "VDA Gratuito" }],
   },
 };
 

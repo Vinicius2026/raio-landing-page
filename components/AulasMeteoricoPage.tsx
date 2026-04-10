@@ -41,7 +41,7 @@ function AulasMeteoricoPage() {
       {/* ════════════════════════════════════════════════════════════════════
           HERO — Logo + CTA "Entrar na Turma"
           ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-12 pb-16 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center px-4 pt-12 pb-10 overflow-hidden">
         {/* Living background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-[20%] -left-[15%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/[0.06] animate-breathe" />
@@ -193,7 +193,7 @@ function AulasMeteoricoPage() {
       {/* ════════════════════════════════════════════════════════════════════
           ABOUT SECTION — Quem é o Thiago + O que é a VDA
           ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 px-4 overflow-hidden">
+      <section className="relative pt-10 pb-24 px-4 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#D4AF37]/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-lg mx-auto relative z-10">
@@ -278,7 +278,7 @@ function AulasMeteoricoPage() {
             >
               <button
                 onClick={() => setIsVdaOpen(!isVdaOpen)}
-                className="w-full group flex flex-col items-center justify-center cursor-pointer rounded-2xl px-4 py-6 -mx-4 hover:bg-white/[0.03] transition-all duration-500"
+                className="w-full group flex flex-col items-center justify-center cursor-pointer rounded-2xl p-6 hover:bg-white/[0.03] transition-all duration-500"
               >
                 <h3 className="text-2xl md:text-3xl font-black text-vda-white tracking-tight leading-tight mb-4 text-center">
                   O que é a{" "}
@@ -344,16 +344,21 @@ function AulasMeteoricoPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className="text-center space-y-3"
+            className="text-center space-y-4"
           >
-            <p className="text-sm text-vda-light-gray">
-              © {year} VDA – Venda Direta Automática. Todos os direitos reservados.
-            </p>
+            <div className="space-y-1">
+              <p className="text-sm text-vda-light-gray">
+                © {year} VDA – Venda Direta Automática.
+              </p>
+              <p className="text-xs text-vda-light-gray/60">
+                Todos os direitos reservados. | Contato: <a href="mailto:contato@metodovda.com" className="hover:text-vda-gold transition-colors">contato@metodovda.com</a>
+              </p>
+            </div>
 
-            <div className="flex items-center justify-center gap-4 text-xs text-vda-light-gray/70">
+            <div className="flex items-center justify-center gap-4 text-xs">
               <Link
                 href="/politica-de-privacidade"
-                className="hover:text-white transition-colors underline underline-offset-2 decoration-white/20 hover:decoration-white/60"
+                className="text-blue-500 hover:text-blue-400 transition-colors underline underline-offset-2 decoration-blue-500/30 hover:decoration-blue-400/60"
               >
                 Política de Privacidade
               </Link>

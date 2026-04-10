@@ -27,6 +27,8 @@ export default function Header() {
                     <div className="flex items-center justify-end pointer-events-auto">
                         <button 
                             onClick={toggleMenu}
+                            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+                            aria-expanded={isMenuOpen}
                             className="flex flex-col justify-center items-end w-10 h-10 space-y-[4px] focus:outline-none z-[60] group cursor-pointer relative overflow-hidden bg-black/20 backdrop-blur-sm p-2 rounded-xl border border-white/5 shadow-2xl transition hover:bg-black/40"
                         >
                             <span 
@@ -69,7 +71,7 @@ export default function Header() {
                 {/* Drawer Header */}
                 <div className="h-[80px] w-full border-b border-white/5 flex items-center justify-end px-6 sm:px-8 relative">
                     <div className="absolute left-1/2 -translate-x-1/2 flex justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl border-t border-black/80">
-                        <Image src="/logotipo/logo2.webp" alt="VDA Logo" width={80} height={28} className="h-6 sm:h-7 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                        <Image src="/logotipo/logo2.webp" alt="Venda Direta Automática - Metodologia VDA" width={80} height={28} className="h-6 sm:h-7 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
                     </div>
                     <button onClick={toggleMenu} className="text-white hover:text-orange-500 p-2 transition-transform hover:scale-110 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

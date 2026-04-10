@@ -7,7 +7,7 @@ export default function MethodologySection() {
                 <div className="max-w-3xl mx-auto text-center mb-16 reveal flex flex-col items-center relative">
                     <div className="relative mb-12 flex justify-center items-center">
                         <div className="relative h-16 sm:h-20 md:h-24 logo-float-container animate-[pulse_6s_ease-in-out_infinite]">
-                            <Image src="/logotipo/logo2.webp" alt="VDA Logo" width={200} height={100} className="h-full w-auto object-contain relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                            <Image src="/logotipo/logo2.webp" alt="VDA - Venda Direta Automática" width={200} height={100} className="h-full w-auto object-contain relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
                         </div>
                     </div>
                     <h2 className="font-serif mb-3 mt-2 leading-tight">

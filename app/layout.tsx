@@ -81,7 +81,7 @@ export const metadata: Metadata = {
             'Aprenda a vender de forma profissional e sistemática pelo WhatsApp com o Método VDA de Thiago Lima.',
         images: [
             {
-                url: '/og-image.png',
+                url: `${BASE_URL}/og-image.png`,
                 width: 1200,
                 height: 630,
                 alt: 'VDA – Venda Direta Automática por Thiago Lima',
@@ -96,12 +96,15 @@ export const metadata: Metadata = {
         title: 'VDA – Venda Direta Automática | Thiago Lima',
         description:
             'Método VDA: aprenda a vender pelo WhatsApp de forma sistemática e profissional.',
-        images: ['/og-image.png'],
+        images: [`${BASE_URL}/og-image.png`],
     },
     other: {
         'format-detection': 'telephone=no',
         HandheldFriendly: 'true',
         MobileOptimized: 'width',
+        'apple-mobile-web-app-title': 'VDA',
+        'og:image:secure_url': `${BASE_URL}/og-image.png`,
+        'itemprop:image': `${BASE_URL}/og-image.png`,
     },
 }
 

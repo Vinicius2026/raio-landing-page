@@ -1,129 +1,46 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { trackEvent } from '@/lib/meta-pixel';
 
 export default function HeroSection() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    const overlayRef = useRef<HTMLDivElement>(null);
+    
+    // Suave efeito Parallax usando framer-motion
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
+    });
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const heroContainer = containerRef.current;
-        const heroBgWrapper = wrapperRef.current;
-        const overlay = overlayRef.current;
-        if (!canvas || !heroContainer) return;
-
-        const context = canvas.getContext('2d', { alpha: false });
-        if (!context) return;
-
-        const frameCount = 40;
-        const images: any[] = new Array(frameCount);
-        const isMobileDevice = window.innerWidth < 768;
-
-        canvas.width = isMobileDevice ? window.innerWidth * window.devicePixelRatio : 1920;
-        canvas.height = isMobileDevice ? window.innerHeight * window.devicePixelRatio : 1080;
-
-        const getFramePath = (index: number) => (
-            `/banner home vda astronauta 1/Astronaut_standing_in_ocean_delpmaspu__${index.toString().padStart(3, '0')}.webp`
-        );
-
-        const drawImageCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, cw: number, ch: number) => {
-            const imgW = img.width || img.naturalWidth || 1920;
-            const imgH = img.height || img.naturalHeight || 1080;
-            const scale = Math.max(cw / imgW, ch / imgH);
-            const w = imgW * scale;
-            const h = imgH * scale;
-            const x = (cw - w) / 2;
-            const y = (ch - h) / 2;
-            ctx.drawImage(img, x, y, w, h);
-        };
-
-        const preloadImages = () => {
-            const firstImg = new window.Image();
-            firstImg.src = getFramePath(0);
-            firstImg.onload = () => {
-                images[0] = firstImg;
-                drawImageCover(context, firstImg, canvas.width, canvas.height);
-
-                setTimeout(() => {
-                    for (let i = 1; i < frameCount; i++) {
-                        const img = new window.Image();
-                        img.src = getFramePath(i);
-                        img.onload = () => {
-                            images[i] = img;
-                        };
-                    }
-                }, 300);
-            };
-        };
-
-        preloadImages();
-
-        let activeFrameIndex = 0;
-        const drawFrame = (index: number) => {
-            const img = images[index];
-            if (!img || activeFrameIndex === index) return;
-            
-            if (img.complete && img.naturalHeight !== 0) {
-                drawImageCover(context, img, canvas.width, canvas.height);
-                activeFrameIndex = index;
-            }
-        };
-
-        const updateScrollAnimation = () => {
-            if (!heroContainer) return;
-            const scrollTop = Math.max(0, window.scrollY);
-            const isMobile = window.innerWidth < 768;
-
-            const scrollMultiplier = isMobile ? 1.5 : 0.8;
-            const maxScroll = Math.max(window.innerHeight * scrollMultiplier, 600);
-
-            let scrollFraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
-            const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
-            drawFrame(frameIndex);
-
-            if (overlay) {
-                const targetOpacity = 0.4 + (scrollFraction * 0.55);
-                overlay.style.opacity = targetOpacity.toString();
-            }
-
-            if (heroBgWrapper) {
-                if (isMobile) {
-                    heroBgWrapper.style.transform = `translate3d(0, 0, 0)`;
-                } else {
-                    heroBgWrapper.style.transform = `translate3d(0, ${scrollTop * 0.4}px, 0)`;
-                }
-            }
-        };
-
-        let ticking = false;
-        const scrollListener = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateScrollAnimation();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', scrollListener, { passive: true });
-        updateScrollAnimation();
-
-        return () => {
-            window.removeEventListener('scroll', scrollListener);
-        };
-    }, []);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0.9]);
 
     return (
-        <main ref={containerRef} id="hero-scroll-container" className="relative w-full min-h-[100vh] overflow-hidden flex items-center justify-center py-12 lg:py-16 bg-[#0B0F19] pt-[100px] lg:pt-[80px]">
-            {/* Canvas Background Wrapper */}
-            <div ref={wrapperRef} id="hero-bg-wrapper" className="absolute inset-0 w-full h-full z-0 overflow-hidden transform-gpu origin-center">
-                <canvas ref={canvasRef} id="hero-canvas" className="absolute inset-0 w-full h-full object-cover"></canvas>
-                <div ref={overlayRef} id="hero-overlay" className="absolute inset-0 bg-[#0B0F19] z-10 transition-opacity duration-100" style={{ opacity: 0.4, willChange: 'opacity' }}></div>
+        <section ref={containerRef} id="hero-scroll-container" className="relative w-full min-h-[100vh] overflow-hidden flex items-center justify-center py-12 lg:py-16 bg-[#0B0F19] pt-[100px] lg:pt-[80px]">
+            {/* Background Image with Parallax */}
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                <motion.div 
+                    style={{ y }} 
+                    className="relative w-full h-full scale-110"
+                >
+                    <Image
+                        src="/banner home vda astronauta 1/Astronaut_standing_in_ocean_delpmaspu__000.webp"
+                        alt="Astronauta VDA - Venda Direta Automática"
+                        fill
+                        priority
+                        className="object-cover"
+                        sizes="100vw"
+                        quality={90}
+                    />
+                </motion.div>
+                
+                {/* Overlay dinâmico que escurece ao scrollar */}
+                <motion.div 
+                    style={{ opacity }}
+                    className="absolute inset-0 bg-[#0B0F19] z-10 pointer-events-none"
+                ></motion.div>
             </div>
 
             {/* Centered Content */}
