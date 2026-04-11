@@ -13,17 +13,18 @@ export default function FooterSection() {
                             <a href="/politica-de-privacidade" className="hover:text-orange-500 transition-colors">Política de Privacidade</a>
                             <a href="/politica-de-privacidade#6" className="hover:text-orange-500 transition-colors">Termos de Uso</a>
                         </div>
-                        <a href="mailto:contato@metodovda.com" className="flex items-center gap-2 hover:text-slate-200 bg-white/5 py-2 px-6 rounded-full border border-white/10 mt-2 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        <a href="mailto:contato@aurenos.com.br" className="flex items-center gap-2 hover:text-slate-200 bg-white/5 py-2 px-6 rounded-full border border-white/10 mt-2 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            contato@metodovda.com
+                            contato@aurenos.com.br
                         </a>
                     </div>
                 </div>
-                <div className="mt-8 md:mt-10 text-center text-[9px] md:text-[10px] text-[#94A3B8]/40 max-w-3xl mx-auto leading-relaxed border-t border-white/5 pt-6">
-                    Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de responsabilidade exclusiva dos representantes do metodovda.com.
+                <div className="border-t border-white/10 mt-12 py-8 flex items-center justify-center">
+                    <p className="text-[10px] text-slate-500 max-w-lg mx-auto text-center">
+                    Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de responsabilidade exclusiva dos representantes do aurenos.com.br.
+                    </p>
                 </div>
             </div>
         </footer>

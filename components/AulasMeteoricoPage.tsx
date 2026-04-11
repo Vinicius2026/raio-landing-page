@@ -275,12 +275,8 @@ function AulasMeteoricoPage() {
               </p>
             </motion.div>
 
-            {/* Indicador de disponibilidade — só texto + dot, sem pill */}
-            <motion.div variants={fadeUp} className="mb-5 flex items-center gap-2">
-              <div
-                className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"
-                style={{ animation: "pulse 2s ease-in-out infinite" }}
-              />
+            {/* Indicador de disponibilidade — só texto */}
+            <motion.div variants={fadeUp} className="mb-5 flex items-center justify-center">
               <span className="text-[11px] font-medium text-white/28 tracking-[0.18em] uppercase">
                 Vagas abertas agora
               </span>
@@ -649,10 +645,10 @@ function AulasMeteoricoPage() {
               <p className="text-[11px] text-white/14">
                 Todos os direitos reservados.{" "}
                 <a
-                  href="mailto:contato@metodovda.com"
+                  href="mailto:contato@aurenos.com.br"
                   className="text-white/22 hover:text-white/42 transition-colors"
                 >
-                  contato@metodovda.com
+                  contato@aurenos.com.br
                 </a>
               </p>
             </div>
@@ -669,7 +665,7 @@ function AulasMeteoricoPage() {
             <p className="text-[10px] text-white/10 max-w-2xl mx-auto leading-relaxed">
               Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem
               possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de
-              responsabilidade exclusiva dos representantes do metodovda.com.
+              responsabilidade exclusiva dos representantes do aurenos.com.br.
             </p>
           </motion.div>
         </div>

@@ -49,11 +49,9 @@ export default function PoliticaDePrivacidade() {
                                     <p><strong className="text-white">Responsável:</strong> Thiago Lima</p>
                                     <p>
                                         <strong className="text-white">Contato:</strong>{' '}
-                                        <a href="mailto:sac@metodovda.com" className="text-orange-400 hover:underline">sac@metodovda.com</a>
+                                        <a href="mailto:sac@aurenos.com.br" className="text-orange-400 hover:underline">sac@aurenos.com.br</a>
                                         {' · '}
-                                        <a href="mailto:vendas@metodovda.com" className="text-orange-400 hover:underline">vendas@metodovda.com</a>
-                                        {' · '}
-                                        <a href="mailto:contato@metodovda.com" className="text-orange-400 hover:underline">contato@metodovda.com</a>
+                                        <a href="mailto:contato@aurenos.com.br" className="text-orange-400 hover:underline">contato@aurenos.com.br</a>
                                     </p>
                                 </div>
                             ),
@@ -149,7 +147,7 @@ export default function PoliticaDePrivacidade() {
                                     </ul>
                                     <p className="mt-3">
                                         Contato:{' '}
-                                        <a href="mailto:sac@metodovda.com" className="text-orange-400 hover:underline">sac@metodovda.com</a>
+                                        <a href="mailto:sac@aurenos.com.br" className="text-orange-400 hover:underline">sac@aurenos.com.br</a>
                                     </p>
                                 </div>
                             ),
@@ -179,9 +177,8 @@ export default function PoliticaDePrivacidade() {
                                 <div className="space-y-1 text-slate-300">
                                     <p>Para dúvidas, solicitações ou reclamações:</p>
                                     <div className="mt-3 space-y-1">
-                                        <p>📧 <a href="mailto:sac@metodovda.com" className="text-orange-400 hover:underline">sac@metodovda.com</a></p>
-                                        <p>📧 <a href="mailto:vendas@metodovda.com" className="text-orange-400 hover:underline">vendas@metodovda.com</a></p>
-                                        <p>📧 <a href="mailto:contato@metodovda.com" className="text-orange-400 hover:underline">contato@metodovda.com</a></p>
+                                        <p>📧 <a href="mailto:sac@aurenos.com.br" className="text-orange-400 hover:underline">sac@aurenos.com.br</a></p>
+                                        <p>📧 <a href="mailto:contato@aurenos.com.br" className="text-orange-400 hover:underline">contato@aurenos.com.br</a></p>
                                     </div>
                                 </div>
                             ),

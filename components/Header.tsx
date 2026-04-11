@@ -71,7 +71,7 @@ export default function Header() {
                 {/* Drawer Header */}
                 <div className="h-[80px] w-full border-b border-white/5 flex items-center justify-end px-6 sm:px-8 relative">
                     <div className="absolute left-1/2 -translate-x-1/2 flex justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl border-t border-black/80">
-                        <Image src="/logotipo/logo2.webp" alt="Venda Direta Automática - Metodologia VDA" width={80} height={28} className="h-6 sm:h-7 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                        <Image src="/logotipo/logo2.webp" alt="Venda Direta Automática - Metodologia VDA" width={140} height={45} className="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
                     </div>
                     <button onClick={toggleMenu} className="text-white hover:text-orange-500 p-2 transition-transform hover:scale-110 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,7 +111,7 @@ export default function Header() {
                     </a>
                     
                     {/* Painel de Controle */}
-                    <a href="#" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                    <a href="https://app.aurenos.com.br" target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                         <div className="absolute left-0 w-10 h-10 rounded-full bg-[#00e5ff]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
                         <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#00e5ff] transition-colors duration-500 shrink-0">
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
@@ -125,7 +125,7 @@ export default function Header() {
                     </a>
 
                     {/* Chamar Suporte */}
-                    <a href="#" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                    <a href="https://wa.me/5521969789507?text=Ol%C3%A1%2C%20tenho%20algumas%20d%C3%BAvidas." target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                         <div className="absolute left-0 w-10 h-10 rounded-full bg-[#10B981]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
                         <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#10B981] transition-colors duration-500 shrink-0">
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
@@ -142,7 +142,7 @@ export default function Header() {
                 {/* Drawer Footer */}
                 <div className="mt-auto p-8 mb-4">
                     <div className="flex items-center gap-4 mb-4">
-                        <a href="mailto:contato@vdabr.com.br" className="text-xs tracking-widest text-[#94A3B8] hover:text-white transition-colors hover:underline underline-offset-4 decoration-orange-500">contato@vdabr.com.br</a>
+                        <a href="mailto:contato@aurenos.com" className="text-xs tracking-widest text-[#94A3B8] hover:text-white transition-colors hover:underline underline-offset-4 decoration-orange-500">contato@aurenos.com</a>
                     </div>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-white/20">VDA Produções &copy;</p>
                 </div>

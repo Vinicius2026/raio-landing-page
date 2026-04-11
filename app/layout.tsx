@@ -23,7 +23,7 @@ const montserrat = Montserrat({
     preload: true,
 })
 
-const BASE_URL = 'https://metodovda.com'
+const BASE_URL = 'https://aurenos.com.br'
 
 export const viewport: Viewport = {
     width: 'device-width',
