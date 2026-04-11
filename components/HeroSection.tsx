@@ -26,6 +26,7 @@ export default function HeroSection() {
             {/* Centered Content */}
             <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 mt-12 sm:mt-0">
                 <div>
+                    <span className="block text-[10px] font-bold tracking-[0.45em] text-white/30 uppercase mb-5">Aurenos</span>
                     <div className="flex items-center justify-center gap-4 mb-6 mx-auto">
                         <div className="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent to-[#D4AF37]/60"></div>
                         <span className="text-[10px] sm:text-xs font-bold text-slate-300 uppercase tracking-[0.3em] drop-shadow-lg">
