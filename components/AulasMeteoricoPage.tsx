@@ -37,11 +37,11 @@ function AulasMeteoricoPage() {
   const year = new Date().getFullYear();
 
   return (
-    <main className="min-h-screen app-bg">
+    <main className="min-h-screen app-bg bg-black relative z-20">
       {/* ════════════════════════════════════════════════════════════════════
           HERO — Logo + CTA "Entrar na Turma"
           ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] flex items-center justify-center px-4 pt-12 pb-10 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden">
         {/* Living background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-[20%] -left-[15%] w-[600px] h-[600px] rounded-full bg-[#D4AF37]/[0.06] animate-breathe" />
@@ -99,7 +99,7 @@ function AulasMeteoricoPage() {
             className="flex flex-col items-center"
           >
             {/* ── Floating Logo ── */}
-            <motion.div variants={scaleIn} className="mb-6 flex flex-col items-center">
+            <motion.div variants={scaleIn} className="mb-10 flex flex-col items-center">
               <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{

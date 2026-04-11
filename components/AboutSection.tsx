@@ -1,5 +1,6 @@
+'use client';
 import Image from 'next/image';
-import Link from 'next/link';
+import { trackEvent } from '@/lib/meta-pixel';
 
 export default function AboutSection() {
     return (
@@ -45,12 +46,17 @@ export default function AboutSection() {
                         </div>
 
                         <div className="mt-8 flex justify-center md:justify-start">
-                            <Link href="#oferta" className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl font-bold text-sm text-white uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_35px_rgba(249,115,22,0.55)] hover:scale-[1.03] bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10">
+                            <a 
+                                href="https://chat.whatsapp.com/HasGl6O2FvcCOJp3RxG8Pm?mode=gi_t" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
+                                className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl font-bold text-sm text-white uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_35px_rgba(249,115,22,0.55)] hover:scale-[1.03] bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10">
                                 <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
                                 <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,1)] flex-shrink-0"></span>
                                 Entrar para VDA
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 20 20" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>

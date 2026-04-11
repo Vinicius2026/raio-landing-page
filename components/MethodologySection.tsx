@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import VimeoFacade from './VimeoFacade';
+
 export default function MethodologySection() {
     return (
         <section id="metodologia" className="w-full pt-8 pb-16 relative border-y border-white/5 overflow-hidden" style={{ backgroundColor: 'rgba(30, 41, 59, 0.2)' }}>
@@ -33,18 +35,7 @@ export default function MethodologySection() {
                                 <div className="w-1 h-1 rounded-full bg-white/20 mr-1.5"></div>
                                 <div className="w-8 h-1 rounded-full bg-white/10"></div>
                             </div>
-                            <div className="relative w-full aspect-[9/16] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-black shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
-                                <div className="absolute inset-0 bg-[#0B0F19] flex items-center justify-center animate-pulse z-0">
-                                    <div className="w-8 h-8 rounded-full border-t-2 border-orange-500 animate-spin"></div>
-                                </div>
-                                <iframe 
-                                    src="https://player.vimeo.com/video/1176448457?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-                                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: 'inherit' }}
-                                    title="VDA ABERTURA"
-                                    className="z-10 relative border-0">
-                                </iframe>
-                            </div>
+                            <VimeoFacade videoId="1176448457" title="VDA ABERTURA" />
                         </div>
                     </div>
 
