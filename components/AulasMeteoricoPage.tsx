@@ -219,6 +219,9 @@ function AulasMeteoricoPage() {
                     animation: "pulseGlow 4.5s ease-in-out infinite",
                   }}
                 />
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <span className="text-[10px] font-bold tracking-[0.45em] text-white/30 uppercase">Aurenos</span>
+                </div>
                 <Image
                   src="/images/vda-logo.png"
                   alt="VDA – Venda Direta Automática"
@@ -415,7 +418,7 @@ function AulasMeteoricoPage() {
                   "linear-gradient(to right, transparent, rgba(255,255,255,0.10))",
               }}
             />
-            <span className="text-[9px] font-bold text-white/18 uppercase tracking-[0.4em]">
+            <span className="text-[9px] font-bold text-white/60 uppercase tracking-[0.4em]">
               Sobre o Fundador
             </span>
             <div
@@ -481,7 +484,7 @@ function AulasMeteoricoPage() {
                   className="w-3 h-px"
                   style={{ background: "rgba(212,175,55,0.38)" }}
                 />
-                <span className="text-[10px] text-white/28 uppercase tracking-[0.32em] font-medium">
+                <span className="text-[10px] text-white/70 uppercase tracking-[0.32em] font-medium">
                   Thiago Lima · Fundador VDA
                 </span>
                 <div
@@ -510,7 +513,7 @@ function AulasMeteoricoPage() {
             {/* Bio */}
             <motion.div
               variants={fadeUp}
-              className="space-y-3.5 text-[13.5px] text-white/40 leading-relaxed font-light text-center mb-8"
+              className="space-y-3.5 text-[13.5px] text-white/70 leading-relaxed font-light text-center mb-8"
             >
               <p>
                 Especialista em vendas digitais pelo WhatsApp, Thiago Lima construiu o
@@ -556,7 +559,7 @@ function AulasMeteoricoPage() {
                   ?
                 </h3>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-white/18 uppercase tracking-[0.2em] font-medium transition-colors duration-300 group-hover:text-white/34">
+                  <span className="text-[10px] text-white/60 uppercase tracking-[0.2em] font-medium transition-colors duration-300 group-hover:text-white/80">
                     {isVdaOpen ? "Fechar" : "Saiba mais"}
                   </span>
                   <div
@@ -581,7 +584,7 @@ function AulasMeteoricoPage() {
                     transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="space-y-3.5 text-[13.5px] text-white/40 leading-relaxed font-light text-center pt-3 pb-2">
+                    <div className="space-y-3.5 text-[13.5px] text-white/70 leading-relaxed font-light text-center pt-3 pb-2">
                       <p>
                         Na{" "}
                         <strong className="text-white/60 font-medium">
@@ -662,7 +665,7 @@ function AulasMeteoricoPage() {
               </Link>
             </div>
 
-            <p className="text-[10px] text-white/10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[10px] text-white/40 max-w-2xl mx-auto leading-relaxed">
               Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem
               possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de
               responsabilidade exclusiva dos representantes do aurenos.com.br.

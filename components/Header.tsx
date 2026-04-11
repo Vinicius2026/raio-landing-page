@@ -70,10 +70,11 @@ export default function Header() {
             >
                 {/* Drawer Header */}
                 <div className="h-[80px] w-full border-b border-white/5 flex items-center justify-end px-6 sm:px-8 relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 flex justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl border-t border-black/80">
+                    <div className="absolute left-1/2 -translate-x-1/2 flex flex-col justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl border-t border-black/80">
+                        <span className="text-[9px] font-bold tracking-[0.4em] text-white/30 uppercase mb-1">Aurenos</span>
                         <Image src="/logotipo/logo2.webp" alt="Venda Direta Automática - Metodologia VDA" width={140} height={45} className="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
                     </div>
-                    <button onClick={toggleMenu} className="text-white hover:text-orange-500 p-2 transition-transform hover:scale-110 focus:outline-none">
+                    <button onClick={toggleMenu} aria-label="Fechar menu" className="text-white hover:text-orange-500 p-2 transition-transform hover:scale-110 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
                         </svg>

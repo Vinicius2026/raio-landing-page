@@ -22,7 +22,7 @@ export default function FooterSection() {
                     </div>
                 </div>
                 <div className="border-t border-white/10 mt-12 py-8 flex items-center justify-center">
-                    <p className="text-[10px] text-slate-500 max-w-lg mx-auto text-center">
+                    <p className="text-[10px] text-slate-400 max-w-lg mx-auto text-center">
                     Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de responsabilidade exclusiva dos representantes do aurenos.com.br.
                     </p>
                 </div>
