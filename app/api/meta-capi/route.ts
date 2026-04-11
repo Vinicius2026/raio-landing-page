@@ -57,7 +57,7 @@ export async function POST(request: Request) {
             if (userData.lastName) user_data.ln = [hashSHA256(userData.lastName)];
         }
 
-        const payload = {
+        const payload: any = {
             data: [
                 {
                     event_name: eventName,
@@ -69,8 +69,12 @@ export async function POST(request: Request) {
                     custom_data: customData || {},
                 },
             ],
-            // Uncomment to test: test_event_code: "TEST12345"
         };
+
+        // Adiciona condicionalmente o código de teste se estiver configurado no .env.local
+        if (process.env.META_TEST_EVENT_CODE) {
+            payload.test_event_code = process.env.META_TEST_EVENT_CODE;
+        }
 
         const response = await fetch(
             `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${accessToken}`,
