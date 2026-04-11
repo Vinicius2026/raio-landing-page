@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { getPixelInitScript } from '@/lib/meta-pixel';
 
-export default function MetaPixel() {
+function PixelEvents() {
     const [loaded, setLoaded] = useState(false);
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -15,8 +15,8 @@ export default function MetaPixel() {
         if (!loaded) {
             setLoaded(true);
         } else if (typeof window !== 'undefined' && (window as any).fbq) {
-            // Fogo do PageView real apenas quando a rota muda ativamente, 
-            // e NÃO quando o React apenas atualiza algum UI State no Layout
+            // Dispara o PageView real apenas quando a rota muda ativamente (navegação do App Router), 
+            // e NÃO quando o React apenas atualiza algum UI State.
             (window as any).fbq('track', 'PageView');
         }
     }, [pathname, searchParams, loaded]);
@@ -31,5 +31,13 @@ export default function MetaPixel() {
                 __html: getPixelInitScript(pixelId)
             }}
         />
+    );
+}
+
+export default function MetaPixel() {
+    return (
+        <Suspense fallback={null}>
+            <PixelEvents />
+        </Suspense>
     );
 }
