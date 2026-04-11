@@ -116,12 +116,12 @@ export default function PoliticaDePrivacidade() {
                             ),
                         },
                         {
-                            title: '5. Cookies',
+                            title: '5. Cookies, CAPI e Redirecionamento (WhatsApp)',
                             content: (
                                 <p className="text-slate-300 leading-relaxed">
-                                    Utilizamos cookies próprios e de terceiros (Meta Pixel, Google Analytics) para análise
-                                    de tráfego e personalização de anúncios. Você pode desativá-los nas configurações do
-                                    navegador, porém algumas funcionalidades podem ser afetadas.
+                                    A VDA coleta dados por meio de cookies e de rastreio via servidor (Pixel do Meta Ads e Conversions API - CAPI) voltados exclusivamente para fins de marketing, campanhas customizadas e acompanhamento de conversões de interessados. 
+                                    <br/><br/>
+                                    <strong className="text-white">Isenção e Consentimento:</strong> Ao clicar no botão principal de nossas landinpages (ex: "Entrar na Turma"), o usuário concorda expressamente com tal métrica e consente em ser direcionado de forma proativa ao WhatsApp para receber abertamente informações e tratativas a respeito da VDA.
                                 </p>
                             ),
                         },
