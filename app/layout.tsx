@@ -3,7 +3,9 @@ import { Cormorant, Montserrat } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ScriptRunner from '@/components/ScriptRunner'
-import CookieBanner from '@/components/CookieBanner'
+import dynamic from 'next/dynamic'
+
+const CookieBanner = dynamic(() => import('@/components/CookieBanner'), { ssr: false })
 
 const cormorant = Cormorant({
     subsets: ['latin'],

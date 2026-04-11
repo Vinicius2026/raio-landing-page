@@ -113,27 +113,22 @@ function AulasMeteoricoPage() {
                 <div className="absolute -inset-8 rounded-[40px] bg-[#D4AF37]/[0.04] blur-[50px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
 
                 <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative rounded-3xl px-10 py-7 md:px-14 md:py-9 border border-white/[0.12] bg-white/[0.02] backdrop-blur-sm overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative z-10"
                 >
-                  <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-                    <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/[0.06] to-transparent animate-aurora-sweep" />
-                  </div>
-                  <div className="absolute inset-[1px] rounded-3xl border border-white/[0.05] pointer-events-none" />
-
                   <Image
                     src="/images/vda-logo.png"
                     alt="VDA – Venda Direta Automática"
                     width={720}
                     height={240}
-                    className="relative w-[240px] md:w-[300px] h-auto drop-shadow-[0_0_50px_rgba(255,255,255,0.3)] select-none"
+                    className="relative w-[280px] md:w-[340px] h-auto drop-shadow-[0_0_50px_rgba(255,255,255,0.25)] select-none"
                     priority
                     quality={100}
                   />
 
-                  <div className="absolute top-2 right-3 w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse" />
-                  <div className="absolute bottom-2 left-3 w-1 h-1 rounded-full bg-[#D4AF37]/50 animate-pulse" style={{ animationDelay: "1s" }} />
+                  <div className="absolute top-[20%] right-[0%] w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse" />
+                  <div className="absolute bottom-[20%] left-[5%] w-1 h-1 rounded-full bg-[#D4AF37]/50 animate-pulse" style={{ animationDelay: "1s" }} />
                 </motion.div>
               </motion.div>
 
@@ -223,18 +218,18 @@ function AulasMeteoricoPage() {
 
             {/* Profile photo */}
             <motion.div variants={fadeUp} className="flex flex-col items-center mb-8">
-              <div className="relative w-48 h-48 md:w-60 md:h-60 mb-4">
-                <div className="absolute inset-0 -m-4 rounded-full bg-[#D4AF37]/[0.08] blur-[40px] animate-pulse-glow" />
+              <div className="relative w-56 h-72 md:w-64 md:h-[22rem] mb-6">
+                <div className="absolute inset-0 -m-4 rounded-3xl bg-[#D4AF37]/[0.08] blur-[40px] animate-pulse-glow" />
                 <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.6)]">
                   <Image
                     src="/images/thiago-vda.webp"
                     alt="Thiago Lima — Fundador VDA"
                     fill
                     className="object-cover object-top"
-                    sizes="(max-width: 768px) 192px, 240px"
+                    sizes="(max-width: 768px) 224px, 256px"
                     loading="lazy"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
                 </div>
               </div>
               <span className="text-[9px] text-white/20 uppercase tracking-[0.3em] font-medium">
