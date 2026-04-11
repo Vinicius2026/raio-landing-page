@@ -291,7 +291,7 @@ function AulasMeteoricoPage() {
                 href={CTA_HREF}
                 label="VDA Gratuito Meteórico"
                 size="lg"
-                text="Entrar na Turma"
+                text="Quero meu acesso gratuito agora ⚡"
               />
               <p className="text-center text-[11px] text-white/17 mt-3 font-normal tracking-wide">
                 Gratuito · Sem compromisso · Acesso imediato
@@ -611,7 +611,7 @@ function AulasMeteoricoPage() {
                 href={CTA_HREF}
                 label="VDA Gratuito Meteórico - About"
                 size="md"
-                text="Quero entrar agora"
+                text="Quero meu acesso gratuito agora ⚡"
               />
             </motion.div>
           </motion.div>

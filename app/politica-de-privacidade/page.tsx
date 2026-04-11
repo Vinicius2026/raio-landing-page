@@ -43,15 +43,17 @@ export default function PoliticaDePrivacidade() {
                         {
                             title: '1. Quem somos',
                             content: (
-                                <div className="space-y-1 text-slate-300">
+                                <div className="space-y-2 text-slate-300">
                                     <p><strong className="text-white">Nome:</strong> Thiago Lima (VDA – Venda Direta Automática)</p>
                                     <p><strong className="text-white">Produto:</strong> VDA – Venda Direta Automática</p>
-                                    <p><strong className="text-white">Responsável:</strong> Thiago Lima</p>
                                     <p>
-                                        <strong className="text-white">Contato:</strong>{' '}
-                                        <a href="mailto:sac@aurenos.com.br" className="text-orange-400 hover:underline">sac@aurenos.com.br</a>
-                                        {' · '}
+                                        <strong className="text-white">Administração de Domínio e Projetos:</strong> Responsável pelo domínio, website e gestão de projetos da Aurenos VDA. <strong className="text-white">Nome:</strong> Maria Dias Ribeiro – <strong className="text-white">CPF:</strong> 161.199.987-13
+                                    </p>
+                                    <p>
+                                        <strong className="text-white">Contato Oficial Aurenos VDA:</strong>{' '}
                                         <a href="mailto:contato@aurenos.com.br" className="text-orange-400 hover:underline">contato@aurenos.com.br</a>
+                                        {' '} / {' '}
+                                        <a href="mailto:sac@aurenos.com.br" className="text-orange-400 hover:underline">sac@aurenos.com.br</a>
                                     </p>
                                 </div>
                             ),
