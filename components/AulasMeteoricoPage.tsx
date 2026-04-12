@@ -101,22 +101,7 @@ function CtaButton({ href, label, size, text }: CtaButtonProps) {
           ((e.currentTarget as HTMLElement).style.transform = "translateX(-100%)")
         }
       />
-      <Zap className="relative z-10 w-[18px] h-[18px] fill-current shrink-0" aria-hidden="true" />
       <span className="relative z-10">{text}</span>
-      <svg
-        className="relative z-10 w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2.5}
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M13 7l5 5m0 0l-5 5m5-5H6"
-        />
-      </svg>
     </motion.a>
   );
 }
@@ -287,11 +272,15 @@ function AulasMeteoricoPage() {
 
             {/* CTA primário */}
             <motion.div variants={fadeUp} className="w-full mb-8">
+              <div className="flex items-center justify-center gap-1.5 mb-3">
+                <span className="text-[14px]">⚡</span>
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Oferta Express Gratuita</span>
+              </div>
               <CtaButton
                 href={CTA_HREF}
                 label="VDA Gratuito Meteórico"
                 size="lg"
-                text="Quero meu acesso agora ⚡"
+                text="Quero meu acesso agora"
               />
               <p className="text-center text-[11px] text-white/17 mt-3 font-normal tracking-wide">
                 Gratuito · Sem compromisso · Acesso imediato
@@ -607,11 +596,15 @@ function AulasMeteoricoPage() {
 
             {/* CTA secundário */}
             <motion.div variants={fadeUp} className="w-full">
+              <div className="flex items-center justify-center gap-1.5 mb-3">
+                <span className="text-[14px]">⚡</span>
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Oferta Express Gratuita</span>
+              </div>
               <CtaButton
                 href={CTA_HREF}
                 label="VDA Gratuito Meteórico - About"
                 size="md"
-                text="Quero meu acesso agora ⚡"
+                text="Quero meu acesso agora"
               />
             </motion.div>
           </motion.div>
