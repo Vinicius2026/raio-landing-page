@@ -704,7 +704,7 @@ function AulasMeteoricoPage() {
           FOOTER
           ══════════════════════════════════════════════════════════════════ */}
       <footer
-        className="relative py-10 px-5 overflow-hidden"
+        className="relative pt-10 pb-32 md:pb-10 px-5 overflow-hidden"
         style={{ borderTop: "1px solid rgba(255,255,255,0.045)" }}
       >
         <div
