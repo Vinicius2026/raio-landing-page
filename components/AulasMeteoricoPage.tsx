@@ -1,10 +1,9 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Zap } from "lucide-react";
 import { trackEvent } from "@/lib/meta-pixel";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -23,24 +22,24 @@ const CTA_HREF =
 // ─── Animation variants ───────────────────────────────────────────────────────
 const stagger: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.11, delayChildren: 0.18 } },
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.2 } },
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 88, damping: 20 },
+    transition: { type: "spring", stiffness: 80, damping: 22 },
   },
 };
 
 const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.92 },
+  hidden: { opacity: 0, scale: 0.9 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", stiffness: 70, damping: 16, delay: 0.05 },
+    transition: { type: "spring", stiffness: 65, damping: 18, delay: 0.05 },
   },
 };
 
@@ -53,8 +52,7 @@ interface CtaButtonProps {
 }
 
 function CtaButton({ href, label, size, text }: CtaButtonProps) {
-  const py = size === "lg" ? "18px" : "14px";
-  const fontSize = size === "lg" ? "17px" : "15px";
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.a
@@ -62,83 +60,195 @@ function CtaButton({ href, label, size, text }: CtaButtonProps) {
       onClick={() => handleCtaClick(label)}
       target="_blank"
       rel="noopener noreferrer"
-      whileHover={{ scale: 1.022, y: -2 }}
-      whileTap={{ scale: 0.978 }}
-      className="group relative flex items-center justify-center gap-2.5 w-full rounded-xl text-black font-black tracking-wide cursor-pointer overflow-hidden"
+      whileHover={{ scale: 1.018, y: -2 }}
+      whileTap={{ scale: 0.975 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="group relative flex items-center justify-center w-full rounded-2xl text-black font-black tracking-wide cursor-pointer overflow-hidden select-none"
       style={{
-        padding: `${py} 32px`,
-        fontSize,
+        padding: size === "lg" ? "20px 36px" : "16px 28px",
+        fontSize: size === "lg" ? "16px" : "14.5px",
+        letterSpacing: "0.04em",
         background:
-          "linear-gradient(135deg, #c9a227 0%, #f0d060 45%, #c9a227 100%)",
-        boxShadow:
-          "0 5px 36px rgba(212,175,55,0.28), 0 1px 0 rgba(255,255,255,0.14) inset",
-        transition: "box-shadow 0.35s ease",
+          "linear-gradient(135deg, #c8a020 0%, #f0d060 40%, #e8c840 70%, #c8a020 100%)",
+        boxShadow: hovered
+          ? "0 0 0 1px rgba(240,208,80,0.5), 0 12px 48px rgba(212,175,55,0.55), 0 2px 8px rgba(0,0,0,0.4)"
+          : "0 0 0 1px rgba(212,175,55,0.22), 0 6px 28px rgba(212,175,55,0.28), 0 2px 8px rgba(0,0,0,0.35)",
+        transition: "box-shadow 0.4s ease",
         WebkitTapHighlightColor: "transparent",
       }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 10px 56px rgba(212,175,55,0.48), 0 1px 0 rgba(255,255,255,0.18) inset";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 5px 36px rgba(212,175,55,0.28), 0 1px 0 rgba(255,255,255,0.14) inset";
-      }}
     >
-      {/* Shimmer sweep no hover */}
-      <span
+      {/* Shimmer sweep */}
+      <motion.span
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
+        animate={{ x: hovered ? "100%" : "-100%" }}
+        transition={{ duration: 0.65, ease: "easeInOut" }}
         style={{
           background:
-            "linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.30) 50%, transparent 75%)",
-          transform: "translateX(-100%)",
-          transition: "transform 0.7s ease",
+            "linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.32) 50%, transparent 80%)",
         }}
-        onMouseEnter={(e) =>
-          ((e.currentTarget as HTMLElement).style.transform = "translateX(100%)")
-        }
-        onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLElement).style.transform = "translateX(-100%)")
-        }
       />
-      <span className="relative z-10">{text}</span>
+      {/* Dot indicator */}
+      <span
+        className="relative z-10 flex items-center gap-2.5"
+        style={{ textShadow: "0 1px 2px rgba(0,0,0,0.15)" }}
+      >
+        <span
+          className="flex-shrink-0 w-2 h-2 rounded-full bg-black/40"
+          style={{
+            boxShadow: "inset 0 0 0 1.5px rgba(0,0,0,0.3)",
+            animation: "pulseDot 2s ease-in-out infinite",
+          }}
+        />
+        {text}
+      </span>
     </motion.a>
+  );
+}
+
+// ─── Particle dots background ─────────────────────────────────────────────────
+function ParticleDots() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      {Array.from({ length: 28 }).map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            width: `${1 + Math.random() * 2}px`,
+            height: `${1 + Math.random() * 2}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            background: i % 4 === 0 ? "rgba(212,175,55,0.35)" : "rgba(255,255,255,0.08)",
+            animation: `floatDot ${6 + Math.random() * 8}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 6}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ─── Section divider ─────────────────────────────────────────────────────────
+function Divider() {
+  return (
+    <div className="flex items-center gap-3 py-2" aria-hidden="true">
+      <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.15), transparent)" }} />
+      <div className="w-1 h-1 rounded-full bg-[#D4AF37]/30" />
+      <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.15), transparent)" }} />
+    </div>
   );
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 function AulasMeteoricoPage() {
-  const [isVdaOpen, setIsVdaOpen] = useState(false);
+  const [showSticky, setShowSticky] = useState(false);
   const year = new Date().getFullYear();
 
+  useEffect(() => {
+    const handleScroll = () => setShowSticky(window.scrollY > 420);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-black relative">
+    <main
+      className="min-h-screen relative"
+      style={{ background: "#080808", fontFamily: "'DM Sans', system-ui, sans-serif" }}
+    >
+      {/* Google Fonts inline */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900&family=Playfair+Display:wght@700;900&display=swap');
+
+        @keyframes breathe {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.10); opacity: 0.65; }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.06); }
+        }
+        @keyframes lineFlow {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(220%); }
+        }
+        @keyframes pulseDot {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.5); }
+        }
+        @keyframes floatDot {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+          33% { transform: translateY(-12px) translateX(6px); opacity: 0.8; }
+          66% { transform: translateY(8px) translateX(-4px); opacity: 0.5; }
+        }
+        @keyframes spinSlow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        * { box-sizing: border-box; }
+
+        .gold-text {
+          background: linear-gradient(90deg, #D4AF37 0%, #f0d060 50%, #D4AF37 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .card-glass {
+          background: rgba(255,255,255,0.025);
+          border: 1px solid rgba(255,255,255,0.06);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+
+        .card-glass:hover {
+          background: rgba(255,255,255,0.038);
+          border-color: rgba(212,175,55,0.14);
+          transition: all 0.3s ease;
+        }
+
+        .sticky-bar {
+          background: rgba(8,8,8,0.94);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-top: 1px solid rgba(255,255,255,0.06);
+        }
+      `}} />
 
       {/* ══════════════════════════════════════════════════════════════════
           HERO
           ══════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="Entrar VDA Gratuito"
-        className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center px-5 py-20 overflow-hidden"
       >
         {/* Ambient blobs */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div
-            className="absolute -top-1/4 -left-1/4 w-[700px] h-[700px] rounded-full"
+            className="absolute -top-[30%] -left-[20%] w-[600px] h-[600px] rounded-full"
             style={{
-              background:
-                "radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%)",
-              animation: "breathe 7s ease-in-out infinite",
+              background: "radial-gradient(circle, rgba(212,175,55,0.065) 0%, transparent 68%)",
+              animation: "breathe 8s ease-in-out infinite",
             }}
           />
           <div
-            className="absolute -bottom-1/4 -right-1/4 w-[600px] h-[600px] rounded-full"
+            className="absolute -bottom-[25%] -right-[15%] w-[500px] h-[500px] rounded-full"
             style={{
-              background:
-                "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)",
-              animation: "breathe 9s ease-in-out infinite",
-              animationDelay: "4s",
+              background: "radial-gradient(circle, rgba(255,255,255,0.028) 0%, transparent 68%)",
+              animation: "breathe 11s ease-in-out infinite",
+              animationDelay: "5s",
             }}
+          />
+          {/* Bottom vignette */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+            style={{ background: "linear-gradient(to top, rgba(8,8,8,0.6), transparent)" }}
           />
         </div>
 
@@ -147,7 +257,7 @@ function AulasMeteoricoPage() {
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
           style={{
-            opacity: 0.022,
+            opacity: 0.025,
             backgroundImage:
               'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'1\'/%3E%3C/svg%3E")',
             backgroundSize: "180px 180px",
@@ -158,63 +268,72 @@ function AulasMeteoricoPage() {
         <div
           className="absolute inset-0 pointer-events-none overflow-hidden"
           aria-hidden="true"
-          style={{ opacity: 0.022 }}
+          style={{ opacity: 0.018 }}
         >
-          {[20, 40, 60, 80].map((left, i) => (
+          {[15, 35, 55, 75, 92].map((left, i) => (
             <div
               key={i}
               className="absolute top-0 w-px h-full"
               style={{
                 left: `${left}%`,
-                background:
-                  "linear-gradient(to bottom, transparent, rgba(255,255,255,0.8), transparent)",
-                animation: `lineFlow ${10 + i * 2.5}s linear infinite`,
-                animationDelay: `${i * 2}s`,
+                background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.9), transparent)",
+                animation: `lineFlow ${12 + i * 2}s linear infinite`,
+                animationDelay: `${i * 2.2}s`,
               }}
             />
           ))}
         </div>
 
+        {/* Floating particles */}
+        <ParticleDots />
+
         {/* Content */}
-        <div className="relative z-10 w-full max-w-sm mx-auto">
+        <div className="relative z-10 w-full max-w-[390px] mx-auto">
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
             className="flex flex-col items-center"
           >
-            {/* Logo — sem borda, halo difuso */}
-            <motion.div variants={scaleIn} className="mb-10 flex flex-col items-center">
+            {/* Minimal Label */}
+            <motion.div variants={fadeUp} className="mb-12 -mt-2 md:mt-4">
+              <p className="text-[10px] font-medium tracking-[0.25em] text-white/90 uppercase">
+                Aula Gratuita Liberada
+              </p>
+            </motion.div>
+
+            {/* Logo */}
+            <motion.div variants={scaleIn} className="mb-8 flex flex-col items-center">
               <motion.div
-                animate={{ y: [0, -9, 0] }}
+                animate={{ y: [0, -8, 0] }}
                 transition={{
-                  duration: 4.2,
+                  duration: 4.5,
                   repeat: Infinity,
                   ease: [0.45, 0, 0.55, 1],
                 }}
                 className="relative"
               >
+                {/* Glow halo */}
                 <div
-                  className="absolute inset-0 -m-10 rounded-full pointer-events-none"
+                  className="absolute inset-0 -m-12 rounded-full pointer-events-none"
                   aria-hidden="true"
                   style={{
-                    background:
-                      "radial-gradient(circle, rgba(212,175,55,0.10) 0%, transparent 65%)",
-                    filter: "blur(28px)",
-                    animation: "pulseGlow 4.5s ease-in-out infinite",
+                    background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 65%)",
+                    filter: "blur(32px)",
+                    animation: "pulseGlow 5s ease-in-out infinite",
                   }}
                 />
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                  <span className="text-[10px] font-bold tracking-[0.45em] text-white/30 uppercase">Aurenos</span>
+                <div className="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <span className="text-[9px] font-bold tracking-[0.5em] text-white/22 uppercase">Aurenos</span>
                 </div>
                 <Image
                   src="/images/vda-logo.png"
                   alt="VDA – Venda Direta Automática"
                   width={720}
                   height={240}
-                  className="relative w-[260px] md:w-[320px] h-auto select-none"
+                  className="relative w-[255px] md:w-[310px] h-auto select-none"
                   style={{
-                    filter: "drop-shadow(0 0 32px rgba(255,255,255,0.14))",
+                    filter: "drop-shadow(0 0 36px rgba(255,255,255,0.12)) drop-shadow(0 0 64px rgba(212,175,55,0.08))",
                   }}
                   priority
                   quality={100}
@@ -222,390 +341,360 @@ function AulasMeteoricoPage() {
                 />
               </motion.div>
 
-              {/* Divisor */}
-              <motion.div variants={fadeUp} className="mt-6 flex items-center gap-3">
-                <div
-                  className="w-12 h-px"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent, rgba(255,255,255,0.13))",
-                  }}
-                />
-                <span className="text-[10px] font-semibold tracking-[0.45em] uppercase text-white/22">
+              {/* Divisor ornamental */}
+              <motion.div variants={fadeUp} className="mt-7 flex items-center gap-3">
+                <div className="w-8 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.25))" }} />
+                <div className="w-1 h-1 rounded-full" style={{ background: "rgba(212,175,55,0.35)" }} />
+                <span className="text-[9.5px] font-semibold tracking-[0.48em] uppercase text-white/22">
                   Venda Direta Automática
                 </span>
-                <div
-                  className="w-12 h-px"
-                  style={{
-                    background:
-                      "linear-gradient(to left, transparent, rgba(255,255,255,0.13))",
-                  }}
-                />
+                <div className="w-1 h-1 rounded-full" style={{ background: "rgba(212,175,55,0.35)" }} />
+                <div className="w-8 h-px" style={{ background: "linear-gradient(to left, transparent, rgba(212,175,55,0.25))" }} />
               </motion.div>
             </motion.div>
 
             {/* Headline */}
-            <motion.div variants={fadeUp} className="w-full text-center mb-5">
-              <h1 className="text-[26px] md:text-[32px] font-black tracking-tight text-white leading-tight">
-                Entrar{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #D4AF37 0%, #f0d060 50%, #D4AF37 100%)",
-                  }}
-                >
-                  VDA Gratuito
+            <motion.div variants={fadeUp} className="w-full text-center mb-6 px-1">
+              <h1
+                className="text-[27px] md:text-[33px] font-black tracking-tight text-white leading-[1.18]"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              >
+                Como estruturar{" "}
+                <span className="gold-text">
+                  vendas pelo WhatsApp
                 </span>
+                <br />de forma simples e escalável
               </h1>
-              <p className="text-[13px] text-white/33 mt-2.5 tracking-wide font-normal">
-                Acesse agora as aulas gratuitas do método Meteórico
+              <p className="text-[14px] md:text-[15px] text-white/58 mt-5 leading-[1.72] max-w-[88%] mx-auto font-light">
+                Entre no grupo gratuito e acompanhe, na prática, como funcionam estratégias usadas no dia a dia para gerar vendas online.
               </p>
             </motion.div>
 
-            {/* Indicador de disponibilidade — só texto */}
-            <motion.div variants={fadeUp} className="mb-5 flex items-center justify-center">
-              <span className="text-[11px] font-medium text-white/28 tracking-[0.18em] uppercase">
-                Vagas abertas agora
-              </span>
+            {/* Social proof micro */}
+            <motion.div variants={fadeUp} className="mb-7">
+              <div
+                className="flex items-center gap-2.5 px-4 py-2 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.055)",
+                }}
+              >
+                <div className="flex -space-x-1.5">
+                  {["#8B5CF6", "#F59E0B", "#10B981"].map((c, i) => (
+                    <div
+                      key={i}
+                      className="w-5 h-5 rounded-full border border-[#080808]"
+                      style={{ background: `linear-gradient(135deg, ${c}, ${c}88)` }}
+                    />
+                  ))}
+                </div>
+                <span className="text-[11.5px] text-white/40 font-light">
+                  Método aplicado diariamente no mercado digital
+                </span>
+              </div>
             </motion.div>
 
             {/* CTA primário */}
-            <motion.div variants={fadeUp} className="w-full mb-8">
-              <div className="flex items-center justify-center gap-1.5 mb-3">
-                <span className="text-[14px]">⚡</span>
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Oferta Express Gratuita</span>
-              </div>
+            <motion.div variants={fadeUp} className="w-full mb-4">
               <CtaButton
                 href={CTA_HREF}
-                label="VDA Gratuito Meteórico"
+                label="VDA Gratuito Meteórico - Hero"
                 size="lg"
-                text="Quero meu acesso agora"
+                text="Entrar no grupo gratuito"
               />
-              <p className="text-center text-[11px] text-white/17 mt-3 font-normal tracking-wide">
-                Gratuito · Sem compromisso · Acesso imediato
-              </p>
+            </motion.div>
+
+            {/* Trust micro-copy */}
+            <motion.div variants={fadeUp} className="flex items-center gap-5 justify-center">
+              {[
+                { icon: "✦", text: "Sem custo" },
+                { icon: "⚡", text: "Acesso imediato" },
+                { icon: "✉", text: "Direto no WhatsApp" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-1.5">
+                  <span className="text-[#D4AF37]/50 text-[9px]">{item.icon}</span>
+                  <span className="text-[11px] text-white/32 font-light tracking-wide">{item.text}</span>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          BRIDGE — texto informativo entre hero e about
+          O QUE VOCÊ VAI VER
           ══════════════════════════════════════════════════════════════════ */}
       <section
-        aria-label="Informação sobre turmas"
-        className="relative px-4 pb-12 overflow-hidden"
+        aria-label="O que acontece no grupo"
+        className="relative pt-4 pb-16 px-5 overflow-hidden"
       >
-        <div className="max-w-sm mx-auto">
+        <Divider />
+        <div className="max-w-[390px] mx-auto relative z-10 pt-10">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center text-center gap-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col items-center"
           >
-            {/* Linha dourada topo */}
-            <div className="flex items-center gap-3 w-full justify-center">
-              <div
-                className="flex-1 h-px"
-                style={{
-                  background:
-                    "linear-gradient(to right, transparent, rgba(212,175,55,0.22))",
-                }}
-              />
-              <div
-                className="w-1 h-1 rounded-full"
-                style={{ background: "rgba(212,175,55,0.55)" }}
-              />
-              <div
-                className="flex-1 h-px"
-                style={{
-                  background:
-                    "linear-gradient(to left, transparent, rgba(212,175,55,0.22))",
-                }}
-              />
+            <motion.div variants={fadeUp} className="text-center mb-8">
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37]/50 mb-3 block">
+                Conteúdo do Grupo
+              </span>
+              <h2
+                className="text-[21px] md:text-[25px] font-black tracking-tight text-white leading-tight"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              >
+                O que você vai ver{" "}
+                <span className="gold-text">dentro do grupo:</span>
+              </h2>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="w-full space-y-3">
+              {[
+                { title: "Estrutura simples de vendas via WhatsApp", num: "01" },
+                { title: "Estratégias de tráfego que estão funcionando atualmente", num: "02" },
+                { title: "Bastidores e aplicação prática no dia a dia", num: "03" },
+                { title: "Atualizações e conteúdos durante o período do evento", num: "04" },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeUp}
+                  className="card-glass flex items-center gap-4 p-4 rounded-2xl"
+                  style={{ transition: "all 0.25s ease" }}
+                >
+                  <div
+                    className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center"
+                    style={{
+                      background: "rgba(212,175,55,0.08)",
+                      border: "1px solid rgba(212,175,55,0.18)",
+                    }}
+                  >
+                    <span
+                      className="text-[11px] font-black"
+                      style={{
+                        background: "linear-gradient(135deg, #D4AF37, #f0d060)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      {item.num}
+                    </span>
+                  </div>
+                  <span className="text-[13.5px] text-white/75 font-light leading-snug flex-1">
+                    {item.title}
+                  </span>
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 text-[#D4AF37]/40"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          FAQ + VDA
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-14 px-5 overflow-hidden">
+        <Divider />
+        <div className="max-w-[390px] mx-auto flex flex-col gap-12 pt-10">
+
+          {/* FAQ */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="text-center mb-7">
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37]/50 mb-3 block">
+                Dúvidas Comuns
+              </span>
+              <h3
+                className="text-[18px] font-black text-white"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              >
+                Tirando as dúvidas comuns
+              </h3>
             </div>
 
-            <p
-              className="text-[13.5px] leading-relaxed font-light"
-              style={{ color: "rgba(255,255,255,0.36)" }}
-            >
-              Fique na{" "}
-              <span
-                className="font-semibold"
-                style={{ color: "rgba(255,255,255,0.58)" }}
-              >
-                Turma Gratuita
-              </span>{" "}
-              e caso queira entrar na{" "}
-              <span
-                className="font-semibold bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(90deg, #D4AF37, #f0d060)",
-                }}
-              >
-                Turma Premium
-              </span>{" "}
-              é só chamar o suporte da VDA.
-            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  q: "Preciso ter experiência?",
+                  a: "Qualquer um que se desempenhar pode participar e ter resultado. O conteúdo é prático e vai direto ao ponto.",
+                },
+                {
+                  q: "É pago?",
+                  a: "Não, o acesso ao grupo é inteiramente gratuito.",
+                },
+                {
+                  q: "Vou precisar comprar algo?",
+                  a: "Não é necessário para acompanhar o conteúdo e entender o mecanismo de vendas.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="card-glass p-5 rounded-2xl"
+                >
+                  <div className="flex items-start gap-3">
+                    <div
+                      className="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center mt-0.5"
+                      style={{
+                        background: "rgba(212,175,55,0.1)",
+                        border: "1px solid rgba(212,175,55,0.2)",
+                      }}
+                    >
+                      <span className="text-[10px] font-black text-[#D4AF37]">?</span>
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-white/90 mb-1.5">{item.q}</p>
+                      <p className="text-[12.5px] text-white/52 font-light leading-relaxed">{item.a}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-            {/* Linha neutra base */}
-            <div className="flex items-center gap-3 w-full justify-center">
+          {/* O que é VDA */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.12 }}
+          >
+            <div
+              className="relative p-7 rounded-3xl overflow-hidden text-center"
+              style={{
+                background: "linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(212,175,55,0.02) 100%)",
+                border: "1px solid rgba(212,175,55,0.14)",
+              }}
+            >
+              {/* Corner accent */}
               <div
-                className="flex-1 h-px"
+                className="absolute top-0 right-0 w-20 h-20 pointer-events-none"
+                aria-hidden="true"
                 style={{
-                  background:
-                    "linear-gradient(to right, transparent, rgba(255,255,255,0.06))",
+                  background: "radial-gradient(circle at top right, rgba(212,175,55,0.12), transparent 70%)",
                 }}
               />
-              <div
-                className="w-1 h-1 rounded-full"
-                style={{ background: "rgba(255,255,255,0.14)" }}
-              />
-              <div
-                className="flex-1 h-px"
-                style={{
-                  background:
-                    "linear-gradient(to left, transparent, rgba(255,255,255,0.06))",
-                }}
-              />
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37]/50 mb-4 block">
+                O Método
+              </span>
+              <h3
+                className="text-[20px] font-black text-white tracking-tight mb-4"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              >
+                O que é a{" "}
+                <span className="gold-text">VDA</span>?
+              </h3>
+              <p className="text-[13.5px] text-white/60 leading-[1.7] font-light">
+                A VDA é um método focado em estruturar vendas diretas utilizando o WhatsApp como principal canal, com aplicação totalmente prática no nosso mercado digital.
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          ABOUT — Thiago + VDA
+          ABOUT — Thiago
           ══════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="Sobre o Fundador Thiago Lima"
-        className="relative pt-2 pb-24 px-4 overflow-hidden"
+        className="relative pt-4 pb-32 px-5 overflow-hidden"
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%)",
-          }}
-        />
-
-        <div className="max-w-sm mx-auto relative z-10">
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="flex items-center justify-center gap-3 mb-10"
-          >
-            <div
-              className="h-px w-10"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.10))",
-              }}
-            />
-            <span className="text-[9px] font-bold text-white/60 uppercase tracking-[0.4em]">
-              Sobre o Fundador
-            </span>
-            <div
-              className="h-px w-10"
-              style={{
-                background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.10))",
-              }}
-            />
-          </motion.div>
+        <Divider />
+        <div className="max-w-[390px] mx-auto relative z-10 pt-12 flex flex-col items-center">
 
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.12 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center w-full"
           >
-            {/* Foto — sem card externo */}
-            <motion.div variants={fadeUp} className="flex flex-col items-center mb-8">
-              <div className="relative mb-6">
-                {/* Halo dourado difuso */}
-                <div
-                  className="absolute -inset-4 rounded-2xl pointer-events-none"
-                  aria-hidden="true"
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)",
-                    filter: "blur(20px)",
-                    animation: "pulseGlow 5s ease-in-out infinite",
-                  }}
-                />
-                {/* Foto */}
-                <div
-                  className="relative w-52 h-[17rem] md:w-60 md:h-[20rem] rounded-2xl overflow-hidden"
-                  style={{
-                    boxShadow:
-                      "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(212,175,55,0.14)",
-                  }}
-                >
-                  <Image
-                    src="/images/thiago-vda.webp"
-                    alt="Thiago Lima, fundador da VDA – Venda Direta Automática"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 208px, 240px"
-                    loading="lazy"
-                  />
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-                    aria-hidden="true"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.70), transparent)",
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Nome — texto simples, sem card */}
-              <div className="flex items-center gap-2.5">
-                <div
-                  className="w-3 h-px"
-                  style={{ background: "rgba(212,175,55,0.38)" }}
-                />
-                <span className="text-[10px] text-white/70 uppercase tracking-[0.32em] font-medium">
-                  Thiago Lima · Fundador VDA
-                </span>
-                <div
-                  className="w-3 h-px"
-                  style={{ background: "rgba(212,175,55,0.38)" }}
-                />
-              </div>
+            <motion.div variants={fadeUp} className="text-center mb-8">
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37]/50 mb-3 block">
+                Sobre o Fundador
+              </span>
+              <h2
+                className="text-[21px] font-black text-white"
+                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              >
+                Thiago Lima
+              </h2>
             </motion.div>
 
-            {/* Título */}
-            <motion.h2
-              variants={fadeUp}
-              className="text-[22px] md:text-[28px] font-black text-center text-white tracking-tight leading-tight mb-5"
-            >
-              Quem é o{" "}
-              <span
-                className="bg-clip-text text-transparent"
+            {/* Foto com halo dourado */}
+            <motion.div variants={fadeUp} className="relative mb-8">
+              {/* Halo */}
+              <div
+                className="absolute -inset-6 rounded-3xl pointer-events-none"
+                aria-hidden="true"
                 style={{
-                  backgroundImage: "linear-gradient(90deg, #D4AF37, #f0d060)",
+                  background: "radial-gradient(circle, rgba(212,175,55,0.10) 0%, transparent 72%)",
+                  filter: "blur(22px)",
+                  animation: "pulseGlow 5.5s ease-in-out infinite",
+                }}
+              />
+              {/* Frame ornamental */}
+              <div
+                className="relative w-[200px] h-[272px] md:w-[224px] md:h-[304px] rounded-3xl overflow-hidden"
+                style={{
+                  boxShadow: "0 0 0 1px rgba(212,175,55,0.16), 0 28px 72px rgba(0,0,0,0.8)",
                 }}
               >
-                Thiago da VDA
-              </span>
-            </motion.h2>
-
-            {/* Bio */}
-            <motion.div
-              variants={fadeUp}
-              className="space-y-3.5 text-[13.5px] text-white/70 leading-relaxed font-light text-center mb-8"
-            >
-              <p>
-                Especialista em vendas digitais pelo WhatsApp, Thiago Lima construiu o
-                método{" "}
-                <strong className="text-white/60 font-medium">
-                  VDA – Venda Direta Automática
-                </strong>{" "}
-                a partir de sua própria experiência no campo.
-              </p>
-              <p>
-                Uma trajetória real, construída no dia a dia e na vivência do digital.
-                Múltiplos 7 dígitos faturados. Especialista em monetização de redes
-                sociais. Hoje sua dedicação está nas ações sociais que realiza e no
-                método VDA, que ensina a vender produtos selecionados diretamente pelo
-                WhatsApp.
-              </p>
-            </motion.div>
-
-            {/* Divider */}
-            <motion.div
-              variants={fadeUp}
-              className="w-full mb-6"
-              style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-            />
-
-            {/* Collapsible — O que é a VDA */}
-            <motion.div variants={fadeUp} className="w-full mb-8">
-              <button
-                onClick={() => setIsVdaOpen((v) => !v)}
-                aria-expanded={isVdaOpen}
-                className="w-full group flex flex-col items-center justify-center cursor-pointer rounded-xl py-4 px-4"
-              >
-                <h3 className="text-[20px] md:text-[24px] font-black text-white tracking-tight leading-tight mb-2.5 text-center">
-                  O que é a{" "}
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage: "linear-gradient(90deg, #D4AF37, #f0d060)",
-                    }}
-                  >
-                    VDA
-                  </span>
-                  ?
-                </h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-white/60 uppercase tracking-[0.2em] font-medium transition-colors duration-300 group-hover:text-white/80">
-                    {isVdaOpen ? "Fechar" : "Saiba mais"}
-                  </span>
-                  <div
-                    className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.10)",
-                      transform: isVdaOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
-                    }}
-                  >
-                    <ChevronDown className="w-3 h-3 text-white/30" />
-                  </div>
-                </div>
-              </button>
-
-              <AnimatePresence>
-                {isVdaOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="space-y-3.5 text-[13.5px] text-white/70 leading-relaxed font-light text-center pt-3 pb-2">
-                      <p>
-                        Na{" "}
-                        <strong className="text-white/60 font-medium">
-                          VDA — Venda Direta Automática
-                        </strong>
-                        , ensinamos como vender diariamente pelo WhatsApp. Temos os
-                        produtos selecionados, sabemos atrair clientes interessados e
-                        realizamos a venda de forma manual e automática.
-                      </p>
-                      <p>
-                        Essa modalidade é uma das de maior acerto, pois o contato com
-                        o cliente é imediato. Estude com uma das maiores companhias de
-                        venda direta via WhatsApp no Brasil.
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-
-            {/* CTA secundário */}
-            <motion.div variants={fadeUp} className="w-full">
-              <div className="flex items-center justify-center gap-1.5 mb-3">
-                <span className="text-[14px]">⚡</span>
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Oferta Express Gratuita</span>
+                <Image
+                  src="/images/thiago-vda.webp"
+                  alt="Thiago Lima"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 200px, 224px"
+                  loading="lazy"
+                />
+                {/* Gradient overlay bottom */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+                  aria-hidden="true"
+                  style={{ background: "linear-gradient(to top, rgba(8,8,8,0.78), transparent)" }}
+                />
               </div>
-              <CtaButton
-                href={CTA_HREF}
-                label="VDA Gratuito Meteórico - About"
-                size="md"
-                text="Quero meu acesso agora"
-              />
+            </motion.div>
+
+            {/* Bullet list */}
+            <motion.div variants={fadeUp} className="w-full space-y-2.5 mb-10 px-1">
+              {[
+                "Atua ativamente com vendas digitais via WhatsApp",
+                "Vasta experiência como estrategista",
+                "Criador do método VDA e desenvolvedor de times",
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="card-glass flex items-start gap-3 px-4 py-3.5 rounded-xl"
+                >
+                  <div
+                    className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5"
+                    style={{ background: "linear-gradient(135deg, #D4AF37, #f0d060)" }}
+                  />
+                  <span className="text-[13px] text-white/65 font-light leading-snug">{item}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Disclaimer Final Info */}
+            <motion.div variants={fadeUp} className="w-full text-center">
+              <p className="text-[12px] text-white/35 mb-2 leading-relaxed font-light px-3">
+                As vagas para o grupo são liberadas por período. <br />Deslize para acompanhar e entrar.
+              </p>
             </motion.div>
           </motion.div>
         </div>
@@ -615,34 +704,32 @@ function AulasMeteoricoPage() {
           FOOTER
           ══════════════════════════════════════════════════════════════════ */}
       <footer
-        className="relative py-8 px-4 overflow-hidden"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        className="relative py-10 px-5 overflow-hidden"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.045)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
-          style={{
-            background: "linear-gradient(to top, rgba(0,0,0,0.28), transparent)",
-          }}
+          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.22), transparent)" }}
         />
 
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+            transition={{ type: "spring", stiffness: 120, damping: 22 }}
             className="text-center space-y-3"
           >
             <div className="space-y-1">
-              <p className="text-[12px] text-white/26">
+              <p className="text-[11.5px] text-white/22">
                 © {year} VDA – Venda Direta Automática.
               </p>
               <p className="text-[11px] text-white/14">
                 Todos os direitos reservados.{" "}
                 <a
                   href="mailto:contato@aurenos.com.br"
-                  className="text-white/22 hover:text-white/42 transition-colors"
+                  className="text-white/20 hover:text-white/38 transition-colors"
                 >
                   contato@aurenos.com.br
                 </a>
@@ -652,13 +739,13 @@ function AulasMeteoricoPage() {
             <div className="flex items-center justify-center">
               <Link
                 href="/politica-de-privacidade"
-                className="text-[11px] text-blue-500/60 hover:text-blue-400 transition-colors underline underline-offset-2"
+                className="text-[11px] text-blue-500/55 hover:text-blue-400/80 transition-colors underline underline-offset-2"
               >
                 Política de Privacidade
               </Link>
             </div>
 
-            <p className="text-[10px] text-white/40 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[10px] text-white/30 max-w-2xl mx-auto leading-relaxed">
               Este site não faz parte dos websites da Meta, do Facebook ou Instagram, nem
               possui qualquer endosso dessas plataformas. Todo o conteúdo deste site é de
               responsabilidade exclusiva dos representantes do aurenos.com.br.
@@ -667,25 +754,29 @@ function AulasMeteoricoPage() {
         </div>
       </footer>
 
-      {/* Keyframes */}
-      <style>{`
-        @keyframes breathe {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.07); opacity: 0.72; }
-        }
-        @keyframes pulseGlow {
-          0%, 100% { opacity: 0.55; }
-          50% { opacity: 1; }
-        }
-        @keyframes lineFlow {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(200%); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.45; transform: scale(0.82); }
-        }
-      `}</style>
+      {/* ══════════════════════════════════════════════════════════════════
+          STICKY BOTTOM CTA (MOBILE ONLY)
+          ══════════════════════════════════════════════════════════════════ */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 95, damping: 22 }}
+            className="fixed bottom-0 left-0 right-0 z-50 px-4 pt-4 pb-5 md:hidden sticky-bar"
+          >
+            <div className="max-w-[390px] mx-auto w-full">
+              <CtaButton
+                href={CTA_HREF}
+                label="VDA Gratuito Meteórico - Sticky"
+                size="md"
+                text="Quero entrar no grupo"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
