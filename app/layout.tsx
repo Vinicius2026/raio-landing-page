@@ -151,7 +151,7 @@ export default function RootLayout({
                                 price: '97.00',
                                 priceCurrency: 'BRL',
                                 availability: 'https://schema.org/InStock',
-                                url: 'https://pay.kiwify.com.br/WJb9F4T',
+                                url: '#',
                             },
                         }),
                     }}
