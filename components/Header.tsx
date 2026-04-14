@@ -96,6 +96,20 @@ export default function Header() {
                         </div>
                     </Link>
 
+                    {/* Comprar Conversa em Grupo */}
+                    <Link href="/acelerarvendas" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                        <div className="absolute left-0 w-10 h-10 rounded-full bg-amber-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
+                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-amber-500 transition-colors duration-500 shrink-0">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                        <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Acelera Chat</span>
+                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-amber-500">II</span>
+                        </div>
+                    </Link>
+
                     {/* Area de Membros */}
                     <a href="#" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                          <div className="absolute left-0 w-10 h-10 rounded-full bg-slate-100/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
@@ -107,7 +121,7 @@ export default function Header() {
                         </div>
                         <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Área de Membros</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/50">II</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/50">III</span>
                         </div>
                     </a>
                     
@@ -121,7 +135,7 @@ export default function Header() {
                         </div>
                         <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Painel de Controle</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">III</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">IV</span>
                         </div>
                     </a>
 
@@ -135,7 +149,7 @@ export default function Header() {
                         </div>
                         <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Chamar Suporte</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#10B981]/50">IV</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#10B981]/50">V</span>
                         </div>
                     </a>
                 </nav>
