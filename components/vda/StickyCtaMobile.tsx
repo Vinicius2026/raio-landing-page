@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/lib/meta-pixel";
 
-const CHECKOUT_HREF = "https://pay.kiwify.com.br/o0R3EwA";
+const CHECKOUT_HREF = "#";
 
 function handleCta() {
   trackEvent("InitiateCheckout", {
