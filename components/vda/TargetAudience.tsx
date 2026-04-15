@@ -76,30 +76,63 @@ export default function TargetAudience() {
           </div>
         </motion.div>
 
-        {/* Not needed */}
-        <motion.div variants={fadeUp}>
-          <h3 className="text-[18px] font-bold text-white mb-6">
-            Você <span className="text-white/30">não</span> precisa de nada disso:
+        {/* Not needed — centered elegant layout */}
+        <motion.div variants={fadeUp} className="text-center">
+          <h3 className="text-[20px] md:text-[24px] font-extrabold text-white tracking-tight mb-8">
+            Você{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15))",
+              }}
+            >
+              não
+            </span>{" "}
+            precisa de nada disso:
           </h3>
-          <div className="flex flex-wrap gap-3">
+
+          {/* Vertical stack — always centered, never breaks */}
+          <div className="flex flex-col items-center gap-3 max-w-xs mx-auto">
             {notNeeded.map((item, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl"
+                variants={fadeUp}
+                className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl"
                 style={{
-                  background: "rgba(255,255,255,0.025)",
+                  background: "rgba(255,255,255,0.02)",
                   border: "1px solid rgba(255,255,255,0.05)",
-                  backdropFilter: "blur(8px)",
                 }}
               >
-                <X className="w-3.5 h-3.5 text-white/25" />
-                <span className="text-[13px] text-white/40 font-light">{item}</span>
-              </div>
+                <div
+                  className="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center"
+                  style={{
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.15)",
+                  }}
+                >
+                  <X className="w-3.5 h-3.5 text-red-400/60" />
+                </div>
+                <span
+                  className="text-[15px] text-white/35 font-light"
+                  style={{ textDecoration: "line-through", textDecorationColor: "rgba(255,255,255,0.12)" }}
+                >
+                  {item}
+                </span>
+              </motion.div>
             ))}
           </div>
-          <p className="text-[14px] text-white/30 mt-6 font-light">
-            Você só precisa entrar e observar.
-          </p>
+
+          {/* Bottom tagline */}
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <div
+              className="w-8 h-px"
+              style={{ background: "linear-gradient(to right, transparent, rgba(245,158,11,0.3), transparent)" }}
+            />
+            <p className="text-[14px] text-white/45 font-light tracking-wide">
+              Você só precisa{" "}
+              <span className="text-amber-400/70 font-medium">entrar e observar.</span>
+            </p>
+          </div>
         </motion.div>
       </motion.div>
     </section>
