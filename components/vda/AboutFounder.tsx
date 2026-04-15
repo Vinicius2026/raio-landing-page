@@ -78,10 +78,10 @@ export default function AboutFounder() {
               }}
             />
             <div
-              className="relative w-[180px] h-[240px] md:w-[200px] md:h-[272px] rounded-3xl overflow-hidden"
+              className="relative w-[240px] h-[320px] md:w-[280px] md:h-[380px] rounded-3xl overflow-hidden"
               style={{
                 boxShadow:
-                  "0 0 0 1px rgba(245,158,11,0.14), 0 24px 60px rgba(0,0,0,0.8)",
+                  "0 0 0 1px rgba(245,158,11,0.14), 0 32px 80px rgba(0,0,0,0.8)",
               }}
             >
               <Image
@@ -89,7 +89,7 @@ export default function AboutFounder() {
                 alt="Thiago Lima — Fundador VDA"
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 180px, 200px"
+                sizes="(max-width: 768px) 240px, 280px"
                 loading="lazy"
               />
               <div

@@ -21,38 +21,46 @@ const CONVERSATION: Omit<Message, "id">[] = [
     sender: "left",
     name: "Lucas Martins",
     nameColor: "#25D366",
-    text: "Galera, subi a campanha ontem às 22h",
-    time: "13:41",
-    type: "text",
-  },
-  {
-    sender: "left",
-    name: "Lucas Martins",
-    nameColor: "#25D366",
-    text: "Já pingou 3 vendas hoje de manhã 🔥",
-    time: "13:41",
-    type: "text",
-  },
-  {
-    sender: "right",
-    text: "Sério?? com qual produto?",
-    time: "13:42",
-    type: "text",
-  },
-  {
-    sender: "left",
-    name: "Lucas Martins",
-    nameColor: "#25D366",
-    text: "O Elo 3 que o Thiago indicou na última call",
-    time: "13:42",
+    text: "Oi pessoal \uD83D\uDC4B",
+    time: "13:40",
     type: "text",
   },
   {
     sender: "left",
     name: "Ana Souza",
     nameColor: "#FF6B6B",
-    text: "Aqui também! Fechei 2 ontem 🙏",
+    text: "Ol\u00e1!",
+    time: "13:41",
+    type: "text",
+  },
+  {
+    sender: "left",
+    name: "Lucas Martins",
+    nameColor: "#25D366",
+    text: "Galera, subi a campanha do Elo 3 ontem \u00e0s 22h e j\u00e1 pingou 3 vendas hoje de manh\u00e3 \uD83D\uDD25",
+    time: "13:42",
+    type: "text",
+  },
+  {
+    sender: "right",
+    text: "S\u00e9rio?? com qual estrat\u00e9gia?",
     time: "13:43",
+    type: "text",
+  },
+  {
+    sender: "left",
+    name: "Lucas Martins",
+    nameColor: "#25D366",
+    text: "Usei a copy do b\u00f4nus 1 que o Thiago mandou na \u00faltima call. Mudou tudo mano",
+    time: "13:44",
+    type: "text",
+  },
+  {
+    sender: "left",
+    name: "Ana Souza",
+    nameColor: "#FF6B6B",
+    text: "Aqui tamb\u00e9m! Comecei semana passada e j\u00e1 fechei 2 vendas. A estrutura de \u00e1udio \u00e9 absurda \uD83D\uDE4F",
+    time: "13:45",
     type: "text",
   },
   {
@@ -61,26 +69,18 @@ const CONVERSATION: Omit<Message, "id">[] = [
     nameColor: "#25D366",
     type: "audio",
     audioDuration: "0:47",
-    time: "13:44",
+    time: "13:46",
   },
   {
     sender: "right",
-    text: "Acabei de ouvir, vou aplicar isso hoje mesmo",
-    time: "13:45",
-    type: "text",
-  },
-  {
-    sender: "left",
-    name: "Ana Souza",
-    nameColor: "#FF6B6B",
-    text: "A estrutura de copy que tem no bônus 1 é absurda, muda tudo",
-    time: "13:46",
+    text: "Acabei de ouvir, vou aplicar isso hoje mesmo. Valeu demais \uD83D\uDCAA",
+    time: "13:48",
     type: "text",
   },
 ];
 
-// Delay between each message (ms)
-const MESSAGE_DELAYS = [0, 600, 1800, 2600, 4200, 5400, 7000, 8200];
+// Delays em ms — espa\u00e7ados para o usu\u00e1rio ler cada mensagem com calma
+const MESSAGE_DELAYS = [0, 2500, 5500, 9000, 12500, 16500, 21000, 25000];
 
 // ─── Animation variants ─────────────────────────────────────────────────────
 const msgEnter: Variants = {
