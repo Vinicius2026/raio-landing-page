@@ -40,9 +40,9 @@ export default function AboutSection() {
                         </h2>
 
                         <div className="space-y-3 text-sm md:text-[15px] text-white/60 leading-relaxed font-light">
-                            <p>Texto teste. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim orci ac tortor venenatis, a pharetra ex facilisis.</p>
-                            <p>Texto teste. Curabitur at turpis feugiat, dictum nisl in, efficitur mi. Nulla facilisi. Proin commodo risus eu massa aliquam fermentum.</p>
-                            <p>Texto teste. Quisque gravida sapien eu velit tincidunt, sed viverra elit tincidunt. Fusce vel elit vehicula, varius massa non, cursus lorem.</p>
+                            <p>Atua ativamente com <strong className="text-white/80 font-medium">vendas digitais via WhatsApp</strong>, aplicando no dia a dia as mesmas estratégias que ensina dentro da VDA.</p>
+                            <p>Possui <strong className="text-white/80 font-medium">vasta experiência como estrategista</strong> de vendas diretas, dominando desde a captação de leads até o fechamento no WhatsApp com alta conversão.</p>
+                            <p>É o <strong className="text-white/80 font-medium">criador do método VDA</strong> e desenvolvedor de times comerciais que operam de forma escalável utilizando o WhatsApp como principal canal de vendas.</p>
                         </div>
 
                         <div className="mt-8 flex justify-center md:justify-start">

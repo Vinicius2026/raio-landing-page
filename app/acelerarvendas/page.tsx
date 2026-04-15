@@ -8,6 +8,10 @@ import SocialProof from "@/components/vda/SocialProof";
 import Pricing from "@/components/vda/Pricing";
 import Guarantee from "@/components/vda/Guarantee";
 import StickyCtaMobile from "@/components/vda/StickyCtaMobile";
+import WhatIsVDA from "@/components/vda/WhatIsVDA";
+import AboutFounder from "@/components/vda/AboutFounder";
+import AnimatedBgSection from "@/components/vda/AnimatedBgSection";
+import BlackHoleEffect from "@/components/vda/BlackHoleEffect";
 
 export const metadata: Metadata = {
   title: "Bastidores VDA — Acesso ao que está funcionando agora",
@@ -59,14 +63,48 @@ export default function AcelerarVendasPage() {
         }
       `}} />
 
+      {/* ── Seção 1: Hero (sem bg animado — design próprio com particles) ── */}
       <Hero />
-      <ChatSimulation />
-      <Features />
+
+      {/* ── Seção 2: Chat Simulation (com bg animado amber) ── */}
+      <AnimatedBgSection variant="amber">
+        <ChatSimulation />
+      </AnimatedBgSection>
+
+      {/* ── Seção 3: O que é a VDA (sem bg animado — card tem design próprio) ── */}
+      <WhatIsVDA />
+
+      {/* ── Seção 4: Features (com bg animado cyan) ── */}
+      <AnimatedBgSection variant="cyan">
+        <Features />
+      </AnimatedBgSection>
+
+      {/* ── Seção 5: Calls (sem bg animado — descanso visual) ── */}
       <CallsSection />
-      <TargetAudience />
+
+      {/* ── Seção 6: Target Audience (com bg animado neutral) ── */}
+      <AnimatedBgSection variant="neutral">
+        <TargetAudience />
+      </AnimatedBgSection>
+
+      {/* ── Seção 7: Social Proof (sem bg animado — marquee é o destaque) ── */}
       <SocialProof />
+
+      {/* ── Seção 8: About Founder (com bg animado amber) ── */}
+      <AnimatedBgSection variant="amber">
+        <AboutFounder />
+      </AnimatedBgSection>
+
+      {/* ── Seção 9: Pricing (sem bg animado — foco no card de preço) ── */}
       <Pricing />
+
+      {/* ── Seção 10: Guarantee + Footer ── */}
       <Guarantee />
+
+      {/* ── Seção 11: Black Hole Effect (final da página) ── */}
+      <BlackHoleEffect />
+
+      {/* ── Sticky CTA Mobile ── */}
       <StickyCtaMobile />
     </main>
   );
