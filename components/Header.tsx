@@ -140,7 +140,7 @@ export default function Header() {
                     </a>
 
                     {/* Chamar Suporte */}
-                    <a href="https://wa.me/5521969789507?text=Ol%C3%A1%2C%20tenho%20algumas%20d%C3%BAvidas." target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                    <a href="https://wa.me/5521968960966?text=Quero%20falar%20com%20suporte%20da%20VDA.%20ID001428" target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                         <div className="absolute left-0 w-10 h-10 rounded-full bg-[#10B981]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
                         <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#10B981] transition-colors duration-500 shrink-0">
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">

@@ -76,11 +76,6 @@ export default function MethodologySection() {
                         <div className="w-0.5 h-0.5 rounded-full bg-white/10 mt-2"></div>
                     </div>
 
-                    <div className="flex md:hidden justify-center items-center gap-3 w-full mb-3 mt-4 text-slate-500/60 text-[10px] tracking-widest uppercase font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                        Deslize para ver
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                    </div>
                     
                     <section className="w-full max-w-5xl mx-auto mb-4 text-center">
 
@@ -115,6 +110,12 @@ export default function MethodologySection() {
 
                         <h3 className="text-lg sm:text-2xl font-serif font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
                         <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza.</p>
+                        
+                        <div className="flex sm:hidden justify-center items-center gap-3 w-full mb-2 mt-4 text-slate-500/60 text-[10px] tracking-widest uppercase font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                            Deslize para ver
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                        </div>
                         
                         <div className="bonus-cards mt-6 md:mt-8 flex overflow-x-auto touch-pan-x sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 -mx-4 px-4 sm:mx-0 sm:px-0 w-[calc(100%+2rem)] sm:w-full reveal pb-4 sm:pb-8 snap-x snap-mandatory scrollbar-hide py-4">
                             {[

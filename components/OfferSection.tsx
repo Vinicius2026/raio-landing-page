@@ -235,17 +235,21 @@ export default function OfferSection() {
                                         <div className="inline-block px-5 py-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 mb-5 relative overflow-hidden">
                                             <span className="text-emerald-400 text-xs sm:text-sm font-black uppercase tracking-[0.3em] drop-shadow-md">
                                                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                                                Turma Aberta
+                                                CURSO (VAGAS ABERTAS)
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="w-full flex items-center gap-3 my-6">
-                                        <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
-                                        <div className="w-2 h-2 rotate-45 bg-white/10 border border-white/10"></div>
-                                        <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+                                    {/* Preço em destaque */}
+                                    <div className="w-full flex flex-col items-center mt-2 mb-8">
+                                        <div className="flex items-start justify-center gap-1.5">
+                                            <span className="text-[18px] sm:text-[22px] text-white/50 font-medium mt-2 sm:mt-3">R$</span>
+                                            <span className="text-[54px] sm:text-[64px] font-black text-white leading-none tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                                                97,00
+                                            </span>
+                                        </div>
+                                        <p className="text-[12px] text-emerald-400/90 mt-3 font-semibold tracking-wide uppercase drop-shadow-sm">Pagamento Único</p>
                                     </div>
-                                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/25 -mt-3 mb-6">O que você recebe</p>
 
                                     <div className="w-full grid grid-cols-2 gap-3 mb-7">
                                         <div className="relative rounded-2xl p-4 border border-[#A8203E]/20 bg-[#A8203E]/[0.04] hover:bg-[#A8203E]/[0.07] transition-colors duration-300">
@@ -444,7 +448,7 @@ export default function OfferSection() {
                                     Nossa equipe está pronta para te ajudar! Clique abaixo e fale com a gente diretamente — estamos disponíveis para esclarecer qualquer ponto antes da sua decisão.
                                 </p>
                                 <div className="flex flex-col gap-4 mt-auto">
-                                    <a href="#" className="w-full border border-white/5 bg-[#0a0f19] rounded-lg overflow-hidden flex flex-col group/btn hover:border-orange-500/50 transition-colors shadow-lg">
+                                    <a href="https://wa.me/5521968960966?text=Quero%20falar%20com%20suporte%20da%20VDA.%20ID001428" target="_blank" rel="noopener noreferrer" className="w-full border border-white/5 bg-[#0a0f19] rounded-lg overflow-hidden flex flex-col group/btn hover:border-orange-500/50 transition-colors shadow-lg">
                                         <div className="p-4 sm:p-5 flex items-center gap-4">
                                             <div className="w-10 h-10 rounded-full border border-orange-500 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(249,115,22,0.3)]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
