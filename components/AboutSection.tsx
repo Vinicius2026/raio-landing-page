@@ -61,6 +61,27 @@ export default function AboutSection() {
                     </div>
                 </div>
             </div>
+
+            {/* ── Disclaimer Importante ── */}
+            <div className="max-w-lg mx-auto px-4 mt-14 text-center">
+                {/* thin rule */}
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(212,175,55,0.25))' }} />
+                    <span className="text-[9px] font-black tracking-[0.4em] uppercase" style={{ color: 'rgba(212,175,55,0.45)' }}>Importante</span>
+                    <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(212,175,55,0.25))' }} />
+                </div>
+
+                <p className="font-serif text-xl sm:text-2xl font-bold text-white/90 leading-snug mb-4">
+                    Esse método não é promessa milagrosa.
+                </p>
+                <p className="text-sm text-slate-400 font-light leading-relaxed mb-2">
+                    Ele funciona para quem aplica.
+                </p>
+                <p className="text-sm text-slate-300 font-light leading-relaxed">
+                    Se você seguir o passo a passo,{' '}
+                    <span className="text-white font-medium">você terá tudo o que precisa.</span>
+                </p>
+            </div>
         </section>
     );
 }

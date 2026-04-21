@@ -96,6 +96,17 @@ export default function DashboardSection() {
                             </svg>
                         </Link>
                     </div>
+
+                    {/* Pricing summary — abaixo do botão */}
+                    <div className="mt-6 flex flex-col items-center gap-1.5">
+                        <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/25">Quanto você precisa investir</p>
+                        <div className="flex items-baseline gap-1.5 mt-1">
+                            <span className="text-[13px] text-white/40 font-light">R$</span>
+                            <span className="text-[28px] font-black text-white leading-none" style={{ textShadow: '0 0 20px rgba(249,115,22,0.3)' }}>97,00</span>
+                            <span className="text-[11px] text-white/30 font-light">pagamento único</span>
+                        </div>
+                        <p className="text-[11px] text-white/25 font-light tracking-wide">Sem mensalidade. Sem taxas escondidas.</p>
+                    </div>
                 </div>
             </div>
             

@@ -169,21 +169,20 @@ export default function HeroVideoScrub() {
                         </div>
 
                         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 max-w-3xl mx-auto drop-shadow-2xl text-white">
-                            Venda os{' '}
+                            Copie e Cole a Metodologia que Está{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-[#D4AF37]">
-                                produtos da VDA
-                            </span>{' '}
-                            direto no Whatsapp.
+                                Colocando Produtos VDA no Topo das Vendas.
+                            </span>
                         </h1>
 
                         <p className="text-[10px] sm:text-xs text-[#94A3B8] font-medium tracking-wide leading-relaxed mb-8 max-w-md mx-auto drop-shadow-md">
-                            Entregamos uma lista de produtos e ensinamos todo passo a passo para você vender pelo whatsapp.
+                            Acesso imediato aos produtos, scripts e estratégias de fechamento. O caminho mais curto entre o &ldquo;oi&rdquo; do cliente e o dinheiro na conta.
                         </p>
 
                         <div className="flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
                             <HeroCTAButton />
                             <p className="text-xs text-slate-400 mt-2 font-medium">
-                                Role a página para descobrir o sistema.
+                                Role a página para descobrir
                             </p>
                         </div>
                     </div>

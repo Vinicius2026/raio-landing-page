@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import JoinGroupButton from './JoinGroupButton';
+import { trackEvent } from '@/lib/meta-pixel';
 
 export default function OfferSection() {
     const particleRef = useRef<HTMLDivElement>(null);
@@ -104,39 +105,108 @@ export default function OfferSection() {
                         </div>
                     </div>
 
-                    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 lg:gap-6 mb-16 reveal md:max-w-[90%] lg:max-w-[500px] xl:max-w-[600px] mx-auto" style={{ transitionDelay: '150ms' }}>
-                        
-                        <div className="bonus-plus-center hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 items-center justify-center pointer-events-none">
-                            <span className="bonus-plus-icon text-3xl lg:text-2xl font-extralight select-none">+</span>
-                        </div>
+                    {/* Bonus list — sem imagens, layout compacto e direto */}
+                    <div className="relative max-w-lg mx-auto mb-16 reveal space-y-3" style={{ transitionDelay: '150ms' }}>
 
                         {[
-                            { img: '/capas bonus/b1.webp', tag: 'Bônus 01', title: 'Banco de Áudios + Criativos + Copy', desc: 'Funil mestre via áudio. Envie áudios prontos pré-gravados com um clique.', price: 'R$ 500,00' },
-                            { img: '/capas bonus/b2.webp', tag: 'Bônus 02', title: 'Proteção e Continuidade VDA', desc: 'Guia completo para estruturar sua operação com segurança e consistência.', price: 'R$ 997,00' },
-                            { img: '/capas bonus/b3.webp', tag: 'Bônus 03', title: 'Calculadora de Lucro e Escala VDA', desc: 'A planilha que utilizamos para planejar e escalar operações.', price: 'R$ 100,00' },
-                            { img: '/capas bonus/b4.webp', tag: 'Bônus 04', title: 'Otimizador de Criativos VDA', desc: 'Ferramenta para produção e organização de criativos de alta performance.', price: 'R$ 397,00' }
+                            {
+                                tag: 'Bônus 01',
+                                title: 'Banco de Áudios + Criativos + Copy',
+                                desc: 'Funil mestre via áudio. Áudios prontos pré-gravados — envie com um clique.',
+                                price: 'R$ 500,00',
+                                icon: (
+                                    <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                    </svg>
+                                )
+                            },
+                            {
+                                tag: 'Bônus 02',
+                                title: 'Proteção e Continuidade VDA',
+                                desc: 'Guia completo para estruturar sua operação com segurança e consistência.',
+                                price: 'R$ 997,00',
+                                icon: (
+                                    <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    </svg>
+                                )
+                            },
+                            {
+                                tag: 'Bônus 03',
+                                title: 'Calculadora de Lucro e Escala VDA',
+                                desc: 'A planilha que utilizamos para planejar e escalar operações com clareza.',
+                                price: 'R$ 100,00',
+                                icon: (
+                                    <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                )
+                            },
+                            {
+                                tag: 'Bônus 04',
+                                title: 'Otimizador de Criativos VDA',
+                                desc: 'Ferramenta para produção e organização de criativos de alta performance.',
+                                price: 'R$ 397,00',
+                                icon: (
+                                    <svg className="w-4 h-4 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                )
+                            }
                         ].map((bonus, idx) => (
-                            <div key={idx} className={`relative rounded-[24px] p-[1px] bg-gradient-to-b from-white/20 to-transparent group hover:-translate-y-1 transition-all duration-500 w-full text-left shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.08)] z-10`}>
-                                <div className="relative w-full h-full bg-[#0a0a0c] rounded-[23px] p-6 lg:p-5 flex flex-col overflow-hidden">
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700 z-0"></div>
-                                    <div className="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                                        <Image src={bonus.img} alt={bonus.title} width={250} height={250} className={`w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]`} loading="lazy" decoding="async" />
+                            <div
+                                key={idx}
+                                className="relative rounded-2xl p-[1px] bg-gradient-to-r from-white/10 via-white/5 to-transparent group hover:-translate-y-0.5 transition-all duration-300"
+                            >
+                                <div className="relative w-full bg-[#0a0a0c] rounded-2xl px-5 py-4 flex items-center gap-4">
+                                    {/* Icon */}
+                                    <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/20 flex items-center justify-center">
+                                        {bonus.icon}
                                     </div>
-                                    <span className="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">{bonus.tag}</span>
-                                    <h3 className="text-xl sm:text-2xl lg:text-[16px] lg:leading-snug font-semibold text-slate-100 mb-3 tracking-tight group-hover:text-white transition-colors duration-300 relative z-10">{bonus.title}</h3>
-                                    <p className="text-slate-400 text-sm sm:text-[15px] lg:text-[11px] mb-8 lg:mb-4 lg:leading-[1.4] font-light leading-relaxed relative z-10 group-hover:text-slate-300 transition-colors duration-300">{bonus.desc}</p>
-                                    <div className="mt-auto relative z-10 pt-5">
-                                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
-                                        <span className="block text-xs lg:text-[10px] text-slate-500 font-medium line-through decoration-slate-600 mb-1">De {bonus.price}</span>
-                                        <div className="flex items-baseline gap-2">
-                                            <span className="text-slate-400 text-[11px] sm:text-xs font-semibold uppercase tracking-widest">Hoje:</span>
-                                            <span className="text-white font-semibold text-lg sm:text-xl lg:text-[14px] tracking-tight">R$ <span className="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">0,00</span></span>
+
+                                    {/* Text */}
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2 mb-0.5">
+                                            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/60">
+                                                {bonus.tag}
+                                            </span>
                                         </div>
+                                        <p className="text-[13px] font-semibold text-slate-100 leading-tight mb-0.5 truncate">
+                                            {bonus.title}
+                                        </p>
+                                        <p className="text-[11px] text-slate-400 font-light leading-snug line-clamp-1">
+                                            {bonus.desc}
+                                        </p>
+                                    </div>
+
+                                    {/* Price badge */}
+                                    <div className="flex-shrink-0 text-right">
+                                        <span className="block text-[10px] text-slate-500 line-through decoration-slate-600 leading-tight">
+                                            {bonus.price}
+                                        </span>
+                                        <span className="block text-[13px] font-black text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                                            R$ 0
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         ))}
+
+                        {/* Total badge */}
+                        <div className="flex items-center justify-between px-5 py-3 rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 mt-4">
+                            <div className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_6px_rgba(212,175,55,0.8)]"/>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/80">
+                                    Total de Bônus Inclusos
+                                </span>
+                            </div>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-[11px] text-slate-500 line-through">R$ 1.994,00</span>
+                                <span className="text-[15px] font-black text-white">Grátis</span>
+                            </div>
+                        </div>
                     </div>
+
 
                     <div className="relative max-w-lg mx-auto reveal" style={{ transitionDelay: '300ms' }}>
                         <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-orange-500/20 via-transparent to-[#21c55e]/15 blur-[60px] pointer-events-none -z-10 scale-110"></div>
@@ -162,15 +232,12 @@ export default function OfferSection() {
 
                                 <div className="relative z-10 p-7 sm:p-9 flex flex-col items-center">
                                     <div className="w-full flex flex-col items-center justify-center text-center py-2 mb-2">
-                                        <div className="inline-block px-5 py-2 rounded-full border border-slate-600/60 bg-slate-800/40 mb-5 relative overflow-hidden">
-                                            <span className="text-slate-300 text-xs sm:text-sm font-black uppercase tracking-[0.3em] drop-shadow-md">Turma Fechada</span>
+                                        <div className="inline-block px-5 py-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 mb-5 relative overflow-hidden">
+                                            <span className="text-emerald-400 text-xs sm:text-sm font-black uppercase tracking-[0.3em] drop-shadow-md">
+                                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                                                Turma Aberta
+                                            </span>
                                         </div>
-                                        <h3 className="text-white text-base sm:text-lg font-bold leading-relaxed mb-3">
-                                            Abriremos a nova turma e novamente os 100 primeiros podem entrar <span className="text-orange-500">pagando menos de R$ 100,00.</span>
-                                        </h3>
-                                        <p className="text-slate-400 text-xs sm:text-[13px] font-medium max-w-[280px] mx-auto leading-relaxed">
-                                            Disponibilizaremos o preço da nova turma VDA na pré-abertura.
-                                        </p>
                                     </div>
 
                                     <div className="w-full flex items-center gap-3 my-6">
@@ -190,7 +257,7 @@ export default function OfferSection() {
                                                 <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[#C4284A]">Treinamento</span>
                                             </div>
                                             <ul className="space-y-1.5">
-                                                <li className="flex items-start gap-1.5"><span className="w-[3px] h-[3px] rounded-full bg-orange-500 mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(249,115,22,0.8)]"></span><span className="text-[10px] text-orange-500 font-bold uppercase tracking-wider drop-shadow-md leading-tight">6 módulos completos <span className="text-[7.5px] font-normal tracking-normal text-white/50 normal-case ml-0.5">(Treinamento)</span></span></li>
+                                                <li className="flex items-start gap-1.5"><span className="w-[3px] h-[3px] rounded-full bg-orange-500 mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(249,115,22,0.8)]"></span><span className="text-[10px] text-orange-500 font-bold uppercase tracking-wider drop-shadow-md leading-tight">6 módulos completos <span className="text-[7.5px] font-normal tracking-normal text-white/50 normal-case ml-0.5">(Treinamento)</span><span className="block text-[8px] font-medium text-white/35 normal-case tracking-normal mt-0.5">22 video aulas</span></span></li>
                                                 <li className="flex items-start gap-1.5"><span className="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span><span className="text-[10px] text-white/60 leading-tight">Passo a passo inicial</span></li>
                                                 <li className="flex items-start gap-1.5"><span className="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span><span className="text-[10px] text-white/60 leading-tight">Duplicação de operação</span></li>
                                             </ul>
@@ -256,17 +323,23 @@ export default function OfferSection() {
                                 </div>
 
                                     <div className="w-full flex justify-center">
-                                        <div className="block w-full text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-slate-400 uppercase bg-slate-800 border border-slate-700 cursor-not-allowed opacity-80 select-none">
-                                            Inscrições Encerradas
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="mt-5 w-full flex justify-center">
-                                        <a href="https://chat.whatsapp.com/HasGl6O2FvcCOJp3RxG8Pm?mode=gi_t" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-orange-500/30 bg-orange-500/10 hover:bg-orange-500/20 transition-all duration-300">
-                                            <span className="text-[12px] uppercase tracking-widest font-bold text-orange-500 group-hover:text-orange-400 transition-colors">
-                                                Acessar Grupo VDA
+                                        <a
+                                            href="https://pay.cakto.com.br/3824kdo_857537"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium - OfferSection' })}
+                                            className="group relative flex items-center justify-center w-full rounded-2xl cursor-pointer overflow-hidden py-4 px-8"
+                                            style={{
+                                                background: 'linear-gradient(135deg, #c8771a 0%, #f0a030 35%, #e89020 65%, #c8771a 100%)',
+                                                boxShadow: '0 0 40px rgba(249,115,22,0.25), 0 4px 20px rgba(0,0,0,0.5)',
+                                            }}
+                                        >
+                                            <span className="relative z-10 text-[14px] font-black text-white tracking-wider uppercase">
+                                                Comprar VDA Agora
                                             </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-orange-500 group-hover:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 relative z-10 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                            </svg>
                                         </a>
                                     </div>
 
@@ -285,6 +358,50 @@ export default function OfferSection() {
 
             <section className="w-full py-16 md:py-24 relative bg-[#0B0F19] border-y border-white/5">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center">
+
+                    {/* ── O que você recebe ── */}
+                    <div className="w-full max-w-2xl mx-auto mb-14 reveal relative">
+                        {/* Ambient glow */}
+                        <div
+                            className="absolute -top-10 left-1/2 -translate-x-1/2 w-[340px] h-[200px] pointer-events-none"
+                            aria-hidden="true"
+                            style={{
+                                background: 'radial-gradient(ellipse 60% 50%, rgba(249,115,22,0.12) 0%, transparent 70%)',
+                                filter: 'blur(30px)',
+                            }}
+                        />
+
+                        {/* Card */}
+                        <div className="relative rounded-3xl p-[1px] overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.25) 0%, rgba(212,175,55,0.1) 50%, rgba(249,115,22,0.05) 100%)' }}>
+                            <div className="relative bg-[#070A12] rounded-3xl px-6 sm:px-10 py-8 sm:py-10 overflow-hidden">
+                                {/* Inner top glow line */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(249,115,22,0.5), transparent)' }} />
+
+                                <p className="text-[9px] font-black tracking-[0.4em] uppercase text-orange-500/60 mb-3">Acesso imediato</p>
+                                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
+                                    O que você recebe
+                                </h3>
+                                <p className="text-sm text-slate-400 font-light mb-8">Ao entrar hoje, você terá acesso a:</p>
+
+                                <ul className="space-y-3 text-left max-w-sm mx-auto">
+                                    {[
+                                        { icon: '🎓', label: 'Treinamento completo passo a passo' },
+                                        { icon: '💬', label: 'Estratégias práticas para vender no WhatsApp' },
+                                        { icon: '🧭', label: 'Orientação direta para iniciar rápido' },
+                                        { icon: '⚡', label: 'Acesso imediato após a compra' },
+                                    ].map((item, i) => (
+                                        <li key={i} className="flex items-center gap-3.5">
+                                            <span className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-base" style={{ background: 'rgba(249,115,22,0.08)', border: '1px solid rgba(249,115,22,0.15)' }}>
+                                                {item.icon}
+                                            </span>
+                                            <span className="text-[14px] text-slate-200 font-light leading-snug">{item.label}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 relative z-20 reveal">
                         <div className="flex flex-col gap-6">
                             <div className="bg-[#05080f]/80 backdrop-blur-md rounded-xl border border-white/5 p-6 sm:p-8 relative overflow-hidden group text-left">
@@ -335,20 +452,6 @@ export default function OfferSection() {
                                                 </svg>
                                             </div>
                                             <span className="font-bold text-white text-[15px] sm:text-[17px] tracking-tight leading-snug">Atendimento por<br/>Whatsapp</span>
-                                        </div>
-                                        <div className="w-full bg-orange-500 py-2.5 flex justify-center items-center text-center">
-                                            <span className="font-black text-black text-[12px] uppercase tracking-widest drop-shadow-[0_1px_1px_rgba(255,255,255,0.4)]">Clique para conversar</span>
-                                        </div>
-                                    </a>
-
-                                    <a href="#" className="w-full border border-white/5 bg-[#0a0f19] rounded-lg overflow-hidden flex flex-col group/btn hover:border-orange-500/50 transition-colors shadow-lg">
-                                        <div className="p-4 sm:p-5 flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full border border-orange-500 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(249,115,22,0.3)]">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.048 1.79.217 2.427.465a4.902 4.902 0 011.773 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.36.465 2.427.048 1.067.06 1.407.06 4.123s-.012 3.057-.06 4.123c-.049 1.065-.218 1.791-.465 2.426a4.902 4.902 0 01-1.153 1.773 4.902 4.902 0 01-1.772 1.153c-.637.247-1.36.416-2.427.465-1.067.048-1.407.06-4.123.06s-3.057-.012-4.123-.06c-1.065-.049-1.791-.218-2.426-.465a4.902 4.902 0 01-1.773-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.637-.416-1.36-.465-2.427-.048-1.067-.06-1.407-.06-4.123s.012-3.057.06-4.123c.049-1.065.218-1.791.465-2.426a4.902 4.902 0 011.153-1.773 4.902 4.902 0 011.772-1.153c.637-.247 1.36-.416 2.427-.465C8.944 2.01 9.283 2 12 2zm0 8.995a3.005 3.005 0 100 6.01 3.005 3.005 0 000-6.01zm0-1.8a4.805 4.805 0 110 9.61 4.805 4.805 0 010-9.61zm4.738-4.72a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/>
-                                                </svg>
-                                            </div>
-                                            <span className="font-bold text-white text-[15px] sm:text-[17px] tracking-tight leading-snug">Atendimento por<br/>Instagram</span>
                                         </div>
                                         <div className="w-full bg-orange-500 py-2.5 flex justify-center items-center text-center">
                                             <span className="font-black text-black text-[12px] uppercase tracking-widest drop-shadow-[0_1px_1px_rgba(255,255,255,0.4)]">Clique para conversar</span>

@@ -4,7 +4,7 @@ import { trackEvent } from '@/lib/meta-pixel';
 export default function HeroCTAButton() {
     return (
         <a
-            href="https://chat.whatsapp.com/HasGl6O2FvcCOJp3RxG8Pm?mode=gi_t"
+            href="https://pay.cakto.com.br/3824kdo_857537"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}

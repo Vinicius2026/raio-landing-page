@@ -19,6 +19,22 @@ export default function MethodologySection() {
                     <p className="text-sm md:text-sm text-[#94A3B8] leading-relaxed max-w-md mx-auto">
                         Mais esforço em marketing ou vendas pode não resolver. O que muda o jogo diariamente é uma nova direção.
                     </p>
+
+                    {/* Novo parágrafo — texto de descoberta */}
+                    <div className="mt-8 max-w-lg mx-auto relative">
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-orange-500/5 to-transparent pointer-events-none" />
+                        <div className="relative border border-orange-500/20 rounded-2xl px-6 py-5 bg-[#0B0F19]/60 backdrop-blur-sm">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]" />
+                                <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-orange-500/70">Descubra</span>
+                            </div>
+                            <p className="text-sm md:text-[15px] text-slate-200 leading-relaxed font-light">
+                                Descubra o método simples que pessoas comuns estão usando para fazer suas{' '}
+                                <strong className="text-white font-semibold">primeiras vendas direto pelo WhatsApp</strong>{' '}
+                                — sem precisar aparecer, sem precisar criar produto e sem investir alto.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="mt-20 max-w-4xl mx-auto flex flex-col items-center justify-center reveal" style={{ transitionDelay: '150ms' }}>
@@ -67,6 +83,36 @@ export default function MethodologySection() {
                     </div>
                     
                     <section className="w-full max-w-5xl mx-auto mb-4 text-center">
+
+                        {/* Bloco de objeções — "Você não precisa ser especialista" */}
+                        <div className="mb-12 max-w-2xl mx-auto reveal">
+                            <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-orange-500/60 mb-3">Para quem é</p>
+                            <h4 className="font-serif text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
+                                Você não precisa ser{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-[#D4AF37]">especialista</span>{' '}pra começar
+                            </h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                                {[
+                                    { icon: '🔍', text: 'Não sabe por onde começar' },
+                                    { icon: '🙈', text: 'Não quer aparecer' },
+                                    { icon: '📦', text: 'Não tem produto próprio' },
+                                    { icon: '📣', text: 'Não entende nada de marketing' },
+                                ].map((item, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/20 hover:bg-orange-500/[0.04] transition-all duration-300"
+                                    >
+                                        <span className="text-lg leading-none flex-shrink-0">{item.icon}</span>
+                                        <span className="text-[13px] md:text-sm text-slate-300 font-light leading-snug">{item.text}</span>
+                                        <svg className="w-4 h-4 text-orange-500/60 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-[11px] text-slate-500 mt-4 font-light">Se você tem um ou mais desses pontos, a VDA foi feita pra você.</p>
+                        </div>
+
                         <h3 className="text-lg sm:text-2xl font-serif font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
                         <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza.</p>
                         
@@ -101,6 +147,128 @@ export default function MethodologySection() {
                                 </div>
                             ))}
                         </div>
+
+                        {/* ── Imagem Módulos com nebula ── */}
+                        <div className="relative w-full max-w-2xl mx-auto mt-14 mb-4 reveal flex justify-center items-center">
+                            {/* Nebula layer 1 — branco azulado lento */}
+                            <div
+                                aria-hidden="true"
+                                className="absolute pointer-events-none"
+                                style={{
+                                    width: '520px',
+                                    height: '320px',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    borderRadius: '50%',
+                                    background: 'radial-gradient(ellipse 70% 55% at 40% 50%, rgba(186,230,255,0.18) 0%, rgba(147,210,255,0.07) 45%, transparent 75%)',
+                                    filter: 'blur(28px)',
+                                    animation: 'nebula-drift-1 18s ease-in-out infinite alternate',
+                                }}
+                            />
+                            {/* Nebula layer 2 — branco puro, deslocado */}
+                            <div
+                                aria-hidden="true"
+                                className="absolute pointer-events-none"
+                                style={{
+                                    width: '380px',
+                                    height: '200px',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-45%, -55%)',
+                                    borderRadius: '50%',
+                                    background: 'radial-gradient(ellipse 60% 50% at 60% 45%, rgba(255,255,255,0.10) 0%, rgba(200,235,255,0.05) 50%, transparent 80%)',
+                                    filter: 'blur(22px)',
+                                    animation: 'nebula-drift-2 24s ease-in-out infinite alternate',
+                                }}
+                            />
+                            {/* Nebula layer 3 — azul claro fino */}
+                            <div
+                                aria-hidden="true"
+                                className="absolute pointer-events-none"
+                                style={{
+                                    width: '300px',
+                                    height: '180px',
+                                    top: '60%',
+                                    left: '55%',
+                                    transform: 'translate(-50%, -50%)',
+                                    borderRadius: '50%',
+                                    background: 'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(125,200,255,0.10) 0%, transparent 70%)',
+                                    filter: 'blur(18px)',
+                                    animation: 'nebula-drift-3 30s ease-in-out infinite alternate',
+                                }}
+                            />
+
+                            {/* Image */}
+                            <div className="relative z-10 w-full max-w-xl" style={{ filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.7)) drop-shadow(0 0 32px rgba(160,220,255,0.12))' }}>
+                                <Image
+                                    src="/Modulos/modulos-curso-vda-ast2026.png"
+                                    alt="Módulos do Curso VDA 2026"
+                                    width={800}
+                                    height={500}
+                                    className="w-full h-auto object-contain"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Keyframe styles — CSS puro, zero JS runtime */}
+                        <style>{`
+                            @keyframes nebula-drift-1 {
+                                0%   { transform: translate(-50%, -50%) scale(1)    rotate(0deg); }
+                                33%  { transform: translate(-52%, -48%) scale(1.04) rotate(2deg); }
+                                66%  { transform: translate(-48%, -53%) scale(0.97) rotate(-1deg); }
+                                100% { transform: translate(-50%, -50%) scale(1.02) rotate(1deg); }
+                            }
+                            @keyframes nebula-drift-2 {
+                                0%   { transform: translate(-45%, -55%) scale(1) rotate(0deg); }
+                                40%  { transform: translate(-43%, -52%) scale(1.06) rotate(-2deg); }
+                                80%  { transform: translate(-47%, -57%) scale(0.96) rotate(3deg); }
+                                100% { transform: translate(-46%, -54%) scale(1.03) rotate(-1deg); }
+                            }
+                            @keyframes nebula-drift-3 {
+                                0%   { transform: translate(-50%, -50%) scale(1); }
+                                50%  { transform: translate(-48%, -53%) scale(1.08); }
+                                100% { transform: translate(-52%, -48%) scale(0.95); }
+                            }
+                        `}</style>
+
+                        {/* ── Pra quem é isso ── */}
+                        <div className="mt-10 mb-2 max-w-sm mx-auto">
+                            {/* Divider */}
+                            <div className="flex items-center gap-3 mb-8">
+                                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                                <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-white/20">ideal para</span>
+                                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                            </div>
+
+                            <p className="text-xs font-bold tracking-[0.3em] uppercase text-orange-500/60 mb-3 text-center">
+                                Pra quem é isso
+                            </p>
+                            <h5 className="font-serif text-xl font-bold text-white text-center mb-6 leading-snug">
+                                Esse treinamento é ideal para quem:
+                            </h5>
+
+                            <ul className="space-y-2.5">
+                                {[
+                                    'Quer começar do zero',
+                                    'Precisa de uma renda extra',
+                                    'Não quer aparecer nas redes sociais',
+                                    'Quer algo simples e direto ao ponto',
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3">
+                                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-500/10 border border-orange-500/25 flex items-center justify-center">
+                                            <svg className="w-2.5 h-2.5 text-orange-500/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </span>
+                                        <span className="text-[13px] text-slate-300 font-light leading-snug">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
                     </section>
                 </div>
             </div>
