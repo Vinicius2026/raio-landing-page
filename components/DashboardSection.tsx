@@ -10,11 +10,18 @@ export default function DashboardSection() {
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 w-full text-center flex flex-col items-center">
                 <div className="mb-10 sm:mb-16 reveal flex flex-col items-center justify-center text-center relative z-50">
-                    <h2 className="font-serif text-4xl sm:text-[32px] lg:text-[36px] font-bold text-white mb-4 leading-tight tracking-tight">
-                        A VDA te dá base para alcançar até
-                        <span className="font-sans text-[#00e5ff] drop-shadow-[0_0_20px_rgba(0,229,255,0.5)] block text-[42px] leading-[1] sm:text-[52px] lg:text-[60px] my-1 sm:my-2 font-black tracking-tighter">50 vendas</span>
-                        todos os dias.
+                    {/* Eyebrow tag */}
+                    <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-500 mb-4">Metodologia VDA</p>
+
+                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-bold text-white leading-snug tracking-tight max-w-xl">
+                        O nosso mapa validado para ajudar você a{' '}
+                        <span className="relative inline-block">
+                            estruturar o seu sistema de vendas
+                            <span className="absolute -bottom-1 left-0 w-full h-[2px] rounded-full bg-gradient-to-r from-orange-500/60 via-[#D4AF37]/70 to-transparent pointer-events-none" />
+                        </span>
+                        {' '}passo a passo.
                     </h2>
+
                     
                     <div className="inline-flex items-center gap-3 mt-6 mb-8">
                         <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#00e5ff]/60"></div>

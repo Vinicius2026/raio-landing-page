@@ -82,7 +82,7 @@ export default function Header() {
                 </div>
 
                 {/* Drawer Links */}
-                <nav className="flex flex-col px-8 py-10 gap-8 mt-2 relative z-20">
+                <nav className="flex flex-col px-8 py-10 gap-7 mt-2 relative z-20">
                     <Link href="#oferta" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                         <div className="absolute left-0 w-10 h-10 rounded-full bg-orange-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
                         <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-orange-500 transition-colors duration-500 shrink-0">
@@ -90,7 +90,7 @@ export default function Header() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
-                        <span className="text-[26px] font-serif font-light text-slate-300 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Curso</span>
+                        <span className="text-[20px] font-serif font-light text-slate-300 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Curso</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
                             <span className="text-[10px] font-bold tracking-[0.2em] text-orange-500">I</span>
                         </div>
@@ -104,14 +104,14 @@ export default function Header() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                             </svg>
                         </div>
-                        <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Acelera Chat</span>
+                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Acelera Chat</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
                             <span className="text-[10px] font-bold tracking-[0.2em] text-amber-500">II</span>
                         </div>
                     </Link>
 
                     {/* Area de Membros */}
-                    <a href="#" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                    <a href="https://app.aurenos.com.br/" target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
                          <div className="absolute left-0 w-10 h-10 rounded-full bg-slate-100/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
                         <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-slate-100 transition-colors duration-500 shrink-0">
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
@@ -119,9 +119,23 @@ export default function Header() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Área de Membros</span>
+                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Área de Membros</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
                             <span className="text-[10px] font-bold tracking-[0.2em] text-white/50">III</span>
+                        </div>
+                    </a>
+
+                    {/* Acessar Aulas VDA - NOVO */}
+                    <a href="https://app.cakto.com.br/student/courses" target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
+                         <div className="absolute left-0 w-10 h-10 rounded-full bg-purple-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
+                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-purple-400 transition-colors duration-500 shrink-0">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Acessar Aulas VDA</span>
+                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-purple-500/50">IV</span>
                         </div>
                     </a>
                     
@@ -133,9 +147,9 @@ export default function Header() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                             </svg>
                         </div>
-                        <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Painel de Controle</span>
+                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Painel de Controle</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">IV</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">V</span>
                         </div>
                     </a>
 
@@ -147,9 +161,9 @@ export default function Header() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
                         </div>
-                        <span className="text-[26px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Chamar Suporte</span>
+                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Chamar Suporte</span>
                         <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#10B981]/50">V</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#10B981]/50">VI</span>
                         </div>
                     </a>
                 </nav>
