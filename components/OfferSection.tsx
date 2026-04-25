@@ -328,7 +328,7 @@ export default function OfferSection() {
 
                                     <div className="w-full flex justify-center">
                                         <a
-                                            href="https://pay.cakto.com.br/3824kdo_857537"
+                                            href="https://pay.monetizze.com.br/DLA378148"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium - OfferSection' })}
