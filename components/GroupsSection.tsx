@@ -50,8 +50,16 @@ export default function GroupsSection() {
                         <Link
                             href="#oferta"
                             onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
-                            className="block w-full max-w-[280px] sm:max-w-[340px] text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-white uppercase bg-[#21c55e] shadow-[0_0_30px_rgba(33,197,94,0.35),0_0_60px_rgba(33,197,94,0.15)] hover:shadow-[0_0_40px_rgba(33,197,94,0.55),0_0_80px_rgba(33,197,94,0.25)] hover:scale-[1.04] hover:bg-[#1daf52] transition-all duration-300 ease-out active:scale-[0.98]">
-                            COMPRAR VDA POR R$ 97,00
+                            className="group relative block w-full max-w-[280px] sm:max-w-[340px] text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide overflow-hidden transition-all duration-500 hover:scale-[1.04] active:scale-[0.98]"
+                        >
+                            {/* Glass base */}
+                            <span className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-md border border-white/25 shadow-[0_8px_32px_rgba(255,255,255,0.10),inset_0_1px_0_rgba(255,255,255,0.20)] group-hover:bg-white/15 group-hover:border-white/40 group-hover:shadow-[0_8px_40px_rgba(255,255,255,0.20),inset_0_1px_0_rgba(255,255,255,0.30)] transition-all duration-500" />
+                            {/* Shimmer sweep on hover */}
+                            <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.12)_50%,transparent_60%)] bg-[length:200%_100%] animate-[shimmer_1.5s_ease-in-out_infinite]" />
+                            {/* Label */}
+                            <span className="relative text-white font-bold tracking-[0.08em] uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                                COMPRAR VDA POR R$ 97,00
+                            </span>
                         </Link>
                     </div>
                 </div>

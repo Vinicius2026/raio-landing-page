@@ -368,9 +368,9 @@ html {
 /* Mesmo padrão GPU do modulos-border-glow, adaptado para forma circular */
 .vantagem-ring {
     position: absolute;
-    /* Anel um pouco maior que o círculo interno (80px mob / 110px desk + 4px padding) */
-    width: 88px;
-    height: 88px;
+    /* 108px = 100px do círculo + 4px visual de cada lado */
+    width: 108px;
+    height: 108px;
     border-radius: 50%;
     padding: 1.5px;
     background: conic-gradient(
@@ -385,18 +385,23 @@ html {
     animation: vantagem-spin 6s linear infinite;
     will-change: transform;
     z-index: 0;
-    /* Mascara o interior para não cobrir o círculo */
-    -webkit-mask: radial-gradient(circle, transparent 85%, black 86%);
-    mask: radial-gradient(circle, transparent 85%, black 86%);
+    -webkit-mask: radial-gradient(circle, transparent 87%, black 88%);
+    mask: radial-gradient(circle, transparent 87%, black 88%);
 }
 
 @media (min-width: 640px) {
     .vantagem-ring {
-        width: 118px;
-        height: 118px;
+        width: 120px;
+        height: 120px;
     }
 }
 
 @keyframes vantagem-spin {
     to { transform: rotate(360deg); }
+}
+
+/* ── Shimmer — botão glassmorphism ────────────────────────────────── */
+@keyframes shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }

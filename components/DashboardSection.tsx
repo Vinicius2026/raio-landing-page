@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { trackEvent } from '@/lib/meta-pixel';
 
 export default function DashboardSection() {
@@ -84,28 +83,16 @@ export default function DashboardSection() {
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-[650px] h-[60px] bg-white/10 blur-[80px] rounded-full pointer-events-none"></div>
                     
                     <h3 className="font-serif text-center leading-tight tracking-tight relative z-10 max-w-5xl px-4 mx-auto flex flex-col items-center">
-                        <span className="block text-[26px] sm:text-[38px] lg:text-[46px] font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] mb-2 sm:mb-3">
+                        <span className="block text-[26px] sm:text-[38px] lg:text-[46px] font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-50 to-slate-300 drop-shadow-[0_0_30px_rgba(255,255,255,0.55)] mb-2 sm:mb-3">
                             Venda sem perder tempo criando sites
                         </span>
                         <span className="block font-light text-slate-300 text-[18px] sm:text-[24px] lg:text-[30px] opacity-85 tracking-wide leading-relaxed max-w-4xl drop-shadow-none">
-                            ou arriscando seu <strong className="font-medium text-white/95">capital</strong> em testes sem fim.
+                            ou arriscando seu <strong className="font-medium text-white/95">capital</strong><br />
+                            em testes sem fim.
                         </span>
                     </h3>
-
-                    <div className="mt-8 sm:mt-10 relative z-20 w-auto">
-                        <Link
-                            href="#oferta"
-                            onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
-                            className="w-full sm:w-auto px-8 py-3.5 text-sm sm:text-base bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group cursor-pointer border border-orange-500/50 backdrop-blur-sm">
-                            <span>Comprar VDA Premium</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                        </Link>
-                    </div>
-
-                    {/* Pricing summary — abaixo do botão */}
-                    <div className="mt-6 flex flex-col items-center gap-1.5">
+                    {/* Pricing summary — sem botão */}
+                    <div className="mt-10 flex flex-col items-center gap-1.5">
                         <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/25">Quanto você precisa investir</p>
                         <div className="flex items-baseline gap-1.5 mt-1">
                             <span className="text-[13px] text-white/40 font-light">R$</span>
@@ -117,8 +104,21 @@ export default function DashboardSection() {
                 </div>
             </div>
             
-            <div className="w-full flex justify-center items-center py-2 sm:py-4">
-                <div className="w-[85%] max-w-4xl h-[2px] bg-black border-b border-slate-600/20 rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)] opacity-70"></div>
+            {/* ── Transição entre seções — premium e leve ── */}
+            <div className="relative w-full flex flex-col items-center justify-center py-10 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+                {/* Gradiente de fade superior */}
+                <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#060913] to-transparent" />
+                {/* Linha central com glow */}
+                <div className="relative flex items-center w-full max-w-xs sm:max-w-md">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-white/20" />
+                    {/* Diamante ornamental central */}
+                    <div className="mx-3 flex flex-col items-center gap-1">
+                        <div className="w-1.5 h-1.5 rotate-45 border border-orange-500/50 bg-orange-500/10 shadow-[0_0_8px_rgba(249,115,22,0.4)]" />
+                    </div>
+                    <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/10 to-white/20" />
+                </div>
+                {/* Gradiente de fade inferior */}
+                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#0B0F19] to-transparent" />
             </div>
         </section>
     );

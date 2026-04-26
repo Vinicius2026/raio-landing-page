@@ -157,46 +157,49 @@ export default function MethodologySection() {
                         <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais</p>
                         
                         {/* ── Grid 3×2 de Vantagens (bolinhas circulares) ── */}
-                        <div className="mt-8 grid grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-8 sm:gap-y-10 max-w-lg sm:max-w-xl mx-auto reveal">
-                            {[
-                                { img: '/vantagens/vantagem-1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
-                                { img: '/vantagens/vantagem-2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
-                                { img: '/vantagens/vantagem-3.webp', title1: 'Material de', title2: 'Apoio', desc: 'Kit completo para o aluno' },
-                                { img: '/vantagens/vantagem-4.webp', title1: 'Estratégias de', title2: 'Venda', desc: 'Métodos testados para conversão' },
-                                { img: '/vantagens/vantagem-5.webp', title1: 'Fluxo de', title2: 'Clientes', desc: 'Receba novos contatos todos os dias' },
-                                { img: '/vantagens/vantagem-6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' },
-                            ].map((card, idx) => (
-                                <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
-                                    {/* Círculo com borda animada e imagem */}
-                                    <div className="relative flex items-center justify-center">
-                                        {/* Borda giratória sutil — mesmo padrão GPU do .modulos-border-glow */}
-                                        <div className="vantagem-ring" aria-hidden="true" />
-                                        {/* Glow de fundo ao hover */}
-                                        <div className="absolute inset-0 rounded-full bg-orange-500/0 group-hover:bg-orange-500/15 blur-[20px] transition-all duration-700 pointer-events-none" />
-                                        {/* Círculo base */}
-                                        <div className="relative w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] rounded-full bg-[#0B0F19] border border-white/8 flex items-center justify-center overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] group-hover:shadow-[0_8px_32px_rgba(249,115,22,0.20)] transition-shadow duration-700 z-10">
-                                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                            <Image
-                                                src={card.img}
-                                                alt={card.title2}
-                                                width={110}
-                                                height={110}
-                                                sizes="(max-width: 640px) 80px, 110px"
-                                                className="w-[80%] h-[80%] object-contain relative z-10 transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
-                                                loading="lazy"
-                                                decoding="async"
-                                            />
-                                        </div>
-                                    </div>
-                                    {/* Título e descrição */}
-                                    <div className="text-center mt-1">
-                                        <p className="text-[9px] sm:text-[11px] text-slate-400 font-light leading-tight">{card.title1}</p>
-                                        <p className="text-[11px] sm:text-[13px] text-white font-semibold leading-tight group-hover:text-orange-400 transition-colors duration-500">{card.title2}</p>
-                                        <p className="text-[8px] sm:text-[10px] text-slate-500 font-light mt-0.5 leading-snug max-w-[90px] sm:max-w-[110px] mx-auto">{card.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <div className="mt-8 grid grid-cols-3 gap-x-3 gap-y-8 sm:gap-x-8 sm:gap-y-10 w-full max-w-sm sm:max-w-xl mx-auto reveal px-2 sm:px-0">
+                             {[
+                                 { img: '/vantagens/vantagem-1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
+                                 { img: '/vantagens/vantagem-2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
+                                 { img: '/vantagens/vantagem-3.webp', title1: 'Material de', title2: 'Apoio', desc: 'Kit completo para o aluno' },
+                                 { img: '/vantagens/vantagem-4.webp', title1: 'Estratégias de', title2: 'Venda', desc: 'Métodos testados para conversão' },
+                                 { img: '/vantagens/vantagem-5.webp', title1: 'Fluxo de', title2: 'Clientes', desc: 'Receba novos contatos todos os dias' },
+                                 { img: '/vantagens/vantagem-6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' },
+                             ].map((card, idx) => (
+                                 <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
+                                     {/* Círculo com borda animada e imagem */}
+                                     <div className="relative flex items-center justify-center">
+                                         {/* Borda giratória sutil */}
+                                         <div className="vantagem-ring" aria-hidden="true" />
+                                         {/* Glow de fundo ao hover */}
+                                         <div className="absolute inset-0 rounded-full bg-orange-500/0 group-hover:bg-orange-500/15 blur-[20px] transition-all duration-700 pointer-events-none" />
+                                         {/* Círculo base — 100px mobile, 112px desktop */}
+                                         <div className="relative w-[100px] h-[100px] sm:w-[112px] sm:h-[112px] rounded-full bg-[#0B0F19] border border-white/8 flex items-center justify-center overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] group-hover:shadow-[0_8px_32px_rgba(249,115,22,0.20)] transition-shadow duration-700 z-10">
+                                             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                             <Image
+                                                 src={card.img}
+                                                 alt={card.title2}
+                                                 width={112}
+                                                 height={112}
+                                                 sizes="(max-width: 640px) 100px, 112px"
+                                                 className="w-[88%] h-[88%] object-contain relative z-10 transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
+                                                 loading="lazy"
+                                                 decoding="async"
+                                             />
+                                         </div>
+                                     </div>
+                                     {/* Título e descrição */}
+                                     <div className="text-center mt-1">
+                                         <p className="text-[10px] sm:text-[11px] text-slate-400 font-light leading-tight">{card.title1}</p>
+                                         <p className="text-[12px] sm:text-[13px] text-white font-semibold leading-tight group-hover:text-orange-400 transition-colors duration-500">{card.title2}</p>
+                                         <p className="text-[9px] sm:text-[10px] text-slate-500 font-light mt-0.5 leading-snug max-w-[100px] sm:max-w-[112px] mx-auto">{card.desc}</p>
+                                     </div>
+                                 </div>
+                             ))}
+                         </div>{/* /grid 3x2 */}
+
+                            </div>{/* /relative z-1 content */}
+                        </div>{/* /dot grid wrapper */}
 
                         {/* ── Imagem Módulos com nebula ── */}
                         <div className="relative w-full max-w-2xl mx-auto mt-14 mb-4 reveal flex justify-center items-center">
@@ -286,9 +289,6 @@ export default function MethodologySection() {
                                 100% { transform: translate(-52%, -48%) scale(0.95); }
                             }
                         `}</style>
-
-                            </div>{/* /relative z-10 content */}
-                        </div>{/* /dot grid wrapper */}
 
                         {/* ── Pra quem é isso ── */}
                         <div className="mt-10 mb-2 max-w-sm mx-auto">
