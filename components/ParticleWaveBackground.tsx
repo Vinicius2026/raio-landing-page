@@ -1,134 +1,157 @@
-// @ts-nocheck
 'use client';
-import React, { useRef, useMemo, useEffect, useState } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import * as THREE from 'three';
+import React, { useRef, useEffect, useCallback } from 'react';
 
-// Constantes
-const PARTICLE_COUNT = 3600; // 60x60 para evitar Float32Array OutOfBounds crash
-const DAMPING = 0.05;
+// ── Configuração ──────────────────────────────────────────────────
+const COLS = 60;
+const ROWS = 60;
+const SPACING = 14;          // px entre cada ponto
+const BASE_RADIUS = 1.5;     // raio base da partícula
+const WAVE_AMP = 8;          // amplitude da onda (px de deslocamento vertical)
+const MOUSE_RADIUS = 120;    // raio de influência do cursor (px)
+const MOUSE_STRENGTH = 18;   // força de elevação do mouse
+const PARTICLE_COLOR = 'rgba(255, 255, 255, 0.30)';
 
-// Componente Core da Malha Instanciada (As partículas em si)
-function ParticleWave() {
-    const meshRef = useRef<THREE.InstancedMesh>(null);
-    const { pointer, viewport } = useThree();
+export default function ParticleWaveBackground() {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const animRef = useRef<number>(0);
+    const inViewRef = useRef(false);
+    const mouseRef = useRef({ x: -9999, y: -9999 });
 
-    // Cache matemático das posições originais usando useMemo
-    const { positions, dummy } = useMemo(() => {
-        const positions = new Float32Array(PARTICLE_COUNT * 3);
-        const dummy = new THREE.Object3D();
-        let i = 0;
-        const range = 40;
-        const sideElements = Math.sqrt(PARTICLE_COUNT);
+    // ── Render Loop ───────────────────────────────────────────────
+    const animate = useCallback(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
 
-        for (let ix = 0; ix < sideElements; ix++) {
-            for (let iz = 0; iz < sideElements; iz++) {
-                const x = (ix / sideElements - 0.5) * range;
-                const z = (iz / sideElements - 0.5) * range;
-                // Deixamos o Y como 0 inicial, o useFrame cuida da onda.
-                positions[i * 3] = x;
-                positions[i * 3 + 1] = 0;
-                positions[i * 3 + 2] = z;
-                i++;
-            }
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+
+        // Resize apenas quando necessário
+        if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
         }
-        return { positions, dummy };
-    }, []);
 
-    useFrame((state) => {
-        if (!meshRef.current) return;
-        const time = state.clock.getElapsedTime() * 0.5;
+        ctx.clearRect(0, 0, w, h);
 
-        // O mouse interage suavemente
-        const targetX = pointer.x * (viewport.width / 4);
-        const targetY = pointer.y * (viewport.height / 4);
+        const time = performance.now() * 0.0005; // velocidade da onda
+        const mx = mouseRef.current.x;
+        const my = mouseRef.current.y;
 
-        let i = 0;
-        const sideElements = Math.sqrt(PARTICLE_COUNT);
-        for (let ix = 0; ix < sideElements; ix++) {
-            for (let iz = 0; iz < sideElements; iz++) {
-                // Prevenção de segurança de limite
-                if (i >= PARTICLE_COUNT) break;
+        // Offset para centralizar a grade no canvas
+        const gridW = (COLS - 1) * SPACING;
+        const gridH = (ROWS - 1) * SPACING;
+        const offsetX = (w - gridW) / 2;
+        const offsetY = (h - gridH) / 2;
 
-                const px = positions[i * 3];
-                const pz = positions[i * 3 + 2];
+        ctx.fillStyle = PARTICLE_COLOR;
 
-                // Fórmulas matemáticas para onda
-                const dx = px + time;
-                const dz = pz + time;
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLS; col++) {
+                const baseX = offsetX + col * SPACING;
+                const baseY = offsetY + row * SPACING;
 
-                // Cria uma oscilação tipo relevo topográfico
-                let py = Math.sin(dx * 0.3) * 1.5 + Math.cos(dz * 0.4) * 1.5;
+                // Onda matemática (sinusoidal cruzada — efeito topográfico)
+                const waveX = Math.sin((col * 0.15) + time) * WAVE_AMP;
+                const waveY = Math.cos((row * 0.2) + time * 0.8) * WAVE_AMP * 0.6;
+                const wave = waveX + waveY;
 
-                // Calcula a influência magnética do mouse
-                const distToMouse = Math.sqrt(Math.pow(px - targetX, 2) + Math.pow(pz - targetY, 2));
-                if (distToMouse < 8) {
-                    const influence = (8 - distToMouse) * 0.3; // Eleva a partícula baseada na proximidade
-                    py += influence;
+                let px = baseX;
+                let py = baseY + wave;
+
+                // Interação com o mouse — elevação suave
+                const dx = px - mx;
+                const dy = py - my;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                let radius = BASE_RADIUS;
+
+                if (dist < MOUSE_RADIUS) {
+                    const factor = 1 - dist / MOUSE_RADIUS;
+                    // Empurra as partículas para fora do cursor suavemente
+                    px += (dx / dist) * factor * MOUSE_STRENGTH * 0.3;
+                    py += (dy / dist) * factor * MOUSE_STRENGTH * 0.3;
+                    // Aumenta o raio próximo ao cursor
+                    radius = BASE_RADIUS + factor * 2;
                 }
 
-                dummy.position.set(px, py, pz);
-                dummy.rotation.x = time * 0.2;
-                dummy.rotation.y = time * 0.3;
+                // Opacidade variável baseada na onda (partículas mais "altas" brilham mais)
+                const brightness = 0.2 + Math.abs(wave / (WAVE_AMP * 2)) * 0.5;
+                ctx.globalAlpha = brightness;
 
-                dummy.updateMatrix();
-                meshRef.current.setMatrixAt(i, dummy.matrix);
-                i++;
+                ctx.beginPath();
+                ctx.arc(px, py, radius, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        meshRef.current.instanceMatrix.needsUpdate = true;
-    });
 
-    return (
-        <instancedMesh ref={meshRef} args={[null as any, null as any, PARTICLE_COUNT]}>
-            <circleGeometry args={[0.07, 8]} />
-            <meshBasicMaterial 
-                color="#ffffff" 
-                transparent={true} 
-                opacity={0.35} 
-                depthWrite={false} 
-            />
-        </instancedMesh>
-    );
-}
+        ctx.globalAlpha = 1;
 
-// Wrapper Principal
-export default function ParticleWaveBackground() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [inView, setInView] = useState(false);
+        if (inViewRef.current) {
+            animRef.current = requestAnimationFrame(animate);
+        }
+    }, []);
 
+    // ── Intersection Observer (pausa quando fora da viewport) ─────
     useEffect(() => {
-        if (!containerRef.current) return;
-        
+        const container = containerRef.current;
+        if (!container) return;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setInView(entry.isIntersecting);
+                inViewRef.current = entry.isIntersecting;
+                if (entry.isIntersecting) {
+                    animRef.current = requestAnimationFrame(animate);
+                } else {
+                    cancelAnimationFrame(animRef.current);
+                }
             },
-            { rootMargin: '200px' } 
+            { rootMargin: '200px' }
         );
 
-        observer.observe(containerRef.current);
-        return () => observer.disconnect();
+        observer.observe(container);
+        return () => {
+            observer.disconnect();
+            cancelAnimationFrame(animRef.current);
+        };
+    }, [animate]);
+
+    // ── Mouse Tracker ─────────────────────────────────────────────
+    useEffect(() => {
+        const handleMove = (e: MouseEvent) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            mouseRef.current = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            };
+        };
+
+        const handleLeave = () => {
+            mouseRef.current = { x: -9999, y: -9999 };
+        };
+
+        window.addEventListener('mousemove', handleMove, { passive: true });
+        window.addEventListener('mouseleave', handleLeave);
+        return () => {
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('mouseleave', handleLeave);
+        };
     }, []);
 
     return (
         <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+            {/* Gradiente de fusão premium */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F97316]/5 to-[#0B0F19] pointer-events-none z-10" />
-
-            {/* Canvas sempre montado para evitar que o ThreeJS jogue crash ao tentar remontar o contexto WebGL constantemente, apenas gerenciamos o frameloop */}
-            <Canvas
-                camera={{ position: [0, 15, 20], fov: 45 }}
-                frameloop={inView ? 'always' : 'never'} 
-                gl={{
-                    antialias: false,
-                    alpha: true,
-                    powerPreference: "high-performance" 
-                }}
-                dpr={[1, 2]}
-            >
-                <ambientLight intensity={0.5} />
-                <ParticleWave />
-            </Canvas>
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: 0 }}
+            />
         </div>
     );
 }
