@@ -6,7 +6,7 @@ import { trackEvent } from '@/lib/meta-pixel';
 export default function DashboardSection() {
     return (
         <section id="dashboard-presentation" className="w-full pt-20 sm:pt-28 pb-12 sm:pb-16 relative overflow-hidden flex flex-col items-center bg-[#060913]">
-            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#00e5ff]/5 rounded-full md:blur-[100px] blur-[50px] pointer-events-none z-0"></div>
+            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#00e5ff]/5 rounded-full md:blur-[70px] blur-[50px] pointer-events-none z-0"></div>
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 w-full text-center flex flex-col items-center">
                 <div className="mb-10 sm:mb-16 reveal flex flex-col items-center justify-center text-center relative z-50">

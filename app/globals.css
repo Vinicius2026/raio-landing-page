@@ -294,8 +294,8 @@ html {
 }
 
 @keyframes breathe {
-    0%, 100% { opacity: 0.04; filter: blur(80px); }
-    50%      { opacity: 0.12; filter: blur(100px); }
+    0%, 100% { opacity: 0.04; }
+    50%      { opacity: 0.12; }
 }
 
 @keyframes line-flow {
@@ -307,6 +307,43 @@ html {
 .animate-orbit-2 { animation: orbit-2 35s linear infinite; }
 .animate-orbit-3 { animation: orbit-3 45s linear infinite; }
 .animate-aurora-sweep { animation: aurora-sweep 4s ease-in-out infinite; }
-.animate-breathe { animation: breathe 6s ease-in-out infinite; }
+.animate-breathe { animation: breathe 6s ease-in-out infinite; filter: blur(80px); }
 .animate-line-flow { animation: line-flow 8s linear infinite; }
 
+/* ── Borda Animada Minimalista — Imagem Módulos ─────────────────── */
+.modulos-border-glow {
+    position: relative;
+    border-radius: 20px;
+    padding: 1.5px;
+    overflow: hidden;
+}
+
+.modulos-border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -80%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        rgba(255,255,255,0.06) 10%,
+        rgba(249,115,22,0.35) 20%,
+        rgba(212,175,55,0.25) 30%,
+        transparent 40%,
+        transparent 60%,
+        rgba(160,220,255,0.15) 70%,
+        rgba(249,115,22,0.2) 80%,
+        transparent 90%
+    );
+    animation: modulos-spin 8s linear infinite;
+    will-change: transform;
+    z-index: 0;
+}
+
+.modulos-border-glow > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes modulos-spin {
+    to { transform: rotate(360deg); }
+}

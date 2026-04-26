@@ -14,7 +14,7 @@ export default function GroupsSection() {
                 <div className="hidden lg:block absolute right-[6%] xl:right-[12%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"></div>
                 <div className="hidden lg:block absolute right-[6%] xl:right-[12%] top-1/2 -translate-y-1/2 w-[1px] h-56 bg-gradient-to-b from-transparent via-[#D4AF37]/50 to-transparent pointer-events-none shadow-[0_0_15px_rgba(212,175,55,0.8)]"></div>
 
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[1100px] h-[300px] md:h-[600px] bg-orange-500/5 rounded-[100%] blur-[100px] md:blur-[150px] pointer-events-none z-0"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[1100px] h-[300px] md:h-[600px] bg-orange-500/5 rounded-[100%] blur-[60px] md:blur-[80px] pointer-events-none z-0"></div>
 
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center reveal">
                     <h3 className="font-serif text-2xl sm:text-[28px] lg:text-[34px] font-bold text-white mb-4 sm:mb-6 tracking-wide shadow-black drop-shadow-md">

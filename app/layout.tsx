@@ -159,8 +159,8 @@ export default function RootLayout({
             </head>
             <body className={`bg-[#0B0F19] text-slate-50 font-sans antialiased selection:bg-orange-500 selection:text-white relative overflow-x-hidden min-h-screen flex flex-col`}>
                 <div className="fixed inset-0 pointer-events-none z-[-1]">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/10 rounded-full md:blur-[120px] blur-[60px]"></div>
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#D4AF37]/10 rounded-full md:blur-[120px] blur-[60px]"></div>
+                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/10 rounded-full blur-[60px] md:blur-[80px] will-change-transform"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#D4AF37]/10 rounded-full blur-[60px] md:blur-[80px] will-change-transform"></div>
                 </div>
                 {children}
                 <ScriptRunner />

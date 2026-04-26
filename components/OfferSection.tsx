@@ -60,7 +60,7 @@ export default function OfferSection() {
             </div>
 
             <section id="oferta" ref={sectionRef} className="w-full pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 lg:pb-28 relative bg-[#0B0F19] overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/10 rounded-full md:blur-[120px] blur-[60px] pointer-events-none z-0"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/10 rounded-full md:blur-[70px] blur-[60px] pointer-events-none z-0"></div>
 
                 <div ref={particleRef} className="absolute left-0 top-0 pointer-events-none z-0 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)] opacity-70">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] sm:w-[250px] h-[180px] sm:h-[250px] bg-[#D4AF37]/25 rounded-full blur-[50px] sm:blur-[60px]"></div>

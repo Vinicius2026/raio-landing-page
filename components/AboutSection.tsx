@@ -5,7 +5,7 @@ import { trackEvent } from '@/lib/meta-pixel';
 export default function AboutSection() {
     return (
         <section className="w-full py-16 md:py-24 relative bg-[#060913]">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange-500/5 rounded-full md:blur-[100px] blur-[60px] pointer-events-none z-0"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange-500/5 rounded-full md:blur-[70px] blur-[60px] pointer-events-none z-0"></div>
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex items-center justify-center gap-4 mb-10">

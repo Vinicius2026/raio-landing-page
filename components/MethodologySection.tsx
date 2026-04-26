@@ -38,6 +38,13 @@ export default function MethodologySection() {
                 </div>
 
                 <div className="mt-20 max-w-4xl mx-auto flex flex-col items-center justify-center reveal" style={{ transitionDelay: '150ms' }}>
+                    {/* Frase de impacto — estilizada */}
+                    <p className="font-serif italic text-[15px] sm:text-lg md:text-xl text-center text-white/50 font-light tracking-wide leading-relaxed max-w-md mb-6 relative">
+                        <span className="absolute -left-3 sm:-left-5 top-0 text-orange-500/30 text-2xl sm:text-3xl font-serif leading-none select-none">&ldquo;</span>
+                        Eu vendo pelo Whatsapp inúmeros produtos que não são meus
+                        <span className="absolute -right-3 sm:-right-5 bottom-0 text-orange-500/30 text-2xl sm:text-3xl font-serif leading-none select-none">&rdquo;</span>
+                    </p>
+
                     <div className="inline-flex items-center gap-4 mb-8">
                         <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-orange-500/60"></div>
                         <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-orange-500 drop-shadow-md text-center max-w-[200px] md:max-w-none leading-relaxed">Venda Direta Automatica</span>
@@ -56,7 +63,7 @@ export default function MethodologySection() {
                     </div>
 
                     <div className="relative w-full flex justify-center mb-6 md:mb-8">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[350px] h-[80px] md:h-[120px] bg-orange-500/10 rounded-full blur-[40px] animate-[pulse_4s_ease-in-out_infinite] pointer-events-none z-0"></div>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[350px] h-[80px] md:h-[120px] bg-orange-500/10 rounded-full blur-[40px] pointer-events-none z-0"></div>
                         <h3 className="font-serif text-3xl md:text-5xl font-normal text-white text-center leading-[1.2] tracking-wide relative z-10">
                             O que vamos fazer <br />
                             <strong className="font-bold underline decoration-orange-500/40 underline-offset-8">exatamente</strong> na VDA
@@ -200,18 +207,20 @@ export default function MethodologySection() {
                                 }}
                             />
 
-                            {/* Image */}
-                            <div className="relative z-10 w-full max-w-xl" style={{ filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.7)) drop-shadow(0 0 32px rgba(160,220,255,0.12))' }}>
-                                <Image
-                                    src="/Modulos/modulos-curso-vda-ast2026.png"
-                                    alt="Módulos do Curso VDA 2026"
-                                    width={800}
-                                    height={500}
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 80vw, 672px"
-                                    className="w-full h-auto object-contain"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
+                            {/* Image com borda animada minimalista */}
+                            <div className="modulos-border-glow w-full max-w-xl">
+                                <div className="relative z-10 w-full bg-[#070A12] rounded-[19px] p-1" style={{ filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.7)) drop-shadow(0 0 32px rgba(160,220,255,0.12))' }}>
+                                    <Image
+                                        src="/Modulos/modulos-curso-vda-ast2026.png"
+                                        alt="Módulos do Curso VDA 2026"
+                                        width={800}
+                                        height={500}
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 80vw, 672px"
+                                        className="w-full h-auto object-contain rounded-[15px]"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </div>
                             </div>
                         </div>
 
