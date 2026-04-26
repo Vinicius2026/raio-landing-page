@@ -38,12 +38,19 @@ export default function MethodologySection() {
                 </div>
 
                 <div className="mt-20 max-w-4xl mx-auto flex flex-col items-center justify-center reveal" style={{ transitionDelay: '150ms' }}>
-                    {/* Frase de impacto — estilizada */}
-                    <p className="font-serif italic text-[15px] sm:text-lg md:text-xl text-center text-white/50 font-light tracking-wide leading-relaxed max-w-md mb-6 relative">
-                        <span className="absolute -left-3 sm:-left-5 top-0 text-orange-500/30 text-2xl sm:text-3xl font-serif leading-none select-none">&ldquo;</span>
-                        Eu vendo pelo Whatsapp inúmeros produtos que não são meus
-                        <span className="absolute -right-3 sm:-right-5 bottom-0 text-orange-500/30 text-2xl sm:text-3xl font-serif leading-none select-none">&rdquo;</span>
-                    </p>
+                    {/* Frase de impacto — minimalista */}
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center gap-3 mb-5">
+                            <div className="h-px w-8 bg-orange-500/20" />
+                            <span className="text-[8px] font-bold tracking-[0.45em] uppercase text-orange-500/35 select-none">Afiliados VDA</span>
+                            <div className="h-px w-8 bg-orange-500/20" />
+                        </div>
+                        <div className="font-serif leading-[1.6] text-center px-2">
+                            <span className="block text-[11px] sm:text-[13px] text-white/30 font-light tracking-[0.14em] uppercase">Eu vendo pelo WhatsApp</span>
+                            <span className="block text-[22px] sm:text-[28px] md:text-[34px] text-white/65 font-semibold tracking-tight mt-1 mb-1" style={{ fontStyle: 'normal', letterSpacing: '-0.02em' }}>inúmeros produtos</span>
+                            <span className="block text-[11px] sm:text-[13px] text-white/30 font-light tracking-[0.14em] uppercase">que não são meus</span>
+                        </div>
+                    </div>
 
                     <div className="inline-flex items-center gap-4 mb-8">
                         <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-orange-500/60"></div>
@@ -114,6 +121,37 @@ export default function MethodologySection() {
                             </div>
                             <p className="text-[11px] text-slate-500 mt-4 font-light">Se você tem um ou mais desses pontos, a VDA foi feita pra você.</p>
                         </div>
+
+                        {/* ── Dot Grid Section: Recursos Premium VDA → Imagem Módulos ── */}
+                        {/* Wrapper com isolate — sem overflow-hidden para não quebrar o scroll dos cards */}
+                        <div className="relative" style={{ isolation: 'isolate' }}>
+
+                            {/* Camada de pontos animados — clampada com overflow-hidden no próprio layer */}
+                            <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none select-none" style={{ zIndex: 0 }} aria-hidden="true">
+                                {/* Dot grid em movimento diagonal */}
+                                <div style={{
+                                    position: 'absolute',
+                                    inset: '-40px',
+                                    backgroundImage: 'radial-gradient(circle, rgba(249,115,22,0.07) 1px, transparent 1px)',
+                                    backgroundSize: '26px 26px',
+                                    animation: 'dot-grid-drift 20s linear infinite',
+                                    willChange: 'transform',
+                                }} />
+                                {/* Feixe de luz que varre da esquerda para a direita */}
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    bottom: 0,
+                                    left: '-5%',
+                                    width: '1px',
+                                    background: 'linear-gradient(to bottom, transparent 0%, rgba(249,115,22,0.20) 30%, rgba(212,175,55,0.12) 55%, transparent 100%)',
+                                    animation: 'beam-sweep-lr 14s ease-in-out infinite',
+                                    willChange: 'transform',
+                                }} />
+                            </div>
+
+                            {/* Conteúdo acima do dot grid */}
+                            <div className="relative" style={{ zIndex: 1 }}>
 
                         <h3 className="text-lg sm:text-2xl font-serif font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
                         <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza.</p>
@@ -244,6 +282,9 @@ export default function MethodologySection() {
                                 100% { transform: translate(-52%, -48%) scale(0.95); }
                             }
                         `}</style>
+
+                            </div>{/* /relative z-10 content */}
+                        </div>{/* /dot grid wrapper */}
 
                         {/* ── Pra quem é isso ── */}
                         <div className="mt-10 mb-2 max-w-sm mx-auto">
