@@ -41,7 +41,7 @@ export default function DashboardSection() {
                             <span className="w-2 h-2 rounded-full bg-yellow-500/40"></span>
                             <span className="w-2 h-2 rounded-full bg-green-500/40"></span>
                         </div>
-                        <Image src="/dentro da vda/produto-dashboard-review.webp" alt="Dashboard Back" width={800} height={400} className="w-full h-auto object-cover" loading="lazy" decoding="async" />
+                        <Image src="/dentro da vda/produto-dashboard-review.webp" alt="Dashboard Back" width={800} height={400} sizes="(max-width: 640px) 90vw, 75vw" className="w-full h-auto object-cover" loading="lazy" decoding="async" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent"></div>
                     </div>
 
@@ -68,7 +68,7 @@ export default function DashboardSection() {
 
                     <div className="absolute bottom-12 sm:bottom-24 right-0 sm:right-4 w-[180px] sm:w-[320px] bg-[#0A0D14] rounded-xl sm:rounded-2xl border border-[#00e5ff]/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-40 transform hover:-translate-y-2 transition-transform duration-500">
                         <div className="w-full relative rounded-lg overflow-hidden border border-white/5 bg-[#060913]">
-                            <Image src="/blvda img/vda-fluxo-vendas.webp" alt="Fluxo de Vendas VDA" width={300} height={200} className="w-full h-auto object-cover" loading="lazy" decoding="async" />
+                            <Image src="/blvda img/vda-fluxo-vendas.webp" alt="Fluxo de Vendas VDA" width={300} height={200} sizes="(max-width: 640px) 180px, 320px" className="w-full h-auto object-cover" loading="lazy" decoding="async" />
                             <div className="absolute bottom-0 left-0 w-full h-1.5 sm:h-2 bg-white/10">
                                 <div className="h-full bg-[#00e5ff] w-[100%] shadow-[0_0_10px_rgba(0,229,255,0.6)]"></div>
                             </div>

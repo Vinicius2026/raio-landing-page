@@ -8,8 +8,8 @@ export default function MethodologySection() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-3xl mx-auto text-center mb-16 reveal flex flex-col items-center relative">
                     <div className="relative mb-12 flex justify-center items-center">
-                        <div className="relative h-16 sm:h-20 md:h-24 logo-float-container animate-[pulse_6s_ease-in-out_infinite]">
-                            <Image src="/logotipo/logo2.webp" alt="VDA - Venda Direta Automática" width={200} height={100} className="h-full w-auto object-contain relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                        <div className="relative h-16 sm:h-20 md:h-24 logo-float-container">
+                            <Image src="/logotipo/logo2.webp" alt="VDA - Venda Direta Automática" width={200} height={100} sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 200px" className="h-full w-auto object-contain relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
                         </div>
                     </div>
                     <h2 className="font-serif mb-3 mt-2 leading-tight">
@@ -137,7 +137,7 @@ export default function MethodologySection() {
 
                                     <div className="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
                                         <div className="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
-                                        <Image src={card.img} alt={card.title2} width={200} height={200} className="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async" />
+                                        <Image src={card.img} alt={card.title2} width={200} height={200} sizes="(max-width: 640px) 30vw, 130px" className="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async" />
                                     </div>
 
                                     <p className="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -207,6 +207,7 @@ export default function MethodologySection() {
                                     alt="Módulos do Curso VDA 2026"
                                     width={800}
                                     height={500}
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 80vw, 672px"
                                     className="w-full h-auto object-contain"
                                     loading="lazy"
                                     decoding="async"

@@ -25,6 +25,7 @@ export default function AboutSection() {
                                 alt="Thiago — Fundador VDA" 
                                 width={260} 
                                 height={260}
+                                sizes="(max-width: 640px) 256px, (max-width: 1024px) 256px, 240px"
                                 className="relative z-10 w-64 sm:w-64 md:w-60 h-auto object-cover object-top drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] thiago-img" 
                                 loading="lazy" 
                                 decoding="async" 

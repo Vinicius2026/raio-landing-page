@@ -33,10 +33,31 @@ export default function HeroVideoScrub() {
 
         const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
+        // ── Verificação de qualidade de conexão (PageSpeed / Core Web Vitals) ──
+        // Injeta o src do vídeo SOMENTE em conexões boas.
+        // Em 2G / slow-2g / Data Saver, o poster .webp permanece visível (9MB poupados).
+        const shouldLoadVideo = (): boolean => {
+            if (typeof navigator === 'undefined') return true;
+            const conn = (navigator as any).connection;
+            if (!conn) return true;          // API não suportada → carrega
+            if (conn.saveData) return false; // usuário ativou economia de dados
+            return !['slow-2g', '2g'].includes(conn.effectiveType);
+        };
+
+        const VIDEO_SRC = '/banner home vda astronauta 1/hero-vda-lp.mp4';
+        const videoEnabled = shouldLoadVideo();
+
+        if (videoEnabled) {
+            // Injetar src dinamicamente — só aqui o browser começa a baixar o vídeo
+            video.src = VIDEO_SRC;
+            video.load();
+        }
+
         // Desbloqueio de seeking em iOS/Android
         // iOS Safari exige que o vídeo "tente" tocar antes de permitir currentTime manual
         const unlockVideo = () => {
-            if (isUnlockedRef.current) return;
+            // Guard: sem src ou já desbloqueado → não faz nada
+            if (isUnlockedRef.current || !video.src) return;
             const promise = video.play();
             if (promise !== undefined) {
                 promise
@@ -55,7 +76,9 @@ export default function HeroVideoScrub() {
             }
         };
 
-        unlockVideo();
+        if (videoEnabled) {
+            unlockVideo();
+        }
         const onFirstTouch = () => { unlockVideo(); document.removeEventListener('touchstart', onFirstTouch); };
         document.addEventListener('touchstart', onFirstTouch, { passive: true });
         const onCanPlay = () => { if (!isUnlockedRef.current) unlockVideo(); };
@@ -115,13 +138,14 @@ export default function HeroVideoScrub() {
                 style={{ height: '100vh' }}
             >
                 {/* Vídeo com poster correto (hero-imagem-lp.webp) visível em mobile antes do unlock */}
+                {/* src injetado dinamicamente via useEffect (shouldLoadVideo):
+                    em 2G / Data Saver o poster webp permanece — 9MB poupados */}
                 <video
                     ref={videoRef}
-                    src="/banner home vda astronauta 1/hero-vda-lp.mp4"
                     className="absolute inset-0 w-full h-full object-cover"
                     muted
                     playsInline
-                    preload="auto"
+                    preload="none"
                     poster="/banner home vda astronauta 1/hero-imagem-lp.webp"
                     aria-hidden="true"
                 />

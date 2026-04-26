@@ -29,7 +29,7 @@ export default function GroupsSection() {
                             <div className="absolute inset-0 bg-[#D4AF37]/15 rounded-full blur-[40px] group-hover:bg-[#D4AF37]/25 transition-colors duration-700 origin-center pointer-events-none scale-110"></div>
                             <div className="relative w-60 h-60 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border border-white/10 bg-[#060913] flex items-center justify-center p-[3px] shadow-[0_15px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-700 hover:border-[#D4AF37]/40 hover:shadow-[0_20px_50px_rgba(212,175,55,0.25)]">
                                 <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-[#0a0f19]">
-                                    <Image src="/blvda img/vda-grupoaberto.webp" alt="Grupo Aberto" width={256} height={256} className="w-full h-full object-cover" />
+                                    <Image src="/blvda img/vda-grupoaberto.webp" alt="Grupo Aberto" width={256} height={256} sizes="(max-width: 640px) 240px, (max-width: 1024px) 224px, 256px" className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"></div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@ export default function GroupsSection() {
                             <div className="absolute inset-0 bg-orange-500/15 rounded-full blur-[40px] group-hover:bg-orange-500/25 transition-colors duration-700 origin-center pointer-events-none scale-110"></div>
                             <div className="relative w-60 h-60 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border border-white/10 bg-[#060913] flex items-center justify-center p-[3px] shadow-[0_15px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-700 hover:border-orange-500/40 hover:shadow-[0_20px_50px_rgba(249,115,22,0.25)]">
                                 <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-[#0a0f19]">
-                                    <Image src="/blvda img/vda-grupofechados.webp" alt="Grupo Fechado" width={256} height={256} className="w-full h-full object-cover" />
+                                    <Image src="/blvda img/vda-grupofechados.webp" alt="Grupo Fechado" width={256} height={256} sizes="(max-width: 640px) 240px, (max-width: 1024px) 224px, 256px" className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"></div>
                                 </div>
                             </div>

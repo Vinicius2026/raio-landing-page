@@ -429,7 +429,7 @@ export default function OfferSection() {
                                 <div className="w-full relative rounded-[20px] p-[2px] mb-6 bg-gradient-to-b from-orange-500 to-orange-500/10 overflow-hidden group-hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-shadow duration-500">
                                     <div className="w-full bg-[#0a0f19] rounded-[18px] flex items-center justify-center p-4 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-orange-500/10 blur-[40px] z-0"></div>
-                                        <Image src="/capas bonus/cube-bonus.png" alt="Cubo Bônus 1.994,00 Reais VDA" width={280} height={280} className="w-[80%] max-w-[280px] h-auto object-contain relative z-10 drop-shadow-[0_15px_30px_rgba(249,115,22,0.4)] group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                                        <Image src="/capas bonus/cube-bonus.png" alt="Cubo Bônus 1.994,00 Reais VDA" width={280} height={280} sizes="(max-width: 640px) 80vw, 280px" className="w-[80%] max-w-[280px] h-auto object-contain relative z-10 drop-shadow-[0_15px_30px_rgba(249,115,22,0.4)] group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                                     </div>
                                 </div>
                                 <p className="text-slate-300 font-light text-[13px] sm:text-[15px] leading-relaxed">

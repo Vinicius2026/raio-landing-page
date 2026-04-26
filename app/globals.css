@@ -70,13 +70,28 @@ html {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    animation: ethereal-pulse 5s ease-in-out infinite;
+    position: relative;
 }
 
-@keyframes ethereal-pulse {
-    0% { filter: drop-shadow(0 15px 15px rgba(249, 115, 22, 0.15)); }
-    50% { filter: drop-shadow(0 25px 25px rgba(249, 115, 22, 0.45)); }
-    100% { filter: drop-shadow(0 15px 15px rgba(249, 115, 22, 0.15)); }
+/* Glow pulsante do logo — GPU-friendly: anima opacity de um pseudo-element,
+   não o filter do elemento principal (que forçava repaint na CPU) */
+.logo-float-container::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.45) 0%, transparent 70%);
+    filter: blur(15px);
+    opacity: 0.3;
+    animation: ethereal-pulse-gpu 5s ease-in-out infinite;
+    will-change: opacity;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes ethereal-pulse-gpu {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 1;   }
 }
 
 .card-item {
@@ -106,8 +121,8 @@ html {
 }
 
 @keyframes title-glow {
-    0%, 100% { filter: brightness(0.98); }
-    50% { filter: brightness(1.22); }
+    0%, 100% { opacity: 0.85; }
+    50%       { opacity: 1;    }
 }
 
 .bonus-cards h4 strong {
@@ -131,7 +146,7 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6)) drop-shadow(0 0 20px rgba(249, 115, 22, 0.25));
+    /* filter removido — substituído por opacity na animação (GPU-friendly) */
     animation: plus-pulse 2.8s ease-in-out infinite;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
@@ -140,25 +155,42 @@ html {
 }
 
 @keyframes plus-pulse {
-    0%, 100% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4)) drop-shadow(0 0 16px rgba(249, 115, 22, 0.15)); transform: scale(1); opacity: 0.7; }
-    50% { filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.8)) drop-shadow(0 0 28px rgba(249, 115, 22, 0.35)); transform: scale(1.15); opacity: 1; }
+    0%, 100% { transform: scale(1);    opacity: 0.7; }
+    50%       { transform: scale(1.15); opacity: 1;   }
 }
 
+/* pricing-card-border — borda giratória 100% GPU:
+   Em vez de animar --border-angle via @property (que força repaint na CPU),
+   usamos um ::before absoluto com conic-gradient estático que gira via
+   transform: rotate() — único canal composto pela GPU. */
 .pricing-card-border {
-    background: conic-gradient(from var(--border-angle, 0deg), #F97316 0%, #0ea5e9 33%, #21c55e 66%, #F97316 100%);
-    animation: border-rotate 5s linear infinite;
+    position: relative;
+    overflow: hidden;
 }
 
-@property --border-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
+.pricing-card-border::before {
+    content: '';
+    position: absolute;
+    /* inset: -50% cria um elemento 200%×200% centrado no pai */
+    inset: -50%;
+    background: conic-gradient(#F97316 0%, #0ea5e9 33%, #21c55e 66%, #F97316 100%);
+    animation: border-spin 5s linear infinite;
+    will-change: transform;
+    z-index: 0;
 }
 
-@keyframes border-rotate { to { --border-angle: 360deg; } }
+/* Garante que o conteúdo fique sempre acima do pseudo-element girante */
+.pricing-card-border > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes border-spin {
+    to { transform: rotate(360deg); }
+}
 
 @supports not (background: conic-gradient(from 0deg, red, blue)) {
-    .pricing-card-border { background: linear-gradient(135deg, #F97316, #0ea5e9, #21c55e); }
+    .pricing-card-border::before { background: linear-gradient(135deg, #F97316, #0ea5e9, #21c55e); }
 }
 
 .pricing-price-glow {
