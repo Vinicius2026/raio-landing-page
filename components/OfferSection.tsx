@@ -55,10 +55,6 @@ export default function OfferSection() {
 
     return (
         <>
-            <div className="w-full flex justify-center items-center py-2 sm:py-4">
-                <div className="w-[85%] max-w-4xl h-[2px] bg-black border-b border-slate-600/20 rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)] opacity-70"></div>
-            </div>
-
             <section id="oferta" ref={sectionRef} className="w-full pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 lg:pb-28 relative bg-[#0B0F19] overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/10 rounded-full md:blur-[70px] blur-[60px] pointer-events-none z-0"></div>
 

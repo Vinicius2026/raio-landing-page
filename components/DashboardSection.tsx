@@ -104,21 +104,11 @@ export default function DashboardSection() {
                 </div>
             </div>
             
-            {/* ── Transição entre seções — premium e leve ── */}
-            <div className="relative w-full flex flex-col items-center justify-center py-10 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-                {/* Gradiente de fade superior */}
-                <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#060913] to-transparent" />
-                {/* Linha central com glow */}
-                <div className="relative flex items-center w-full max-w-xs sm:max-w-md">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-white/20" />
-                    {/* Diamante ornamental central */}
-                    <div className="mx-3 flex flex-col items-center gap-1">
-                        <div className="w-1.5 h-1.5 rotate-45 border border-orange-500/50 bg-orange-500/10 shadow-[0_0_8px_rgba(249,115,22,0.4)]" />
-                    </div>
-                    <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/10 to-white/20" />
-                </div>
-                {/* Gradiente de fade inferior */}
-                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#0B0F19] to-transparent" />
+            {/* ── Divisor ornamental ── */}
+            <div className="w-full flex items-center justify-center gap-3 py-4 pointer-events-none select-none" aria-hidden="true">
+                <div className="flex-1 max-w-[140px] h-px bg-gradient-to-r from-transparent to-white/12" />
+                <div className="w-1.5 h-1.5 rotate-45 border border-orange-500/40 bg-orange-500/8 shadow-[0_0_6px_rgba(249,115,22,0.35)]" />
+                <div className="flex-1 max-w-[140px] h-px bg-gradient-to-l from-transparent to-white/12" />
             </div>
         </section>
     );
