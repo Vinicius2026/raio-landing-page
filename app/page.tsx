@@ -9,6 +9,7 @@ const DashboardSection = dynamic(() => import('@/components/DashboardSection'), 
 const OfferSection = dynamic(() => import('@/components/OfferSection'), { ssr: true });
 const AboutSection = dynamic(() => import('@/components/AboutSection'), { ssr: true });
 const GroupsSection = dynamic(() => import('@/components/GroupsSection'), { ssr: true });
+const ParticleWaveBackground = dynamic(() => import('@/components/ParticleWaveBackground'), { ssr: false });
 
 export default function Home() {
     return (
@@ -19,10 +20,22 @@ export default function Home() {
                 <MethodologySection />
                 <DashboardSection />
                 <OfferSection />
-                <AboutSection />
-                <GroupsSection />
+                <div className="relative overflow-hidden bg-zinc-950">
+                    <div className="absolute inset-0 z-0 pointer-events-none">
+                        <ParticleWaveBackground />
+                    </div>
+                    
+                    <div className="relative z-10">
+                        <AboutSection />
+                        <GroupsSection />
+                    </div>
+                </div>
             </main>
-            <FooterSection />
+            
+            {/* O Footer tem que ficar sobreposto pois é a real base, e colocaremos com z-10 para ficar em harmonia com nosso fundo 3D */}
+            <div className="relative z-10 bg-[#0B0F19]">
+                <FooterSection />
+            </div>
         </>
     );
 }
