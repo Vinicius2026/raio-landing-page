@@ -154,42 +154,46 @@ export default function MethodologySection() {
                             <div className="relative" style={{ zIndex: 1 }}>
 
                         <h3 className="text-lg sm:text-2xl font-serif font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
-                        <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza.</p>
+                        <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais</p>
                         
-                        <div className="flex sm:hidden justify-center items-center gap-3 w-full mb-2 mt-4 text-slate-500/60 text-[10px] tracking-widest uppercase font-medium">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                            Deslize para ver
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                        </div>
-                        
-                        <div className="bonus-cards mt-6 md:mt-8 flex overflow-x-auto touch-pan-x sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 -mx-4 px-4 sm:mx-0 sm:px-0 w-[calc(100%+2rem)] sm:w-full reveal pb-4 sm:pb-8 snap-x snap-mandatory scrollbar-hide py-4">
+                        {/* ── Grid 3×2 de Vantagens (bolinhas circulares) ── */}
+                        <div className="mt-8 grid grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-8 sm:gap-y-10 max-w-lg sm:max-w-xl mx-auto reveal">
                             {[
-                                { img: '/capas bonus/1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
-                                { img: '/capas bonus/2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
-                                { img: '/capas bonus/3.webp', title1: 'Material de', title2: 'Apoio', desc: 'Kit completo para o aluno' },
-                                { img: '/capas bonus/4.webp', title1: 'Estratégias de', title2: 'Venda', desc: 'Métodos testados para conversão' },
-                                { img: '/capas bonus/5.webp', title1: 'Fluxo de', title2: 'Clientes', desc: 'Receba novos contatos todos os dias' },
-                                { img: '/capas bonus/6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' }
+                                { img: '/vantagens/vantagem-1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
+                                { img: '/vantagens/vantagem-2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
+                                { img: '/vantagens/vantagem-3.webp', title1: 'Material de', title2: 'Apoio', desc: 'Kit completo para o aluno' },
+                                { img: '/vantagens/vantagem-4.webp', title1: 'Estratégias de', title2: 'Venda', desc: 'Métodos testados para conversão' },
+                                { img: '/vantagens/vantagem-5.webp', title1: 'Fluxo de', title2: 'Clientes', desc: 'Receba novos contatos todos os dias' },
+                                { img: '/vantagens/vantagem-6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' },
                             ].map((card, idx) => (
-                                <div key={idx} className="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-orange-500/0 to-transparent group-hover:via-orange-500/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
-                                    <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-orange-500/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-orange-500/30 transition-colors duration-700 z-0"></div>
-                                    
-                                    <h4 className="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
-                                        {card.title1}<br />
-                                        <strong className="text-white group-hover:text-orange-500 font-bold text-[11px] sm:text-[18px] drop-shadow-[0_2px_4px_rgba(249,115,22,0)] group-hover:drop-shadow-[0_2px_10px_rgba(249,115,22,0.6)] block mt-0.5 transition-all duration-500">{card.title2}</strong>
-                                    </h4>
-
-                                    <div className="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                        <div className="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
-                                        <Image src={card.img} alt={card.title2} width={200} height={200} sizes="(max-width: 640px) 30vw, 130px" className="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async" />
+                                <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
+                                    {/* Círculo com borda animada e imagem */}
+                                    <div className="relative flex items-center justify-center">
+                                        {/* Borda giratória sutil — mesmo padrão GPU do .modulos-border-glow */}
+                                        <div className="vantagem-ring" aria-hidden="true" />
+                                        {/* Glow de fundo ao hover */}
+                                        <div className="absolute inset-0 rounded-full bg-orange-500/0 group-hover:bg-orange-500/15 blur-[20px] transition-all duration-700 pointer-events-none" />
+                                        {/* Círculo base */}
+                                        <div className="relative w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] rounded-full bg-[#0B0F19] border border-white/8 flex items-center justify-center overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] group-hover:shadow-[0_8px_32px_rgba(249,115,22,0.20)] transition-shadow duration-700 z-10">
+                                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                            <Image
+                                                src={card.img}
+                                                alt={card.title2}
+                                                width={110}
+                                                height={110}
+                                                sizes="(max-width: 640px) 80px, 110px"
+                                                className="w-[80%] h-[80%] object-contain relative z-10 transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        </div>
                                     </div>
-
-                                    <p className="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
-                                        {card.desc}
-                                    </p>
-
-                                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out origin-center opacity-0 group-hover:opacity-100"></div>
+                                    {/* Título e descrição */}
+                                    <div className="text-center mt-1">
+                                        <p className="text-[9px] sm:text-[11px] text-slate-400 font-light leading-tight">{card.title1}</p>
+                                        <p className="text-[11px] sm:text-[13px] text-white font-semibold leading-tight group-hover:text-orange-400 transition-colors duration-500">{card.title2}</p>
+                                        <p className="text-[8px] sm:text-[10px] text-slate-500 font-light mt-0.5 leading-snug max-w-[90px] sm:max-w-[110px] mx-auto">{card.desc}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
