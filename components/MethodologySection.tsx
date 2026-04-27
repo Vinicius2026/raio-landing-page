@@ -106,6 +106,7 @@ export default function MethodologySection() {
                                     { icon: '🙈', text: 'Não quer aparecer' },
                                     { icon: '📦', text: 'Não tem produto próprio' },
                                     { icon: '📣', text: 'Não entende nada de marketing' },
+                                    { icon: '📊', text: 'Entende um pouco de marketing' },
                                 ].map((item, i) => (
                                     <div
                                         key={i}
@@ -284,8 +285,8 @@ export default function MethodologySection() {
                             }
                         `}</style>
 
-                        {/* ── Pra quem é isso ── */}
-                        <div className="mt-10 mb-2 max-w-sm mx-auto">
+                        {/* ── Pra quem é isso — layout centralizado premium ── */}
+                        <div className="mt-12 mb-2 max-w-md mx-auto">
                             {/* Divider */}
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -293,30 +294,35 @@ export default function MethodologySection() {
                                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                             </div>
 
-                            <p className="text-xs font-bold tracking-[0.3em] uppercase text-orange-500/60 mb-3 text-center">
+                            <p className="text-xs font-bold tracking-[0.3em] uppercase text-orange-500/60 mb-2 text-center">
                                 Pra quem é isso
                             </p>
-                            <h5 className="font-serif text-xl font-bold text-white text-center mb-6 leading-snug">
+                            <h5 className="font-serif text-xl font-bold text-white text-center mb-8 leading-snug">
                                 Esse treinamento é ideal para quem:
                             </h5>
 
-                            <ul className="space-y-2.5">
+                            {/* Grid de pills centralizado */}
+                            <div className="grid grid-cols-2 gap-3">
                                 {[
                                     'Quer começar do zero',
                                     'Precisa de uma renda extra',
                                     'Não quer aparecer nas redes sociais',
                                     'Quer algo simples e direto ao ponto',
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-center gap-3">
-                                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-500/10 border border-orange-500/25 flex items-center justify-center">
-                                            <svg className="w-2.5 h-2.5 text-orange-500/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <div
+                                        key={i}
+                                        className="flex flex-col items-center justify-center text-center gap-2 px-3 py-4 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-orange-500/25 hover:bg-orange-500/[0.05] transition-all duration-300 group"
+                                    >
+                                        {/* Check icon */}
+                                        <span className="w-7 h-7 rounded-full bg-orange-500/10 border border-orange-500/25 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors duration-300">
+                                            <svg className="w-3 h-3 text-orange-500/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </span>
-                                        <span className="text-[13px] text-slate-300 font-light leading-snug">{item}</span>
-                                    </li>
+                                        <span className="text-[12px] text-slate-300 font-light leading-snug">{item}</span>
+                                    </div>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
 
                     </section>
