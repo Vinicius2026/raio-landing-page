@@ -110,7 +110,9 @@ export default function MethodologySection() {
                                 ].map((item, i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/20 hover:bg-orange-500/[0.04] transition-all duration-300"
+                                        className={`flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/20 hover:bg-orange-500/[0.04] transition-all duration-300${
+                                            i === 4 ? ' sm:col-span-2 sm:max-w-sm sm:mx-auto sm:w-full' : ''
+                                        }`}
                                     >
                                         <span className="text-lg leading-none flex-shrink-0">{item.icon}</span>
                                         <span className="text-[13px] md:text-sm text-slate-300 font-light leading-snug">{item.text}</span>
@@ -158,7 +160,7 @@ export default function MethodologySection() {
                         <p className="text-xs sm:text-sm text-slate-300 mt-1 px-4 sm:px-0">As 6 vantagens essenciais</p>
                         
                         {/* ── Grid 3×2 de Vantagens (imagens circulares sem borda) ── */}
-                        <div className="mt-8 grid grid-cols-3 gap-x-2 gap-y-6 sm:gap-x-6 sm:gap-y-10 w-full mx-auto reveal px-1 sm:px-0">
+                        <div className="mt-8 grid grid-cols-3 gap-x-2 gap-y-6 sm:gap-x-4 sm:gap-y-8 lg:gap-x-8 lg:gap-y-10 w-full mx-auto reveal px-1 sm:px-0">
                              {[
                                  { img: '/vantagens/nova/vantagem1.webp', title1: 'Vendas no', title2: 'WhatsApp', desc: 'Negócio 100% focado no app' },
                                  { img: '/vantagens/nova/vantagem2.webp', title1: 'Produtos', title2: 'Lucrativos', desc: 'Produtos validados e rentáveis' },
@@ -168,17 +170,17 @@ export default function MethodologySection() {
                                  { img: '/vantagens/nova/vantagem6.webp', title1: 'Fidelização e', title2: 'Recompra', desc: 'Clientes voltando para comprar novamente' },
                              ].map((card, idx) => (
                                  <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
-                                     {/* Imagem circular — sem borda, máximo tamanho */}
+                                     {/* Imagem circular — sem borda, tamanho escalável */}
                                      <div className="relative flex items-center justify-center w-full">
                                          {/* Glow laranja sutil ao hover */}
                                          <div className="absolute inset-0 rounded-full bg-orange-500/0 group-hover:bg-orange-500/12 blur-[18px] transition-all duration-700 pointer-events-none" />
                                          <Image
                                              src={card.img}
                                              alt={card.title2}
-                                             width={160}
-                                             height={160}
-                                             sizes="(max-width: 640px) 30vw, 160px"
-                                             className="w-full max-w-[130px] sm:max-w-[160px] h-auto object-contain relative z-10 transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
+                                             width={220}
+                                             height={220}
+                                             sizes="(max-width: 640px) 30vw, (max-width: 1024px) 160px, 220px"
+                                             className="w-full max-w-[130px] sm:max-w-[160px] lg:max-w-[220px] h-auto object-contain relative z-10 transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
                                              loading="lazy"
                                              decoding="async"
                                          />
@@ -186,8 +188,8 @@ export default function MethodologySection() {
                                      {/* Título e descrição */}
                                      <div className="text-center mt-0.5">
                                          <p className="text-[10px] sm:text-[11px] text-slate-400 font-light leading-tight">{card.title1}</p>
-                                         <p className="text-[11px] sm:text-[13px] text-white font-semibold leading-tight group-hover:text-orange-400 transition-colors duration-500">{card.title2}</p>
-                                         <p className="text-[9px] sm:text-[10px] text-slate-500 font-light mt-0.5 leading-snug max-w-[110px] mx-auto">{card.desc}</p>
+                                         <p className="text-[11px] sm:text-[13px] lg:text-[15px] text-white font-semibold leading-tight group-hover:text-orange-400 transition-colors duration-500">{card.title2}</p>
+                                         <p className="text-[9px] sm:text-[10px] lg:text-[11px] text-slate-500 font-light mt-0.5 leading-snug max-w-[110px] lg:max-w-[160px] mx-auto">{card.desc}</p>
                                      </div>
                                  </div>
                              ))}

@@ -56,6 +56,27 @@ export default function OfferSection() {
     return (
         <>
             <section id="oferta" ref={sectionRef} className="w-full pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 lg:pb-28 relative bg-[#0B0F19] overflow-hidden">
+
+                {/* ── Grid de profundidade — puro CSS ── */}
+                <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+                    {/* Grade perspectiva */}
+                    <div
+                        className="absolute inset-0 opacity-[0.06]"
+                        style={{
+                            backgroundImage:
+                                'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+                            backgroundSize: '60px 60px',
+                            perspective: '800px',
+                            transform: 'rotateX(45deg)',
+                            transformOrigin: 'center 110%',
+                            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 60%, black 20%, transparent 80%)',
+                            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 60%, black 20%, transparent 80%)',
+                        }}
+                    />
+                    {/* Glow de luz sobre a grade */}
+                    <div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-orange-500/[0.04] rounded-full blur-[80px]" />
+                </div>
+
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/10 rounded-full md:blur-[70px] blur-[60px] pointer-events-none z-0"></div>
 
                 <div ref={particleRef} className="absolute left-0 top-0 pointer-events-none z-0 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)] opacity-70">
