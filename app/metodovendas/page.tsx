@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import FooterSection from '@/components/FooterSection';
 import AboutSection from '@/components/AboutSection';
+import QuizButton from './QuizButton';
 
 export const metadata: Metadata = {
     title: 'Novo Método Silencioso | VDA',
@@ -35,12 +36,7 @@ export default function NMSPage() {
 
                     {/* Dois botões lado a lado */}
                     <div className="flex flex-row items-center justify-center gap-3 sm:gap-4">
-                        <Link
-                            href="/metodovendas/licao"
-                            className="group relative px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg bg-black text-white text-[12px] sm:text-[13px] font-semibold tracking-[0.15em] uppercase transition-all duration-300 hover:bg-black/85 active:scale-[0.97]"
-                        >
-                            VDA Lição
-                        </Link>
+                        <QuizButton />
 
                         <a
                             href="https://aurenos.com.br"
