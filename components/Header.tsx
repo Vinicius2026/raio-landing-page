@@ -17,163 +17,146 @@ export default function Header() {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const menuLinks = [
+        { href: '#oferta', label: 'Comprar Curso', icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z', accent: 'orange-500', num: '01', isInternal: true },
+        { href: '/acelerarvendas', label: 'Acelera Chat', icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z', accent: 'amber-500', num: '02', isInternal: true },
+        { href: 'https://app.aurenos.com.br/', label: 'Área de Membros', icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z|M21 12a9 9 0 11-18 0 9 9 0 0118 0z', accent: 'slate-300', num: '03', isExternal: true },
+        { href: 'https://app.cakto.com.br/student/courses', label: 'Acessar Aulas', icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z', accent: 'purple-400', num: '04', isExternal: true },
+        { href: 'https://app.aurenos.com.br', label: 'Painel VDA', icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z', accent: '[#00e5ff]', num: '05', isExternal: true },
+        { href: 'https://wa.me/5521968960966?text=Quero%20falar%20com%20suporte%20da%20VDA.%20ID001428', label: 'Suporte', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z', accent: 'emerald-400', num: '06', isExternal: true },
+    ];
+
+    const internalLinks = menuLinks.filter(l => l.isInternal);
+    const externalLinks = menuLinks.filter(l => l.isExternal);
+
+    const renderLink = (link: typeof menuLinks[0]) => {
+        const paths = link.icon.split('|');
+        const inner = (
+            <div className="flex items-center gap-3.5 w-full py-2.5 group">
+                {/* Número em miniatura */}
+                <span className="w-6 h-6 rounded-md bg-white/[0.04] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:border-white/15 transition-colors duration-300">
+                    <span className="text-[8px] font-mono font-bold tracking-wider text-white/25 group-hover:text-white/50 transition-colors duration-300">{link.num}</span>
+                </span>
+                {/* Icon */}
+                <svg className={`w-[15px] h-[15px] text-slate-500 group-hover:text-${link.accent} transition-colors duration-300 flex-shrink-0`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    {paths.map((d, pi) => <path key={pi} strokeLinecap="round" strokeLinejoin="round" d={d} />)}
+                </svg>
+                {/* Label */}
+                <span className="text-[14px] font-sans font-medium text-slate-400 group-hover:text-white tracking-wide transition-all duration-300 group-hover:translate-x-0.5">{link.label}</span>
+                {/* Arrow */}
+                <svg className="w-3 h-3 text-white/10 group-hover:text-white/30 ml-auto flex-shrink-0 transition-all duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+        );
+
+        if (link.isExternal) {
+            return <a key={link.num} href={link.href} target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="block border-b border-white/[0.04] last:border-b-0">{inner}</a>;
+        }
+        return <Link key={link.num} href={link.href} onClick={toggleMenu} className="block border-b border-white/[0.04] last:border-b-0">{inner}</Link>;
+    };
+
     return (
         <>
-            {/* Floating Transparent Navigation Header */}
-            <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500 h-[60px] md:h-[80px] flex items-center bg-transparent mt-2 md:mt-4 pointer-events-none">
-                <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-3 items-center">
-                    <div className="flex items-center justify-start"></div>
-                    <div className="flex items-center justify-center"></div>
-                    <div className="flex items-center justify-end pointer-events-auto">
-                        <button 
-                            onClick={toggleMenu}
-                            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-                            aria-expanded={isMenuOpen}
-                            className="flex flex-col justify-center items-end w-10 h-10 space-y-[4px] focus:outline-none z-[60] group cursor-pointer relative overflow-hidden bg-black/20 backdrop-blur-sm p-2 rounded-xl border border-white/5 shadow-2xl transition hover:bg-black/40"
-                        >
-                            <span 
-                                className="block h-[1px] bg-white transition-all duration-300 group-hover:bg-orange-500"
-                                style={{
-                                    width: isMenuOpen ? '24px' : '20px',
-                                    transform: isMenuOpen ? 'rotate(-45deg) translate(-6px, 6px)' : 'none'
-                                }}
-                            ></span>
-                            <span 
-                                className="block h-[1px] bg-white transition-all duration-300 group-hover:bg-orange-500"
-                                style={{
-                                    width: isMenuOpen ? '32px' : '24px',
-                                    opacity: isMenuOpen ? '0' : '1',
-                                    transform: isMenuOpen ? 'translateX(10px)' : 'none'
-                                }}
-                            ></span>
-                            <span 
-                                className="block h-[1px] bg-white transition-all duration-300 group-hover:bg-orange-500"
-                                style={{
-                                    width: isMenuOpen ? '24px' : '16px',
-                                    transform: isMenuOpen ? 'rotate(45deg) translate(-5px, -5px)' : 'none'
-                                }}
-                            ></span>
-                        </button>
-                    </div>
+            {/* Floating hamburger */}
+            <header className="fixed top-0 left-0 w-full z-50 h-[56px] md:h-[72px] flex items-center pointer-events-none mt-2 md:mt-3">
+                <div className="max-w-7xl mx-auto px-5 w-full flex items-center justify-end">
+                    <button
+                        onClick={toggleMenu}
+                        aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+                        aria-expanded={isMenuOpen}
+                        className="pointer-events-auto flex flex-col justify-center items-end w-9 h-9 space-y-[3px] z-[60] cursor-pointer bg-black/30 backdrop-blur-md p-2 rounded-lg border border-white/[0.06] shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:bg-black/50 hover:border-white/10 group"
+                    >
+                        <span
+                            className="block h-[1px] bg-white/70 transition-all duration-300 group-hover:bg-orange-500"
+                            style={{
+                                width: isMenuOpen ? '20px' : '17px',
+                                transform: isMenuOpen ? 'rotate(-45deg) translate(-5px, 5px)' : 'none'
+                            }}
+                        />
+                        <span
+                            className="block h-[1px] bg-white/70 transition-all duration-300 group-hover:bg-orange-500"
+                            style={{
+                                width: isMenuOpen ? '20px' : '20px',
+                                opacity: isMenuOpen ? '0' : '1',
+                                transform: isMenuOpen ? 'translateX(8px)' : 'none'
+                            }}
+                        />
+                        <span
+                            className="block h-[1px] bg-white/70 transition-all duration-300 group-hover:bg-orange-500"
+                            style={{
+                                width: isMenuOpen ? '20px' : '13px',
+                                transform: isMenuOpen ? 'rotate(45deg) translate(-4px, -4px)' : 'none'
+                            }}
+                        />
+                    </button>
                 </div>
             </header>
 
-            {/* Mobile Overlay */}
-            <div 
+            {/* Overlay */}
+            <div
                 className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[50] transition-opacity duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                 onClick={toggleMenu}
-            ></div>
+            />
 
-            {/* Fullscreen Minimalist Drawer Menu */}
-            <div 
-                className={`fixed inset-y-0 left-0 w-full sm:w-[400px] bg-[#000000] border-r border-white/5 z-[55] transform transition-transform duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] shadow-2xl flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+            {/* ── Premium Drawer ── */}
+            <div
+                className={`fixed inset-y-0 left-0 w-full sm:w-[360px] z-[55] transform transition-transform duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
             >
-                {/* Drawer Header */}
-                <div className="h-[80px] w-full border-b border-white/5 flex items-center justify-end px-6 sm:px-8 relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 flex flex-col justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl border-t border-black/80">
-                        <span className="text-[9px] font-bold tracking-[0.4em] text-white/30 uppercase mb-1">Aurenos</span>
-                        <Image src="/logotipo/logo2.webp" alt="Venda Direta Automática - Metodologia VDA" width={140} height={45} className="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90" />
+                {/* Glass background */}
+                <div className="absolute inset-0 bg-[#030408]/95 backdrop-blur-xl" />
+
+                {/* Subtle grid texture */}
+                <div
+                    className="absolute inset-0 opacity-[0.025] pointer-events-none"
+                    style={{
+                        backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+                        backgroundSize: '40px 40px',
+                    }}
+                />
+
+                {/* Right border glow */}
+                <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
+
+                {/* ── Header ── */}
+                <div className="relative z-10 h-[56px] flex items-center justify-between px-5 border-b border-white/[0.05]">
+                    <div className="flex items-center gap-2.5">
+                        <Image src="/logotipo/logo2.webp" alt="VDA" width={100} height={32} className="h-7 w-auto object-contain opacity-80" />
                     </div>
-                    <button onClick={toggleMenu} aria-label="Fechar menu" className="text-white hover:text-orange-500 p-2 transition-transform hover:scale-110 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+                    <button onClick={toggleMenu} aria-label="Fechar menu" className="text-white/40 hover:text-white p-1 transition-colors duration-300">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
 
-                {/* Drawer Links */}
-                <nav className="flex flex-col px-8 py-10 gap-7 mt-2 relative z-20">
-                    <Link href="#oferta" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                        <div className="absolute left-0 w-10 h-10 rounded-full bg-orange-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-orange-500 transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-300 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Curso</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-orange-500">I</span>
-                        </div>
-                    </Link>
+                {/* ── Navigation ── */}
+                <nav className="relative z-10 flex-1 flex flex-col px-5 py-6 overflow-y-auto">
 
-                    {/* Comprar Conversa em Grupo */}
-                    <Link href="/acelerarvendas" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                        <div className="absolute left-0 w-10 h-10 rounded-full bg-amber-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-amber-500 transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Acelera Chat</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-amber-500">II</span>
-                        </div>
-                    </Link>
+                    {/* Seção: Produtos */}
+                    <p className="text-[8px] font-bold tracking-[0.5em] uppercase text-white/15 mb-3 px-1">Produtos</p>
+                    <div className="mb-5">
+                        {internalLinks.map(renderLink)}
+                    </div>
 
-                    {/* Area de Membros */}
-                    <a href="https://app.aurenos.com.br/" target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                         <div className="absolute left-0 w-10 h-10 rounded-full bg-slate-100/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-slate-100 transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Área de Membros</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/50">III</span>
-                        </div>
-                    </a>
+                    {/* Separador decorativo */}
+                    <div className="flex items-center gap-2.5 my-3 px-1">
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                        <div className="w-1 h-1 rotate-45 bg-white/10" />
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                    </div>
 
-                    {/* Acessar Aulas VDA - NOVO */}
-                    <a href="https://app.cakto.com.br/student/courses" target="_blank" rel="noopener noreferrer" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                         <div className="absolute left-0 w-10 h-10 rounded-full bg-purple-500/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-purple-400 transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Acessar Aulas VDA</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-purple-500/50">IV</span>
-                        </div>
-                    </a>
-                    
-                    {/* Painel de Controle */}
-                    <a href="https://app.aurenos.com.br" target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                        <div className="absolute left-0 w-10 h-10 rounded-full bg-[#00e5ff]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#00e5ff] transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Painel de Controle</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">V</span>
-                        </div>
-                    </a>
-
-                    {/* Chamar Suporte */}
-                    <a href="https://wa.me/5521968960966?text=Quero%20falar%20com%20suporte%20da%20VDA.%20ID001428" target="_blank" rel="noopener" onClick={toggleMenu} className="mobile-link group flex items-center w-full relative py-2">
-                        <div className="absolute left-0 w-10 h-10 rounded-full bg-[#10B981]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500"></div>
-                        <div className="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#10B981] transition-colors duration-500 shrink-0">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                        </div>
-                        <span className="text-[20px] font-serif font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Chamar Suporte</span>
-                        <div className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-[#10B981]/50">VI</span>
-                        </div>
-                    </a>
+                    {/* Seção: Acesso */}
+                    <p className="text-[8px] font-bold tracking-[0.5em] uppercase text-white/15 mb-3 mt-2 px-1">Acesso</p>
+                    <div>
+                        {externalLinks.map(renderLink)}
+                    </div>
                 </nav>
 
-                {/* Drawer Footer */}
-                <div className="mt-auto p-8 mb-4">
-                    <div className="flex items-center gap-4 mb-4">
-                        <a href="mailto:contato@aurenos.com" className="text-xs tracking-widest text-[#94A3B8] hover:text-white transition-colors hover:underline underline-offset-4 decoration-orange-500">contato@aurenos.com</a>
-                    </div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/20">VDA Produções &copy;</p>
+                {/* ── Footer ── */}
+                <div className="relative z-10 px-5 py-4 border-t border-white/[0.04]">
+                    <a href="mailto:contato@aurenos.com" className="text-[10px] tracking-[0.15em] text-white/20 hover:text-white/50 transition-colors duration-300">contato@aurenos.com</a>
+                    <p className="text-[9px] tracking-[0.2em] text-white/10 mt-1.5">VDA Produções &copy; 2026</p>
                 </div>
             </div>
         </>

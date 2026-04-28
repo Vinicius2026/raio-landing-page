@@ -6,57 +6,70 @@ import { trackEvent } from '@/lib/meta-pixel';
 export default function GroupsSection() {
     return (
         <>
-            <section className="w-full py-16 md:py-28 relative bg-[#090C15] border-t border-white/5 overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
-                <div className="hidden lg:block absolute left-[6%] xl:left-[12%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"></div>
-                <div className="hidden lg:block absolute left-[6%] xl:left-[12%] top-1/2 -translate-y-1/2 w-[1px] h-56 bg-gradient-to-b from-transparent via-orange-500/50 to-transparent pointer-events-none shadow-[0_0_15px_rgba(249,115,22,0.8)]"></div>
-                
-                <div className="hidden lg:block absolute right-[6%] xl:right-[12%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"></div>
-                <div className="hidden lg:block absolute right-[6%] xl:right-[12%] top-1/2 -translate-y-1/2 w-[1px] h-56 bg-gradient-to-b from-transparent via-[#D4AF37]/50 to-transparent pointer-events-none shadow-[0_0_15px_rgba(212,175,55,0.8)]"></div>
+            <section className="w-full py-16 md:py-24 relative bg-[#090C15] border-t border-white/5 overflow-hidden">
 
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[1100px] h-[300px] md:h-[600px] bg-orange-500/5 rounded-[100%] blur-[60px] md:blur-[80px] pointer-events-none z-0"></div>
+                {/* ── Grid SaaS de fundo ── */}
+                <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+                    <div
+                        className="absolute inset-0 opacity-[0.04]"
+                        style={{
+                            backgroundImage:
+                                'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+                            backgroundSize: '48px 48px',
+                            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, black 10%, transparent 75%)',
+                            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, black 10%, transparent 75%)',
+                        }}
+                    />
+                    {/* Glow central sobre a grade */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-white/[0.02] rounded-full blur-[80px]" />
+                </div>
 
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center reveal">
-                    <h3 className="font-serif text-2xl sm:text-[28px] lg:text-[34px] font-bold text-white mb-4 sm:mb-6 tracking-wide shadow-black drop-shadow-md">
-                        Nossos Grupos de contato diário.
+
+                    {/* ── Título estilizado ── */}
+                    <p className="text-[9px] font-bold tracking-[0.45em] uppercase text-white/20 mb-4">Comunidade VDA</p>
+                    <h3 className="font-serif font-bold text-white leading-[1.15] tracking-wide mb-4 sm:mb-6">
+                        <span className="block text-2xl sm:text-[32px] lg:text-[38px] text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                            Grupos de Contato
+                        </span>
+                        <span className="block text-[22px] sm:text-[28px] lg:text-[34px] text-transparent bg-clip-text bg-gradient-to-b from-slate-200 to-slate-500 mt-0.5">
+                            Diário
+                        </span>
                     </h3>
-                    <p className="text-[13px] sm:text-[15px] font-light text-slate-300 leading-relaxed max-w-3xl mx-auto mb-12 sm:mb-16 drop-shadow-sm">
+
+                    <p className="text-[13px] sm:text-[15px] font-light text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10 sm:mb-14 drop-shadow-sm">
                         Garanta a VDA hoje com um desconto exclusivo: de <span className="line-through text-white/40">R$ 297</span> por <strong className="text-white font-medium">apenas R$ 97,00</strong>. Tenha acesso imediato ao conteúdo completo em 6 módulos e 20+ videoaulas, incluindo as ferramentas que utilizamos para vender diariamente, produtos selecionados e materiais prontos de áudio, imagem e vídeo para cada oferta. Além disso, participe dos nossos grupos de suporte e contato diário. Aproveite: <span className="text-orange-500 font-semibold">promoção por tempo limitadíssimo!</span>
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-16 md:gap-24 w-full">
+                    {/* ── Imagens lado a lado — mesma proporção ── */}
+                    <div className="flex flex-row justify-center items-center gap-5 sm:gap-8 w-full">
                         <div className="relative group cursor-default">
-                            <div className="absolute inset-0 bg-[#D4AF37]/15 rounded-full blur-[40px] group-hover:bg-[#D4AF37]/25 transition-colors duration-700 origin-center pointer-events-none scale-110"></div>
-                            <div className="relative w-60 h-60 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border border-white/10 bg-[#060913] flex items-center justify-center p-[3px] shadow-[0_15px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-700 hover:border-[#D4AF37]/40 hover:shadow-[0_20px_50px_rgba(212,175,55,0.25)]">
-                                <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-[#0a0f19]">
-                                    <Image src="/blvda img/vda-grupoaberto.webp" alt="Grupo Aberto" width={256} height={256} sizes="(max-width: 640px) 240px, (max-width: 1024px) 224px, 256px" className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"></div>
+                            <div className="relative w-40 h-40 sm:w-44 sm:h-44 rounded-full border border-white/8 bg-[#060913] flex items-center justify-center p-[2px] shadow-[0_10px_30px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:border-white/15 hover:shadow-[0_14px_36px_rgba(0,0,0,0.8)]">
+                                <div className="w-full h-full rounded-full overflow-hidden relative bg-[#0a0f19]">
+                                    <Image src="/blvda img/vda-grupoaberto.webp" alt="Grupo Aberto" width={176} height={176} sizes="(max-width: 640px) 160px, 176px" className="w-full h-full object-cover" loading="lazy" />
+                                    <div className="absolute inset-0 rounded-full shadow-[inset_0_0_15px_rgba(0,0,0,0.7)] pointer-events-none" />
                                 </div>
                             </div>
                         </div>
 
                         <div className="relative group cursor-default">
-                            <div className="absolute inset-0 bg-orange-500/15 rounded-full blur-[40px] group-hover:bg-orange-500/25 transition-colors duration-700 origin-center pointer-events-none scale-110"></div>
-                            <div className="relative w-60 h-60 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border border-white/10 bg-[#060913] flex items-center justify-center p-[3px] shadow-[0_15px_40px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-700 hover:border-orange-500/40 hover:shadow-[0_20px_50px_rgba(249,115,22,0.25)]">
-                                <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-[#0a0f19]">
-                                    <Image src="/blvda img/vda-grupofechados.webp" alt="Grupo Fechado" width={256} height={256} sizes="(max-width: 640px) 240px, (max-width: 1024px) 224px, 256px" className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"></div>
+                            <div className="relative w-40 h-40 sm:w-44 sm:h-44 rounded-full border border-white/8 bg-[#060913] flex items-center justify-center p-[2px] shadow-[0_10px_30px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:border-white/15 hover:shadow-[0_14px_36px_rgba(0,0,0,0.8)]">
+                                <div className="w-full h-full rounded-full overflow-hidden relative bg-[#0a0f19]">
+                                    <Image src="/blvda img/vda-grupofechados.webp" alt="Grupo Fechado" width={176} height={176} sizes="(max-width: 640px) 160px, 176px" className="w-full h-full object-cover" loading="lazy" />
+                                    <div className="absolute inset-0 rounded-full shadow-[inset_0_0_15px_rgba(0,0,0,0.7)] pointer-events-none" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-12 sm:mt-14 w-full flex justify-center reveal">
+                    <div className="mt-10 sm:mt-12 w-full flex justify-center reveal">
                         <Link
                             href="#oferta"
                             onClick={() => trackEvent('InitiateCheckout', { value: 97.00, currency: 'BRL', content_name: 'VDA Premium' })}
                             className="group relative block w-full max-w-[280px] sm:max-w-[340px] text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide overflow-hidden transition-all duration-500 hover:scale-[1.04] active:scale-[0.98]"
                         >
-                            {/* Glass base */}
                             <span className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-md border border-white/25 shadow-[0_8px_32px_rgba(255,255,255,0.10),inset_0_1px_0_rgba(255,255,255,0.20)] group-hover:bg-white/15 group-hover:border-white/40 group-hover:shadow-[0_8px_40px_rgba(255,255,255,0.20),inset_0_1px_0_rgba(255,255,255,0.30)] transition-all duration-500" />
-                            {/* Shimmer sweep on hover */}
                             <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.12)_50%,transparent_60%)] bg-[length:200%_100%] animate-[shimmer_1.5s_ease-in-out_infinite]" />
-                            {/* Label */}
                             <span className="relative text-white font-bold tracking-[0.08em] uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                                 COMPRAR VDA POR R$ 97,00
                             </span>
