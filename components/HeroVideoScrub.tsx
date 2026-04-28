@@ -192,10 +192,10 @@ export default function HeroVideoScrub() {
                             <div className="h-[1px] w-8 md:w-16 bg-gradient-to-l from-transparent to-[#D4AF37]/60" />
                         </div>
 
-                        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 max-w-3xl mx-auto drop-shadow-2xl text-white">
-                            Copie e Cole a Metodologia que Está{' '}
+                        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 max-w-4xl mx-auto drop-shadow-2xl text-white">
+                            Como Vendemos Mais de 15 Produtos Diferentes Pelo WhatsApp{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-[#D4AF37]">
-                                Colocando Produtos VDA no Topo das Vendas.
+                                Sem Depender de Um Único Produto Vencedor.
                             </span>
                         </h1>
 

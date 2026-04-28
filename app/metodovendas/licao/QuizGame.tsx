@@ -78,7 +78,7 @@ const questions: Question[] = [
         emoji: '🚀',
         color: 'text-rose-500',
         colorBg: 'bg-rose-500',
-        title: 'Se existir uma estrutura que mostra onde as conversas perdem força, faz sentido analisar agora?',
+        title: 'Se você pudesse aprender vendo na prática como vende pelo WhatsApp diversos produtos diariamente, a forma secreta da VDA. Teria interesse?',
         insight: 'Decisão inteligente. Vamos processar seu diagnóstico.',
         options: [
             { label: 'Sim, quero ver', points: 40 },
@@ -262,7 +262,7 @@ export default function QuizGame() {
 
                     <p className="text-[14px] text-black/45 font-light leading-relaxed max-w-xs mx-auto mb-8">
                         {scorePercent >= 75
-                            ? 'Você já enxerga os padrões. A estrutura VDA vai potencializar cada conversa que você tem.'
+                            ? 'Você já enxerga o método, certamente a VDA pode te ajudar a vender no WhatsApp até todos os dias.'
                             : scorePercent >= 50
                             ? 'Você reconhece parte dos gargalos. O VDA vai revelar exatamente onde agir para converter mais.'
                             : 'Existem pontos invisíveis travando seus resultados. A estrutura VDA mostra cada um — passo a passo.'}
