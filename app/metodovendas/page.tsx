@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import FooterSection from '@/components/FooterSection';
+import AboutSection from '@/components/AboutSection';
 
 export const metadata: Metadata = {
     title: 'Novo Método Silencioso | VDA',
@@ -52,6 +53,13 @@ export default function NMSPage() {
                     </div>
                 </div>
             </main>
+
+            {/* Seção Quem é o Thiago idêntica à da home */}
+            <div className="relative overflow-hidden bg-zinc-950">
+                <div className="relative z-10 pt-10">
+                    <AboutSection />
+                </div>
+            </div>
 
             {/* Rodapé idêntico ao da home */}
             <div className="relative z-10 bg-[#0B0F19]">
