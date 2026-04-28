@@ -347,6 +347,18 @@ export default function QuizGame() {
                         {q.title}
                     </h2>
 
+                    {/* Revealead Insight — Apenas na última pergunta */}
+                    {step === TOTAL - 1 && (
+                        <div className="mb-8 p-5 bg-black/[0.03] border border-black/[0.05] rounded-2xl animate-[fadeIn_0.5s_ease-out]">
+                            <p className="text-[14px] text-black/80 font-medium leading-relaxed text-center italic">
+                                "Você está participando exatamente de como vendemos: <strong className="text-black font-bold">sem vender, guiando pela conversa.</strong>"
+                            </p>
+                            <p className="text-[13px] text-black/50 font-light leading-relaxed text-center mt-3">
+                                Nós não criamos mensagens do zero. Temos todos os textos, áudios, vídeos e imagens prontos para cada produto. Nós sabemos a ordem exata que vende mais, e executamos de forma semi-automática.
+                            </p>
+                        </div>
+                    )}
+
                     {/* Options */}
                     <div className="flex flex-col gap-2.5">
                         {q.options.map((opt, idx) => {
